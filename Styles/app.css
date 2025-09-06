@@ -1,0 +1,142 @@
+@font-face {
+    font-family: "Montserrat Bold";
+    src: url(../Fonts/Montserrat-Bold.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: "Montserrat";
+    src: url(../Fonts/Montserrat-Regular.ttf) format('truetype');
+}
+
+@media screen and (max-device-width:1000px){
+    body>.banner {
+        height:170px;
+        width: 100%;
+        box-shadow: 0px 0px 30px 10px rgb(100,100,100);
+        background-color: white;
+        z-index: 1;
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        padding: 0px 10px 0px 10px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    #bannerImg {
+        width: 250px;
+    }
+
+    #LoginBtn,#SignUpBtn {
+        font-size: 35px;
+        border-width:3px;
+        height: 100px;
+        padding: 0px 10px 0px 10px;
+    }
+    
+    #LoginBtn.hidden,#SignUpBtn.hidden{
+        display: none;
+    }
+    body>.EmptyDiv {
+        height: 180px;
+    }
+
+    #LoginBtn:hover,#SignUpBtn:hover {
+        color:purple;
+        background-color: white;
+    }
+
+    iframe{
+        position:fixed;
+        top:170px;
+        left:0px;
+        width:100%;
+        height: 93%;
+        z-index: 1;
+        background-color: white;
+        border-width: 0px;
+    }
+
+    iframe.active{
+        z-index: 2;
+        top: -1px;
+    }
+
+    iframe.zoom{
+        height:100%;
+        z-index:5;
+    }
+
+    @keyframes loading{
+        to{
+            transform: rotateZ(360deg);
+        }
+    }
+
+    #menuBar{
+        position:fixed;
+        bottom:0px;
+        left:0px;
+        background-color:white;
+        height: 7%;
+        width:100%;
+        z-index:4;
+        display:flex;
+        justify-content:space-around;
+        align-items:center;
+    }
+
+    #menuBar>div{
+        display: flex;
+        flex-direction: column;
+        height:70px;
+        overflow:hidden;
+    }
+
+    #menuBar>div:not(.selected)>img.selected{
+        display: none;
+    }
+    
+    #menuBar>div:not(.selected)>img:not(.selected){
+        display: block;
+    }
+
+    #menuBar>div.selected>img.selected{
+        display: block;
+    }
+    #menuBar>div.selected>img:not(.selected){
+        display: none;
+    }
+
+    #menuBar img{
+        height: 70px;
+    }
+
+    #loadingContainer{
+        width:100%;
+        height: 94%;
+        position:fixed;
+        top: 0px;
+        left:0px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 3;
+        background-color: white;
+    }
+
+    #loadingContainer.hidden{
+        display:none;
+    }
+
+    #loadingContainer .loadingImg{
+        height:80px;
+        width:80px;
+        animation-name:loading;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+        animation-duration: 1s;
+    }
+}

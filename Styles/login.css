@@ -1,0 +1,174 @@
+@font-face{
+    font-family:"Montserrat Bold";
+    src:url(../Fonts/Montserrat-Bold.ttf) format('truetype');
+}
+@font-face {
+    font-family: "Montserrat";
+    src: url(../Fonts/Montserrat-Regular.ttf) format('truetype');
+}
+
+h1{
+    font-family: "Montserrat Bold";
+    color:rgb(0,150,0);
+    font-size: 50px;
+    text-align: center;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: "Montserrat Bold";
+    font-size:20px;
+    text-align: center;
+}
+
+a{
+    color:inherit;
+}
+
+#UmarketImg{
+    margin-top:10px;
+    width:100%;
+    font-family: Calibri;
+    display: flex;
+    justify-content: center;
+}
+
+#UmarketImg img{
+    width:30%;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    padding:10px;
+    width:40%;
+    border:solid 2px rgb(0,150,0);
+    justify-content: space-around;
+    align-items: center;
+    font-family: "Montserrat Bold";
+    font-size:15px;
+}
+
+input{
+    height:50px;
+    width:90%;
+    margin:10px 10px 0px 10px !important;
+    color:rgb(150,150,150);
+    border:solid 2px rgb(150,150,150);
+    padding-left:15px;
+    font-family: "Montserrat";
+    font-weight: bold;
+    font-size: 20px;
+}
+
+input:disabled{
+    border-color:rgb(150,150,150) !important;
+    cursor:not-allowed !important;
+}
+input.error{
+    border-color:red;
+}
+input:hover{
+    border:solid 2px rgb(0,150,0);
+    cursor: pointer;
+}
+
+input:focus{
+    color:rgb(0,150,0);
+    cursor:text;
+}
+
+.error{
+    color:red;
+    font-family: "Montserrat";
+    font-weight: bold;
+    margin: 0px 0px 30px 0px;
+    width:90%;
+    text-align: left;
+}
+#SubmitBtn{
+    width:40%;
+    color:rgb(0,150,0);
+    background-color: white;
+    border-color:rgb(0,150,0);
+    transition-duration: 0.3s;
+    padding:0px;
+    cursor:pointer;
+    font-family: "Montserrat Bold";
+}
+
+#SubmitBtn:hover{
+    background:rgb(0,150,0);
+    color:white;
+}
+
+.hidden{
+    display:none;
+}
+
+#loadingImg{
+    width:40px;
+    animation-name:loading;
+    animation-iteration-count: infinite;
+    animation-duration: 0.5s;
+    animation-timing-function:linear;
+}
+
+@keyframes loading {
+    to{
+        transform: rotate(180deg);
+    }
+}
+
+@media screen and (max-device-width:500px){
+    h1{
+        font-size:100px;
+    }
+    body{
+        font-size: 40px;
+    }
+    #UmarketImg img{
+        width:80%;
+    }
+    form{
+        width:90%;
+    }
+    input{
+        font-size: 40px !important;
+        height: 110px;
+    }
+    .error{
+        font-size: 30px;
+    }
+    #loadingImg{
+        width:70px;
+    }
+
+}
+@media screen and (min-device-width:501px) and (max-device-width:1000px){
+    body{
+        font-size: 40px;
+    }
+
+    h1{
+        font-size:100px;
+    }
+    #UmarketImg img{
+        width:50%;
+    }
+    form{
+        width:90%;
+    }
+    input{
+        font-size: 35px;
+        height: 100px;
+    }
+    .error{
+        font-size:200%;
+    }
+    #loadingImg{
+        width:70px;
+    }
+
+}

@@ -1,0 +1,874 @@
+<!DOCTYPE html5>
+<html>
+    <head>
+        <link rel="stylesheet" href="Styles/buyer.css">
+        <link rel="icon" href="Images/NaijaEstate.ico">
+        <title>
+            Search something on Umarket
+        </title>
+        <meta name="description" content="Find anything on Umarket">
+        <meta name="viewport" content="width=device-width, initial-scale=0.4,interactive-widget=overlays-content, minimum-scale=0.4"/>
+        <script src="Scripts/buyer.js"></script>
+    </head>
+    <body>
+        <div id="noRotate">
+            Naija Estate can only be viewed on mobile phones.<br>
+            If this is a mobile phone, please, keep your device in portrait view.
+        </div>
+        <div id="buyerContainer">
+            <div id="searchContainer" class="selected">
+                <div class="backBoard float hidden" onclick="historyBack()"></div>
+                <div class="banner">    
+                    <img id="bannerImg" src="Images/Naija Estate.svg">
+
+                </div> 
+                <form class="searchForm">
+                    <div class="searchBar">
+                        <div class="searchFilter" onclick="changeHash('#filter')">
+                            <div>
+                                <img src="Images/Filter.svg">
+                            </div>
+                            <div id="FilterCount" class="hidden">5</div>
+                        </div>
+                        <input type="text" class="searchBox" placeholder="Find your dream home, today!">
+                        <button class="searchButton">
+                            <img src="Images/Search.svg">
+                        </button>
+                    </div>
+                </form>
+                <div class="searchFilterForm hidden">
+                    <div>
+                        <h1 style="color:rgb(0,150,0)">
+                            Search Filter
+                        </h1>
+                        <div onclick="historyBack()">
+                            <img src="Images/Close.svg">
+                        </div>
+                    </div>
+                    <div>
+                        Location:
+                        <br>
+                        <input type="text" id="filterLocation" placeholder="e.g Ikeja, Lekki, Ore...">
+                    </div>
+                    <div>
+                        Minimum Price:
+                        <br>
+                        <input type="number" id="filterMinPrice" placeholder="e.g 5000">
+                    </div>
+                    <div>
+                        Maximum Price:
+                        <br>
+                        <input type="number" id="filterMaxPrice" placeholder="e.g 100000">
+                    </div>
+                    <!-- <div>
+                        Minimum Rating:
+                        <br>
+                        <div id="RatingSelector">
+                            <button onclick="selectRating(this)">
+                                1
+                                <svg viewBox="0 0 164.9 156.62" fill="black">
+                                    <path d="M31.53 156.62l13.4 -57.88 -44.93 -38.93 59.36 -5.18 23.09 -54.62 23.09 54.62 59.36 5.18 -44.93 38.93 13.4 57.88 -50.85 -30.72 -50.85 30.72 0 0 -0.14 0z"/>
+                                </svg>
+                            </button>
+                            <button onclick="selectRating(this)">
+                                2
+                                <svg viewBox="0 0 164.9 156.62" fill="black">
+                                    <path d="M31.53 156.62l13.4 -57.88 -44.93 -38.93 59.36 -5.18 23.09 -54.62 23.09 54.62 59.36 5.18 -44.93 38.93 13.4 57.88 -50.85 -30.72 -50.85 30.72 0 0 -0.14 0z"/>
+                                </svg>
+                            </button>
+                            <button onclick="selectRating(this)">
+                                3
+                                <svg viewBox="0 0 164.9 156.62" fill="black">
+                                    <path d="M31.53 156.62l13.4 -57.88 -44.93 -38.93 59.36 -5.18 23.09 -54.62 23.09 54.62 59.36 5.18 -44.93 38.93 13.4 57.88 -50.85 -30.72 -50.85 30.72 0 0 -0.14 0z"/>
+                                </svg>
+                            </button>
+                            <button onclick="selectRating(this)">
+                                4
+                                <svg viewBox="0 0 164.9 156.62" fill="black">
+                                    <path d="M31.53 156.62l13.4 -57.88 -44.93 -38.93 59.36 -5.18 23.09 -54.62 23.09 54.62 59.36 5.18 -44.93 38.93 13.4 57.88 -50.85 -30.72 -50.85 30.72 0 0 -0.14 0z"/>
+                                </svg>
+                            </button>
+                            <button onclick="selectRating(this)">
+                                5
+                                <svg viewBox="0 0 164.9 156.62" fill="black">
+                                    <path d="M31.53 156.62l13.4 -57.88 -44.93 -38.93 59.36 -5.18 23.09 -54.62 23.09 54.62 59.36 5.18 -44.93 38.93 13.4 57.88 -50.85 -30.72 -50.85 30.72 0 0 -0.14 0z"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div> -->
+                    <div id="searchFilterFormButtons">
+                        <button style="color:red; border-color:red" onclick="clearFilter()" id="clearFilter">
+                            Clear All
+                        </button>
+                        <button onclick="applyFilter()">
+                            Apply
+                        </button>
+                    </div>
+        
+                </div>
+                <div class="mainContainer" onscroll="pauseVideos('search')">
+                    <img src="Images/resultLoading.svg" class="resultLoading">
+                    <a href="Pages/property.html" target="_blank">
+                        <div class="searchResult hidden">
+                                <div class="propertyPic">
+                                     <video  onerror="reloadVideo(this)" src="Videos/1.mp4" type="video/mp4"  preload="metadata" muted onloadedmetadata="canPlay(this)"></video>
+                                </div>
+                                <div class="propertyDetails">
+                                    <div class="propertyName">
+                                        4 bedroom Duplex with spacious parking area along Ugbowo-Lagos road
+                                    </div>
+                                    <div class="propertyLocation">
+                                        <div>
+                                          Ugbowo, Benin City, Edo state  
+                                        </div>
+                                        <img src="Images/Location.svg">
+                                    </div>
+                                    <div class="propertyPrice">
+                                        <h3>N10,000,000</h3>
+                                        <span>N15,000,000</span>
+                                    </div>
+                                </div>
+                        </div>
+                    </a>
+                    <a href="Pages/property.html" target="_blank">
+                        <div class="searchResult hidden">
+                                <div class="propertyPic">
+                                     <video  onerror="reloadVideo(this)" src="Videos/2.mp4" type="video/mp4"  preload="metadata" muted onloadedmetadata="canPlay(this)"></video>
+                                </div>
+                                <div class="propertyDetails">
+                                    <div class="propertyName">
+                                        4 bedroom Duplex with spacious parking area along Ugbowo-Lagos road
+                                    </div>
+                                    <div class="propertyLocation">
+                                        <div>
+                                          Ugbowo, Benin City, Edo state  
+                                        </div>
+                                        <img src="Images/Location.svg">
+                                    </div>
+                                    <div class="propertyPrice">
+                                        <h3>N10,000,000</h3>
+                                        <span>N15,000,000</span>
+                                    </div>
+                                </div>
+                        </div>
+                    </a>
+                    <a href="Pages/property.html" target="_blank">
+                        <div class="searchResult hidden">
+                                <div class="propertyPic">
+                                     <video  onerror="reloadVideo(this)" src="Videos/3.mp4" type="video/mp4"  preload="metadata" muted onloadedmetadata="canPlay(this)"></video>
+                                </div>
+                                <div class="propertyDetails">
+                                    <div class="propertyName">
+                                        4 bedroom Duplex with spacious parking area along Ugbowo-Lagos road
+                                    </div>
+                                    <div class="propertyLocation">
+                                        <div>
+                                          Ugbowo, Benin City, Edo state  
+                                        </div>
+                                        <img src="Images/Location.svg">
+                                    </div>
+                                    <div class="propertyPrice">
+                                        <h3>N10,000,000</h3>
+                                        <span>N15,000,000</span>
+                                    </div>
+                                </div>
+                        </div>
+                    </a>
+                    <a href="Pages/property.html" target="_blank">
+                        <div class="searchResult hidden">
+                                <div class="propertyPic">
+                                     <video  onerror="reloadVideo(this)" src="Videos/4.mp4" type="video/mp4"  preload="metadata" muted onloadedmetadata="canPlay(this)"></video>
+                                </div>
+                                <div class="propertyDetails">
+                                    <div class="propertyName">
+                                        4 bedroom Duplex with spacious parking area along Ugbowo-Lagos road
+                                    </div>
+                                    <div class="propertyLocation">
+                                        <div>
+                                          Ugbowo, Benin City, Edo state  
+                                        </div>
+                                        <img src="Images/Location.svg">
+                                    </div>
+                                    <div class="propertyPrice">
+                                        <h3>N10,000,000</h3>
+                                        <span>N15,000,000</span>
+                                    </div>
+                                </div>
+                        </div>
+                    </a>
+                    <a href="Pages/property.html" target="_blank">
+                        <div class="searchResult hidden">
+                                <div class="propertyPic">
+                                     <video  onerror="reloadVideo(this)" src="Videos/5.mp4" type="video/mp4"  preload="metadata" muted onloadedmetadata="canPlay(this)"></video>
+                                </div>
+                                <div class="propertyDetails">
+                                    <div class="propertyName">
+                                        4 bedroom Duplex with spacious parking area along Ugbowo-Lagos road
+                                    </div>
+                                    <div class="propertyLocation">
+                                        <div>
+                                          Ugbowo, Benin City, Edo state  
+                                        </div>
+                                        <img src="Images/Location.svg">
+                                    </div>
+                                    <div class="propertyPrice">
+                                        <h3>N10,000,000</h3>
+                                        <span>N15,000,000</span>
+                                    </div>
+                                </div>
+                        </div>
+                    </a>
+                    <a href="Pages/property.html" target="_blank">
+                        <div class="searchResult hidden">
+                                <div class="propertyPic">
+                                     <video  onerror="reloadVideo(this)" src="Videos/6.mp4" type="video/mp4"  preload="metadata" muted onloadedmetadata="canPlay(this)"></video>
+                                </div>
+                                <div class="propertyDetails">
+                                    <div class="propertyName">
+                                        4 bedroom Duplex with spacious parking area along Ugbowo-Lagos road
+                                    </div>
+                                    <div class="propertyLocation">
+                                        <div>
+                                          Ugbowo, Benin City, Edo state  
+                                        </div>
+                                        <img src="Images/Location.svg">
+                                    </div>
+                                    <div class="propertyPrice">
+                                        <h3>N10,000,000</h3>
+                                        <span>N15,000,000</span>
+                                    </div>
+                                </div>
+                        </div>
+                    </a>
+                </div>
+            </div> 
+            <div id="propertyView" class="hidden">
+                <div class="mainContainer">
+                    <div class="banner">
+                        <img src="Images/Backward.svg" onclick="historyBack()">
+                        <div>
+                            Mercedes Benz GLK 350 (UK used) four-wheel drive (FWD) with AI intergration                    
+                        </div>
+                    </div>
+                    <img src="Images/propertyLoading.svg" id="propertyLoading">
+                    <div class="mainContainer hidden">
+                        <div class="propertyPic" onclick="changeHash('#propertyPic')">
+                            <div id="picCount">
+                                +3
+                            </div>
+                            <div style="background-image: url(Images/Benz1_blur.jpg);">
+                                <img src="Images/Benz1.jpeg" onload="fitPic(this)" >
+                            </div>
+                            <div style="background-image: url(Images/Benz2_blur.jpg);">
+                                <img src="Images/Benz2.jpeg" onload="fitPic(this)" >
+                            </div>
+                            <div style="background-image: url(Images/Benz3_blur.jpg);">
+                                <img src="Images/Benz3.jpeg" onload="fitPic(this)" >
+                            </div>
+                            <div style="background-image: url(Images/Benz4_blur.jpg);">
+                                <img src="Images/Benz4.jpeg" onload="fitPic(this)" >
+                            </div>
+                            <div style="background-image: url(Images/Benz5_blur.jpg);">
+                                <img src="Images/Benz5.jpeg" onload="fitPic(this)" >
+                            </div>
+                        </div>
+                        <div id="propertyName">
+                            Mercedes Benz GLK 350 (UK used) four-wheel drive (FWD) with AI intergration
+                        </div>
+                        <div id="propertyPrice">
+                            <div>
+                                <h1>
+                                    N10,000,000 
+                                </h1>
+                                <span style="text-decoration: line-through; font-family: 'Montserrat Bold';">
+                                    N15,000,000
+                                </span>
+                            </div>
+                            <ul>
+                                <li>
+                                    This price does not include delivery fee.
+                                </li>
+                                <li>
+                                    7-day cash-back gaurantee.
+                                </li>
+                            </ul>
+                        </div>
+                        <div id="propertyLocation">
+                            <div>
+                                <div>
+                                    Lekki
+                                </div>
+                                <div>
+                                    Ore
+                                </div>
+                                <div>
+                                    BDPA
+                                </div>
+                                <div>
+                                    New Benin
+                                </div>
+                                <div>
+                                    Lekki
+                                </div>
+                                <div>
+                                    Ore
+                                </div>
+                                <div>
+                                    BDPA
+                                </div>
+                                <div>
+                                    New Benin
+                                </div>
+                            </div>
+                            <img src="Images/Location.svg">
+                        </div>
+                        <div id="descHead">
+                            Description
+                        </div>
+                        <div id="propertyDescription" onclick="toggleClass(this,null,'reveal')">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sollicitudin sit amet mauris sed mollis. Cras vitae tristique erat. Morbi cursus odio non tellus egestas, laoreet dignissim justo vulputate. Aliquam viverra non lorem imperdiet interdum. Nulla ante nibh, pellentesque eget ultrices vitae, luctus id ipsum. Cras erat lorem, imperdiet sed odio eget, faucibus ultricies ligula. Aliquam eu blandit eros, at blandit elit.
+                            <br>
+                            Quisque ligula lorem, aliquet id enim eget, ultricies eleifend ante. Donec eu finibus eros. Sed ac lectus varius, placerat mi id, aliquet metus. Mauris dignissim velit vitae justo mattis imperdiet quis non tortor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Mauris tincidunt augue a diam commodo, vitae tempus ex fermentum. Nulla ultrices tincidunt libero quis faucibus. Nunc pharetra pretium imperdiet. Vestibulum quis quam facilisis, aliquet nisi ac, venenatis nulla. Nunc blandit libero ac purus semper ultricies sit amet in erat. Mauris augue mauris, scelerisque nec libero sed, ultricies laoreet odio. Mauris non odio massa. Quisque pulvinar sodales tortor, id euismod mauris iaculis eget. Mauris tincidunt vulputate lacus eu luctus. Cras vel aliquet odio, eu sollicitudin ex.
+                            <br>
+                            Morbi nec nibh eu odio commodo volutpat. Duis tempor feugiat felis, in elementum libero bibendum molestie. Proin elementum malesuada nibh. Aliquam volutpat enim a purus tempor, lobortis malesuada sem vestibulum. Curabitur vestibulum at dolor ut congue. Proin fringilla, mauris sit amet hendrerit accumsan, leo elit volutpat elit, eget tincidunt mi metus et nibh. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nam vestibulum at urna dignissim porttitor. Phasellus interdum rutrum dolor nec ultricies. Aliquam vel urna turpis. Proin at gravida augue. Vivamus fringilla mi at condimentum venenatis. Donec egestas eros eget nisi egestas, sit amet congue nulla tincidunt. Cras nunc diam, placerat eget nisi vitae, porta semper ante.
+                            <br>
+                            Sed ultricies egestas maximus. In nec augue fringilla, pretium augue quis, bibendum eros. Sed orci lorem, vehicula quis velit a, scelerisque convallis nulla. Curabitur sed sapien maximus, ornare purus sed, varius quam. Praesent vel lorem sed eros volutpat venenatis. Vivamus tristique, augue quis consectetur tincidunt, tellus magna tincidunt eros, at facilisis ex neque ac ante. Praesent id magna dapibus, commodo lorem porta, volutpat sem. Aliquam non nisl nisl. Aenean sit amet iaculis est, a tempor dolor. Cras bibendum molestie elit eget rhoncus. Ut egestas eleifend elementum. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Integer mi odio, luctus vel semper vel, pretium nec justo.
+                            <br>
+                            Donec vitae leo risus. Donec euismod at nulla sed finibus. Ut ipsum libero, pretium in dictum eget, ultrices nec quam. Sed vitae augue auctor mi congue tempor eget sit amet est. Fusce mollis hendrerit est, vitae egestas arcu luctus vel. Vivamus condimentum maximus sodales. Phasellus imperdiet vitae libero in tristique. Vestibulum ac lorem magna. Nam auctor risus eget neque laoreet porttitor. Nullam sed diam eu dolor sagittis tristique.
+                        </div>
+                        <div id="reviewHead">
+                            Reviews
+                            <div id="reviewFilter">
+                                <div onclick="reviewFilter(this)" class="selected">
+                                    All
+                                </div>
+                                <div onclick="reviewFilter(this)">
+                                    1
+                                    <svg viewBox="0 0 164.9 156.62" fill="black">
+                                        <path d="M31.53 156.62l13.4 -57.88 -44.93 -38.93 59.36 -5.18 23.09 -54.62 23.09 54.62 59.36 5.18 -44.93 38.93 13.4 57.88 -50.85 -30.72 -50.85 30.72 0 0 -0.14 0z"></path>
+                                    </svg>
+                                </div>
+                                <div onclick="reviewFilter(this)">
+                                    2
+                                    <svg viewBox="0 0 164.9 156.62" fill="black">
+                                        <path d="M31.53 156.62l13.4 -57.88 -44.93 -38.93 59.36 -5.18 23.09 -54.62 23.09 54.62 59.36 5.18 -44.93 38.93 13.4 57.88 -50.85 -30.72 -50.85 30.72 0 0 -0.14 0z"></path>
+                                    </svg>
+                                </div>
+                                <div onclick="reviewFilter(this)">
+                                    3
+                                    <svg viewBox="0 0 164.9 156.62" fill="black">
+                                        <path d="M31.53 156.62l13.4 -57.88 -44.93 -38.93 59.36 -5.18 23.09 -54.62 23.09 54.62 59.36 5.18 -44.93 38.93 13.4 57.88 -50.85 -30.72 -50.85 30.72 0 0 -0.14 0z"></path>
+                                    </svg>
+                                </div>
+                                <div onclick="reviewFilter(this)">
+                                    4
+                                    <svg viewBox="0 0 164.9 156.62" fill="black">
+                                        <path d="M31.53 156.62l13.4 -57.88 -44.93 -38.93 59.36 -5.18 23.09 -54.62 23.09 54.62 59.36 5.18 -44.93 38.93 13.4 57.88 -50.85 -30.72 -50.85 30.72 0 0 -0.14 0z"></path>
+                                    </svg>
+                                </div>
+                                <div onclick="reviewFilter(this)">
+                                    5
+                                    <svg viewBox="0 0 164.9 156.62" fill="black">
+                                        <path d="M31.53 156.62l13.4 -57.88 -44.93 -38.93 59.36 -5.18 23.09 -54.62 23.09 54.62 59.36 5.18 -44.93 38.93 13.4 57.88 -50.85 -30.72 -50.85 30.72 0 0 -0.14 0z"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="propertyReviews">
+                            <div id="noReview" class="hidden">
+                                There are no reviews 
+                                to show at the moment.
+                            </div>
+                            <div class="propertyReview" >
+                                <div class="buyer">
+                                    <div class="buyerPic">
+                                        <img src="Images/Adriel.jpg">
+                                    </div>
+                                    <div>
+                                        <div class="buyerName">
+                                            Adriel Enehizena
+                                        </div>
+                                        <div class="reviewDate">
+                                            20th July, 2024
+                                        </div>
+                                        <div class="buyerRating">
+                                            <img src="Images/5 Stars.svg">(5)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="buyerReview" onclick="toggleClass(this,null,'reveal')">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sollicitudin sit amet mauris sed mollis. Cras vitae tristique erat. Morbi cursus odio non tellus egestas, laoreet dignissim justo vulputate. Aliquam viverra non lorem imperdiet interdum. Nulla ante nibh, pellentesque eget ultrices vitae, luctus id ipsum. Cras erat lorem, imperdiet sed odio eget, faucibus ultricies ligula. Aliquam eu blandit eros, at blandit elit.
+                                </div>
+                            </div>
+                            <div class="propertyReview">
+                                <div class="buyer">
+                                    <div class="buyerPic">
+                                        <img src="Images/Adriel.jpg">
+                                    </div>
+                                    <div>
+                                        <div class="buyerName">
+                                            Adriel Enehizena
+                                        </div>
+                                        <div class="reviewDate">
+                                            20th July, 2024
+                                        </div>
+                                        <div class="buyerRating">
+                                            <img src="Images/5 Stars.svg">(5)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="buyerReview" onclick="toggleClass(this,null,'reveal')">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sollicitudin sit amet mauris sed mollis. Cras vitae tristique erat. Morbi cursus odio non tellus egestas, laoreet dignissim justo vulputate. Aliquam viverra non lorem imperdiet interdum. Nulla ante nibh, pellentesque eget ultrices vitae, luctus id ipsum. Cras erat lorem, imperdiet sed odio eget, faucibus ultricies ligula. Aliquam eu blandit eros, at blandit elit.
+                                </div>
+                            </div>
+                            <div class="propertyReview">
+                                <div class="buyer">
+                                    <div class="buyerPic">
+                                        <img src="Images/Adriel.jpg">
+                                    </div>
+                                    <div>
+                                        <div class="buyerName">
+                                            Adriel Enehizena
+                                        </div>
+                                        <div class="reviewDate">
+                                            20th July, 2024
+                                        </div>
+                                        <div class="buyerRating">
+                                            <img src="Images/5 Stars.svg">(5)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="buyerReview" onclick="toggleClass(this,null,'reveal')">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sollicitudin sit amet mauris sed mollis. Cras vitae tristique erat. Morbi cursus odio non tellus egestas, laoreet dignissim justo vulputate. Aliquam viverra non lorem imperdiet interdum. Nulla ante nibh, pellentesque eget ultrices vitae, luctus id ipsum. Cras erat lorem, imperdiet sed odio eget, faucibus ultricies ligula. Aliquam eu blandit eros, at blandit elit.
+                                </div>
+                            </div>
+                        </div>
+                        <img id="reviewLoading" class="hidden" src="Images/reviewLoading.svg">
+                        <div id="reviewButtons">
+                            <div id="moreReviews">
+                                More reviews
+                            </div>
+                            <div id="writeReview" onclick="changeHash('#review')">
+                                Write a review
+                                <svg width="60px" height="60px" viewbox="0 0 209 209">
+                                    <path xmlns="http://www.w3.org/2000/svg" id="Edit.svg" fill="white" viewbox="60px" width="60px" d="M20.87 208.57c-5.76,0 -10.67,-2.02 -14.72,-6.15 -4.05,-4.05 -6.15,-8.96 -6.15,-14.72l0 -145.79c0,-5.76 2.02,-10.67 6.15,-14.72 4.05,-4.05 8.96,-6.15 14.72,-6.15l92.99 0 -20.79 20.79 -72.12 0 0 145.79 145.79 0 0 -72.35 20.79 -20.79 0 93.22c0,5.76 -2.02,10.67 -6.15,14.72 -4.05,4.05 -8.96,6.15 -14.72,6.15l-145.79 0 0 0zm72.9 -93.77zm-31.23 31.23l0 -44.24 95.56 -95.56c2.1,-2.1 4.44,-3.66 7.01,-4.67 2.57,-1.01 5.22,-1.56 7.79,-1.56 2.8,0 5.45,0.54 7.94,1.56 2.49,1.01 4.83,2.57 6.93,4.67l14.56 14.87c1.95,2.1 3.35,4.36 4.44,6.93 1.01,2.49 1.56,5.06 1.56,7.71 0,2.57 -0.47,5.14 -1.4,7.71 -0.93,2.49 -2.49,4.83 -4.52,6.93l-95.56 95.79 -44.24 0 -0.08 -0.15zm125.23 -110.43l-14.56 -14.56 14.56 14.56zm-104.44 89.57l14.56 0 60.44 -60.44 -7.32 -7.32 -7.55 -7.32 -60.12 60.12 0 14.87 0 0.08zm67.68 -67.68l-7.55 -7.32 7.55 7.32 7.32 7.32 -7.32 -7.32z"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div id="showContact">
+                            <div onclick="addBookmark(this)">
+                                <img id="bookmarkAdd" src="Images/Bookmark Add.svg">
+                            </div>
+                            <button onclick="changeHash('#contact')">
+                                Seller
+                                <svg fill="white" viewbox="0 0 325 551" width="40px" height="40px">
+                                    <path id="Forward.svg" d="M-0 48.21l49.07 -48.21 275.58 275.58 -275.58 275.58 -49.07 -48.21 227.01 -227.36 -227.01 -227.36z"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div id="reviewPoster" class="hidden">
+                    <div class="banner">
+                        <img src="Images/Backward.svg" onclick="historyBack()">
+                        Write a review
+                    </div>
+                    <div id="stars">
+                        <button onclick="rateSeller(1)">
+                            <img src="Images/Star.svg" class="stars">
+                        </button>
+                        <button onclick="rateSeller(2)">
+                            <img src="Images/Star.svg" class="stars">
+                        </button>
+                        <button onclick="rateSeller(3)">
+                            <img src="Images/Star.svg" class="stars">
+                        </button>
+                        <button onclick="rateSeller(4)">
+                            <img src="Images/Star.svg" class="stars">
+                        </button>
+                        <button onclick="rateSeller(5)">
+                            <img src="Images/Star.svg" class="stars">
+                        </button>
+                    </div>
+                    <textarea id="reviewTextArea" maxlength="1000" placeholder="Describe the quality of this market and your experience with the seller." onkeyup="countWords(this,this.value.length)"> </textarea>
+                    <div class="wordCount">
+                        0/1000
+                    </div>
+                    <input type="hidden" id="reviewRating" name="reviewRating" value="0">
+                    <button>
+                        Continue
+                    </button>
+                </div>
+            </div>
+            <div id="bookmarksContainer">
+                <h1>
+                    Favourites
+                    <label for="bookmarkSearchBox" onclick="changeHash('#bookmarkSearch')">
+                        <img src="Images/Search.svg">
+                    </label>
+                </h1>
+                <div class="searchBar hidden" id="bookmarkSearchBar">
+                    <svg onclick="historyBack()" viewBox="0 0 233.34 233.34" fill="black">
+                        <path d="M141.13 216.67l-100 -100 100 -100 17.72 17.72 -82.27 82.27 82.27 82.27 -17.72 17.72z"/>
+                    </svg>
+                    <input id="bookmarkSearchBox" class="searchBox" placeholder="Type the name of the house">
+                </div>
+                <div class="mainContainer" onscroll="pauseVideos()">
+                <img src="Images/resultLoading.svg" class="resultLoading hidden">
+                    <a href="Pages/property.html" target="_blank">
+                        <div class="searchResult hidden">
+                                <div class="propertyPic">
+                                     <video  onerror="reloadVideo(this)" src="Videos/1.mp4" type="video/mp4"  preload="metadata" muted onloadedmetadata="canPlay(this)"></video>
+                                </div>
+                                <div class="propertyDetails">
+                                    <div class="propertyName">
+                                        4 bedroom Duplex with spacious parking area along Ugbowo-Lagos road
+                                    </div>
+                                    <div class="propertyLocation">
+                                        <div>
+                                          Ugbowo, Benin City, Edo state  
+                                        </div>
+                                        <img src="Images/Location.svg">
+                                    </div>
+                                    <div class="propertyPrice">
+                                        <h3>N10,000,000</h3>
+                                        <span>N15,000,000</span>
+                                    </div>
+                                </div>
+                        </div>
+                    </a>
+                    <a href="Pages/property.html" target="_blank">
+                        <div class="searchResult hidden">
+                                <div class="propertyPic">
+                                     <video  onerror="reloadVideo(this)" src="Videos/2.mp4" type="video/mp4"  preload="metadata" muted onloadedmetadata="canPlay(this)"></video>
+                                </div>
+                                <div class="propertyDetails">
+                                    <div class="propertyName">
+                                        4 bedroom Duplex with spacious parking area along Ugbowo-Lagos road
+                                    </div>
+                                    <div class="propertyLocation">
+                                        <div>
+                                          Ugbowo, Benin City, Edo state  
+                                        </div>
+                                        <img src="Images/Location.svg">
+                                    </div>
+                                    <div class="propertyPrice">
+                                        <h3>N10,000,000</h3>
+                                        <span>N15,000,000</span>
+                                    </div>
+                                </div>
+                        </div>
+                    </a>
+                    <a href="Pages/property.html" target="_blank">
+                        <div class="searchResult hidden">
+                                <div class="propertyPic">
+                                     <video  onerror="reloadVideo(this)" src="Videos/3.mp4" type="video/mp4"  preload="metadata" muted onloadedmetadata="canPlay(this)"></video>
+                                </div>
+                                <div class="propertyDetails">
+                                    <div class="propertyName">
+                                        4 bedroom Duplex with spacious parking area along Ugbowo-Lagos road
+                                    </div>
+                                    <div class="propertyLocation">
+                                        <div>
+                                          Ugbowo, Benin City, Edo state  
+                                        </div>
+                                        <img src="Images/Location.svg">
+                                    </div>
+                                    <div class="propertyPrice">
+                                        <h3>N10,000,000</h3>
+                                        <span>N15,000,000</span>
+                                    </div>
+                                </div>
+                        </div>
+                    </a>
+                    <a href="Pages/property.html" target="_blank">
+                        <div class="searchResult hidden">
+                                <div class="propertyPic">
+                                     <video  onerror="reloadVideo(this)" src="Videos/4.mp4" type="video/mp4"  preload="metadata" muted onloadedmetadata="canPlay(this)"></video>
+                                </div>
+                                <div class="propertyDetails">
+                                    <div class="propertyName">
+                                        4 bedroom Duplex with spacious parking area along Ugbowo-Lagos road
+                                    </div>
+                                    <div class="propertyLocation">
+                                        <div>
+                                          Ugbowo, Benin City, Edo state  
+                                        </div>
+                                        <img src="Images/Location.svg">
+                                    </div>
+                                    <div class="propertyPrice">
+                                        <h3>N10,000,000</h3>
+                                        <span>N15,000,000</span>
+                                    </div>
+                                </div>
+                        </div>
+                    </a>
+                    <a href="Pages/property.html" target="_blank">
+                        <div class="searchResult hidden">
+                                <div class="propertyPic">
+                                     <video  onerror="reloadVideo(this)" src="Videos/5.mp4" type="video/mp4"  preload="metadata" muted onloadedmetadata="canPlay(this)"></video>
+                                </div>
+                                <div class="propertyDetails">
+                                    <div class="propertyName">
+                                        4 bedroom Duplex with spacious parking area along Ugbowo-Lagos road
+                                    </div>
+                                    <div class="propertyLocation">
+                                        <div>
+                                          Ugbowo, Benin City, Edo state  
+                                        </div>
+                                        <img src="Images/Location.svg">
+                                    </div>
+                                    <div class="propertyPrice">
+                                        <h3>N10,000,000</h3>
+                                        <span>N15,000,000</span>
+                                    </div>
+                                </div>
+                        </div>
+                    </a>
+                    <a href="Pages/property.html" target="_blank">
+                        <div class="searchResult hidden">
+                                <div class="propertyPic">
+                                     <video  onerror="reloadVideo(this)" src="Videos/6.mp4" type="video/mp4"  preload="metadata" muted onloadedmetadata="canPlay(this)"></video>
+                                </div>
+                                <div class="propertyDetails">
+                                    <div class="propertyName">
+                                        4 bedroom Duplex with spacious parking area along Ugbowo-Lagos road
+                                    </div>
+                                    <div class="propertyLocation">
+                                        <div>
+                                          Ugbowo, Benin City, Edo state  
+                                        </div>
+                                        <img src="Images/Location.svg">
+                                    </div>
+                                    <div class="propertyPrice">
+                                        <h3>N10,000,000</h3>
+                                        <span>N15,000,000</span>
+                                    </div>
+                                </div>
+                        </div>
+                    </a>
+                </div>         
+            </div>
+            <div id="menuContainer">
+                <h1>
+                    Menu
+                </h1>
+                <div>
+                    <div id="myProfilePic" style="background-image:url('Images/Adriel_blur.jpg')">
+                        <img onload="fitPic(this)" src="Images/Adriel.jpg">
+                    </div>
+                    <div>
+                        <div id="name">
+                            Adriel Enehizena
+                        </div>
+                        <div id="username">
+                            @adriel_zena
+                        </div>
+                        <div>
+                            Logged in
+                        </div>
+                    </div>
+                </div>
+                <div id="logout">
+                    <img src="Images/Logout.svg">
+                    Logout
+                </div>
+                <div class="switchButton" onclick="switchMode()">
+                    <img src="Images/Switch.svg">
+                    Switch to selling
+                </div>
+                <div onclick="changeHash('#accountSettings')">
+                    <img src="Images/Account Setting.svg">
+                    <div>
+                        Account settings
+                    </div>
+                    <img src="Images/Forward.svg">
+                </div>
+                <div onclick="changeHash('#sendFeedback')">
+                    <img src="Images/Feedback.svg">
+                    <div>
+                        Send feedback
+                    </div>
+                    <img src="Images/Forward.svg">
+                </div>
+                <div onclick="changeHash('#makeComplaint')">
+                    <img src="Images/Report.svg">
+                    <div>
+                        Make a complaint
+                    </div>
+                    <img src="Images/Forward.svg">
+                </div>
+            </div>
+            <div id="account_settings" class="hidden">
+                <div>
+                    <img src="Images/Backward.svg" onclick="historyBack()">
+                    Account settings
+                </div>
+                <div onclick="changeHash('#editProfile')">
+                    <img src="Images/Profile Edit.svg">
+                    Edit profile
+                    <img src="Images/Forward.svg">
+                </div>
+                <div onclick="changeHash('#changePassword')">
+                    <img src="Images/Password Edit.svg">
+                    Change password
+                    <img src="Images/Forward.svg">
+                </div>
+                <div>
+                    <img src="Images/At.svg">
+                    Change username
+                    <img src="Images/Forward.svg">
+                </div>
+                <div>
+                    <svg viewBox="0 0 166.67 187.5">
+                        <path d="M31.25 187.5c-5.73,0 -10.63,-2.04 -14.71,-6.12 -4.08,-4.08 -6.12,-8.98 -6.12,-14.71l0 -135.42 -10.42 0 0 -20.83 52.09 0 0 -10.42 62.5 0 0 10.42 52.08 -0 0 20.83 -10.42 0 0 135.42c0,5.73 -2.04,10.63 -6.12,14.71 -4.08,4.08 -8.98,6.12 -14.71,6.12l-104.17 0zm104.17 -156.24l-104.17 0 0 135.42 104.17 0 0 -135.42zm-83.33 114.58l20.83 0 0 -93.75 -20.83 0 0 93.75 0 -0zm41.67 0l20.83 0 0 -93.75 -20.83 0 0 93.75 0 -0zm-62.5 -114.58l0 135.42 0 -135.42z"/>
+                    </svg>
+                    Delete account
+                    <svg viewBox="0 0 324.65 551.15">
+                        <path xmlns="http://www.w3.org/2000/svg" id="Forward.svg" class="fil0" d="M-0 48.21l49.07 -48.21 275.58 275.58 -275.58 275.58 -49.07 -48.21 227.01 -227.36 -227.01 -227.36z"/>
+                    </svg>
+                </div>
+            </div>
+            <div id="change_password" class="hidden">
+                <div>
+                    <img onclick="historyBack()" src="Images/Backward.svg">
+                    Change password
+                </div>
+                <div>
+                    Enter old password
+                    <input type="password" name="old_pwd">
+                </div>
+
+                <div>
+                    Enter new password
+                    <input type="password" name="new_pwd">
+                </div>
+                <div>
+                    Confirm new Password
+                    <input type="password" name="confirm_new_pwd">
+                </div>
+                <div>
+                    Continue
+                </div>
+            </div>
+            <div id="send_feedback" class="hidden">
+                <div>
+                    <img onclick="historyBack()" src="Images/Backward.svg">
+                    Send feedback
+                </div>
+                <textarea onkeyup="countWords(this,this.value.length)" maxlength="1000" placeholder="Tell us what you enjoy about Umarket and how we can improve it."> </textarea>
+                <div class="wordCount">
+                    0/1000
+                </div>
+                <div>
+                    Submit
+                </div>
+            </div>
+            <div id="make_complaint" class="hidden">
+                <div>
+                    <img onclick="historyBack()" src="Images/Backward.svg">
+                    Make a complaint
+                </div>
+                <textarea onkeyup="countWords(this,this.value.length)" maxlength="1000" placeholder="Tell us about the difficulty you experienced while using Umarket."> </textarea>
+                
+                <div class="wordCount">
+                    0/1000
+                </div>
+                <div>
+                    Submit
+                </div>
+            </div>
+            <div id="edit_profile" class="hidden">
+                <div>
+                    <img  onclick="historyBack()" src="Images/Backward.svg">
+                    Edit Profile
+                </div>
+
+                <div>
+                    First name
+                    <input type="text" disabled name="fname" value="Adriel">
+                </div>
+
+                <div>
+                    Last name
+                    <input type="text" disabled name="lname" value="Enehizena">
+                </div>
+
+                <div>
+                    About Me
+                    <textarea placeholder="Tell us about yourself and what you sell." maxlength="1000"> </textarea>    
+                </div>
+                    <div>
+                        Save changes
+                    </div>
+                </div>
+            </div>
+            <div id="menuBar">
+               <div onclick="changeMenu(this)" class="selected" id="homeButton">
+                    <img src="Images/Home selected.svg" class="selected">
+                    <img src="Images/Home unselected.svg">
+               </div>
+               <div onclick="changeMenu(this)" id="bookmarkButton">
+                    <img src="Images/Bookmark selected.svg" class="selected">    
+                    <img src="Images/Bookmark unselected.svg">    
+               </div>
+               <div onclick="changeMenu(this)" id="menuButton">
+                    <img src="Images/Menu selected.svg" class="selected">
+                    <img src="Images/Menu unselected.svg">
+               </div>
+            </div>
+            <div id="contactsMenu" class="popUpMenu hidden">
+                <div class="emptyDiv" onclick="historyBack()"></div>
+                <div class="mainContainer">
+                    <div class="contactHead">
+                        <div class="contactPic">
+                            <img src="Images/Adriel.jpg">
+                        </div>
+                        <div class="contactInfo">
+                            <div class="contactName">
+                                Adriel Enehizena
+                            </div>
+                            <div class="contactUsername">
+                                @adriel_zena
+                            </div>
+                            <img class="contactRating" src="Images/5 Stars.svg">
+                        </div>
+                    </div>
+                    <a href="whatsapp://send?phone=+2349164891120">
+                        <div>
+                            <img src="Images/Whatsapp.svg">
+                            <div>
+                                Message
+                            </div>
+                        </div>
+                    </a>
+                    <a href="tel:+2349164891120"class="contactCall">
+                        <div>
+                            <img src="Images/Call.svg">
+                            <div>
+                                Phone call
+                            </div>
+                        </div>
+                    </a>
+                    <div>
+                        <img src="Images/Profile.svg">
+                        <div>
+                            Profile
+                        </div>
+                    </div>
+                    <div>
+                        <svg viewBox="0 0 166.67 187.5" style="fill:white">
+                            <g>
+                             <path id="delete_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg" class="fil0" d="M31.25 187.5c-5.73,0 -10.63,-2.04 -14.71,-6.12 -4.08,-4.08 -6.12,-8.98 -6.12,-14.71l0 -135.42 -10.42 0 0 -20.83 52.09 0 0 -10.42 62.5 0 0 10.42 52.08 -0 0 20.83 -10.42 0 0 135.42c0,5.73 -2.04,10.63 -6.12,14.71 -4.08,4.08 -8.98,6.12 -14.71,6.12l-104.17 0zm104.17 -156.24l-104.17 0 0 135.42 104.17 0 0 -135.42zm-83.33 114.58l20.83 0 0 -93.75 -20.83 0 0 93.75 0 -0zm41.67 0l20.83 0 0 -93.75 -20.83 0 0 93.75 0 -0zm-62.5 -114.58l0 135.42 0 -135.42z"/>
+                            </g>
+                           </svg>
+                        <div>
+                            Delete
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </body>
+</html>

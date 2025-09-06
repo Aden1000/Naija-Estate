@@ -1,0 +1,44 @@
+<html>
+    <head>
+        <title>
+            Umarket
+        </title>
+        <link rel="stylesheet" href="../Styles/app.css">
+        <link rel="icon" href="../Images/Umarket.ico">
+        <script src="../Scripts/app.js"></script>
+    </head>
+    <body>
+        <iframe name="search" src="search.html" class="active loaded" origin="/"></iframe>
+        <iframe name="profile"></iframe>
+        <iframe name="markets"></iframe>
+        <iframe name="subscription"></iframe>
+        <iframe name="contacts"></iframe>
+        <iframe name="notifications"></iframe>
+        <iframe name="accountSettings"></iframe>
+        <!-- <div id="loadingContainer">
+            <img src="../Images/Loading.svg" class="loadingImg">
+        </div> -->
+        <div id="menuBar">
+            <div onclick="changeMenu(this)" class="selected">
+                <img src="../Images/Home selected.svg" id="homeButton" class="selected">
+                <img src="../Images/Home unselected.svg" id="homeButton">
+            </div>
+            <div onclick="changeMenu(this)">
+                <img src="../Images/Bookmark selected.svg" id="bookmarkButton" class="selected">    
+                <img src="../Images/Bookmark unselected.svg" id="bookmarkButton">    
+            </div>
+            <div onclick="changeMenu(this)">
+                <img src="../Images/Contact selected.svg" id="contactButton" class="selected">
+                <img src="../Images/Contact unselected.svg" id="contactButton">
+            </div>
+            <div onclick="changeMenu(this)">
+                <img src="../Images/Notification selected.svg" id="notificationButton" class="selected">
+                <img src="../Images/Notification unselected.svg" id="notificationButton">
+            </div>
+            <div onclick="changeMenu(this)">
+                <img src="../Images/Menu selected.svg" id="menuButton" class="selected">
+                <img src="../Images/Menu unselected.svg" id="menuButton">
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,444 @@
+@font-face{
+    font-family:"Montserrat Bold";
+    src:url(../Fonts/Montserrat-Bold.ttf) format('truetype');
+}
+@font-face {
+    font-family: "Montserrat";
+    src: url(../Fonts/Montserrat-Regular.ttf) format('truetype');
+}
+
+body{
+    font-family: "Montserrat Bold";
+    color:rgb(0,150,0);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    font-size: 25px;
+}
+
+a{
+    appearance: none;
+    color:rgb(0,150,0);
+}
+h1{
+    font-family: "Montserrat Bold";
+    color:rgb(0,150,0);
+    text-align: center;
+    font-size: 50px;
+}
+
+h6{
+    font-family: "Montserrat Bold";
+    color:rgb(0,150,0);
+    margin: 10px 0px 10px 0px;
+}
+
+#UmarketImg{
+    width:100%;
+    margin-top: 10px;
+}
+a:first-child{
+    width:30%;
+    display: flex;
+    justify-content: center;
+}
+
+#progress{
+    width:180px;
+    display: inherit;
+    align-items: center;
+    justify-content: space-around;
+    margin-bottom:20px;
+}
+
+#progress>div{
+    border:2px solid rgb(0,150,0);
+    width:20px;
+    height:20px;
+    border-radius: 100%;
+}
+
+#progress>div.completed{
+    background-color: rgb(0,150,0);
+}
+
+form{
+    display: flex;
+    flex-direction: row;
+    width: 40%;
+    border:solid 2px rgb(0,150,0);
+    padding:10px;
+    font-family: "Montserrat Bold";
+    font-size: 40px;
+    overflow: hidden;
+    text-align: left;
+}
+
+form>div{
+    min-width:100%;
+    box-sizing: border-box;
+    margin-right:10px;
+}
+.hidden{
+    display: none !important;
+}
+#account_type_container{
+    display: inherit;
+    flex-direction: column;
+}
+
+#account_type_container>div:nth-of-type(1){
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 70%;
+    color:rgb(0,150,0)
+}
+#account_type_container>div:nth-of-type(1)>div{
+    display: inherit;
+    align-items: center;
+    column-gap: 5px;
+}
+
+#account_type_container>div:nth-of-type(1) label{
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    border:solid 2px rgb(0,150,0);
+    display: inherit;
+    justify-content: center;
+    align-items: center;
+    cursor:pointer;
+    padding: 0px;
+}
+
+input{
+    font-family: "Montserrat";
+    font-weight: bold;
+}
+#account_type_container>div:nth-of-type(1) input[type='radio']{
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    cursor:pointer;
+    margin: 0px;
+}
+
+#account_type_container>div:nth-of-type(1) input[type='radio']:checked{
+    background-color: rgb(0,150,0);
+}
+
+input[type='text'],input[type='tel'],input[type='url']{
+    height:50px;
+    width:100%;
+    padding-left:10px;
+    color:rgb(120,120,120);
+    border:solid 2px rgb(120,120,120);
+    font-size: 20px;
+    margin-bottom: 0px;
+}
+
+/* input[type='text']:focus,input[type='tel']:focus,input[type='url']:focus,label[for='password'],label[for='confirm_password']{
+    border:solid 2px rgb(0,150,0);
+} */
+
+.passwords{
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    height:50px;
+    border:solid 2px rgb(120,120,120);
+    padding-left:5px;
+    font-size:20px;
+}
+.passwords label{
+    height:100%;
+    width:85%;
+}
+.passwords input{
+    height:100%;
+    width:100%;
+    border:none;
+    font-size: 20px;
+    padding-left:5px
+}
+.password_toggle{
+    color: purple;
+    text-align: center;
+    font-size: 15px;
+    width: 14%;
+    height: 70%;
+    border: 1px solid purple;
+    display: inherit;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    cursor:pointer;
+    font-family: 'Montserrat Bold';
+}
+
+.password_toggle:hover{
+    background-color: rgb(0, 150, 0);
+    color:white;
+}
+
+/* select{
+    text-align: center;
+    font-family: "Montserrat Bold";
+    color:rgb(120,120,120);
+    font-size:20px;
+    border:solid 2px rgb(0,150,0);
+}
+select:focus{
+    color:rgb(0,150,0)
+} */
+
+div.error{
+    color:red;
+    font-size:20px;
+    text-align: left;
+    align-self: center;
+    font-family: "Montserrat";
+    font-weight: bold;
+}
+div.correct{
+    color:rgb(0,150,0);
+    font-size:20px;
+    font-family:"Montserrat";
+    font-weight:bold;
+}
+input.error{
+    border:solid 2px red !important;
+    color:red;
+}
+input.correct{
+    color:rgb(0,150,0) !important;
+    border:solid 2px rgb(0,150,0);
+}
+
+.button_container{
+    width:100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.next_button,.back_button{
+    border: solid 2px purple;
+    width:fit-content;
+    height: 40px;
+    padding:5px;
+    font-size: 20px;
+    color: purple;
+    transition-duration: 0.2s;
+    cursor: pointer;
+    font-family: "Montserrat Bold";
+    background-color: white;
+}
+.next_button{
+    align-self: flex-end;
+}
+
+.next_button:hover, .back_button:hover{
+    background-color: purple;
+    color:white;
+    border-color: purple;
+}
+
+.next_button:disabled{
+    background-color: rgb(120,120,120);
+    color:white;
+    cursor: not-allowed;
+    border-color: rgb(120,120,120);
+}
+
+#form_preview{
+    font-family: "Montserrat Bold";
+    font-size:20px !important;
+    color:black;
+}
+
+#form_preview h6{
+    font-size:20px;
+    margin:30px 0px 0px 0px;
+    width: 40%;
+}
+
+#form_preview>div>div{
+    text-align: left !important;
+    margin-bottom:10px;
+    font-family:"Montserrat";
+    font-weight:bold;
+}
+
+#loadingImg{
+    height: 40px;
+    animation-duration:0.8s;
+    animation-timing-function:linear;
+    animation-iteration-count:infinite;
+    animation-name:loading;
+}
+@keyframes loading{
+    to{
+        transform:rotate(360deg);
+    }
+}
+#formFeedback{
+    font-size: 20px;
+    font-family: "Montserrat Bold";
+    text-align:center;
+    color:rgb(0,150,0);
+    box-sizing:border-box;
+    margin:10px 0px 10px 0px;
+}
+#formFeedback.error{
+    color:red;
+}
+@media screen and (max-device-width:500px){
+    body{
+        font-size:40px
+    }
+    h1{
+        font-size:70px;
+    }
+    a:first-child{
+        width:80%;
+    }
+        form{
+        width:90%;
+        font-size:60px !important;
+    }
+
+    #account_type_container>div:nth-of-type(1) label{
+        width:70px;
+        height:70px;
+    }
+    #account_type_container>div:nth-of-type(1) input[type='radio']{
+        width:50px;
+        height:50px;
+    }
+    
+    input[type='text'],input[type='tel'],input[type='url']{
+        font-size: 40px !important;
+        height: 120px;
+    }
+    .passwords{
+        display: flex;
+        align-items: center;
+        box-sizing: border-box;
+        height:120px;
+        border:solid 2px rgb(120,120,120);
+        padding-left:5px;
+        font-size:20px;
+    }
+    .passwords label{
+        height:100%;
+        width:85%;
+    }
+
+    .passwords input{
+        height:100%;
+        width:100%;
+        border:none;
+        font-size: 40px;
+        padding-left:5px
+}
+.password_toggle{
+    color: purple;
+    text-align: center;
+    font-size: 25px;
+    width: 14%;
+    height: 50%;
+    border: 1px solid purple;
+    display: inherit;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    cursor:pointer;
+}
+
+    .password_toggle:hover{
+    background-color: purple;
+    color:white;
+    }
+
+    .next_button,.back_button{
+        font-size: 40px;
+        height: 90px;
+        width: 180px;
+    }
+    #loadingImg{
+        height:90px;
+    }
+    #formFeedback{
+        font-size:12px;
+    }
+    div.error,div.correct{
+        font-size: 30px;
+    }
+
+    #form_preview{
+        font-size: 30px !important;
+    }
+
+    #form_preview h6{
+        font-size: 40px !important;
+        text-wrap:nowrap;
+    }
+
+    #form_preview h3{
+        font-size:35px;
+    }
+
+    #form_preview>div>div{
+        font-size: 33px;
+    }
+}
+@media screen and (min-device-width:501px) and (max-device-width:1000px){
+    a:first-child{
+    width:50%;
+}
+    form{
+        width:90%;
+        font-size:60px !important;
+    }
+    
+    input[type='text'],input[type='tel'],input[type='url'],label[for='password'],label[for='password'],label[for='confirm_password']{
+        font-size: 30px !important;
+        height: 80px;
+    }
+
+    label[for='password'] input,label[for='confirm_password'] input{
+        height:98%;
+        font-size:30px;
+    }
+
+    .next_button,.back_button{
+        font-size:30px;
+        height: 70px;
+        width: 130px;
+    }
+    div.error,div.correct{
+    font-size:25px;
+    }
+
+    #form_preview{
+        font-size:15px !important;
+    }
+
+    #form_preview h6{
+        font-size:30px !important;
+        text-wrap:nowrap;
+    }
+
+    #form_preview h3{
+        color:rgb(0,150,0);
+    }
+
+    #form_preview>div>div{
+        font-size: 25px;
+    }
+}

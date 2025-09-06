@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<!-- Creator: CorelDRAW -->
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="0.233339in" height="0.233339in" version="1.0" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 233.34 233.34"
+ xmlns:xlink="http://www.w3.org/1999/xlink"
+ xmlns:xodm="http://www.corel.com/coreldraw/odm/2003">
+ <defs>
+  <style type="text/css">
+   <![CDATA[
+    .fil0 {fill:white}
+   ]]>
+  </style>
+ </defs>
+ <g id="Layer_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <g id="_2383775908000">
+   <ellipse class="fil0" cx="18.24" cy="116.67" rx="18.24" ry="18.11"/>
+   <ellipse class="fil0" cx="115.89" cy="18.11" rx="18.24" ry="18.11"/>
+   <ellipse class="fil0" cx="215.1" cy="116.67" rx="18.24" ry="18.11"/>
+   <ellipse class="fil0" cx="115.89" cy="215.23" rx="18.24" ry="18.11"/>
+   <circle class="fil0" transform="matrix(0.0282768 -0.028088 0.0282768 0.028088 47.0584 185.802)" r="455.93"/>
+   <circle class="fil0" transform="matrix(0.0282768 -0.028088 0.0282768 0.028088 45.964 47.512)" r="455.93"/>
+   <circle class="fil0" transform="matrix(0.0282768 -0.028088 0.0282768 0.028088 186.278 47.512)" r="455.93"/>
+   <circle class="fil0" transform="matrix(0.0282768 -0.028088 0.0282768 0.028088 186.278 186.888)" r="455.93"/>
+  </g>
+ </g>
+</svg>

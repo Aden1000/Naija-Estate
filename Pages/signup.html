@@ -1,0 +1,226 @@
+<html>
+    <head>
+        <title>   
+            Join Umarket today!
+        </title>
+        <link rel="stylesheet" href="../Styles/signup.css">
+        <link rel="icon" href="../Images/Umarket.ico">
+        <script src="../Scripts/signup.js"></script>
+    </head>
+    <body>
+        <a href="../index.html"><img id="UmarketImg" src="../Images/Umarket.svg"></a>
+        <h1>
+            Join Umarket today!
+        </h1>
+        <div id="progress">
+            <div class="completed"></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <form onsubmit="submit_form(this,this)">
+            <div id="account_type_container">
+                <h6>Are you a buyer or seller?</h6>
+                <div>
+                    <div>
+                        <label for="buyer_type_radio">
+                            <input type="radio" name="account_type" value="Buyer" id="buyer_type_radio" onchange="validate_account_type(this)">
+                        </label>
+                        Buyer
+                    </div>
+                    <div>
+                        <label for="seller_type_radio">
+                            <input type="radio" name="account_type" value="Seller" id="seller_type_radio" onchange="validate_account_type(this)">
+                        </label>
+                        Seller
+                    </div>
+                </div>
+                <div class="error" style="margin-bottom: 20px;"></div>
+                <div class="button_container">
+                    <input type="button" value="Back" class="back_button" disabled style="height:0px; padding:0px; border:0px;">
+                    <input type="button" onclick="go_next(this,false,'1')" value="Next" class="next_button" disabled>
+                </div>
+            </div>
+            <div id="personal_info" class="hidden">
+                <h5 style="margin:0px;">Fullname</h5>
+                <div style="font-family:'Montserrat'; font-weight:bold;font-size:40px; background-color:white;color:black; position:relative;top:30px;left:20px;width:max-content; padding:10px">
+                    Firstname
+                </div>
+                <input type="text" name="firstname" id="firstname" placeholder="Enter your firstname" onkeyup="validate_personal_info(this)">
+                <div class="error" style="margin-bottom: 20px;"></div>
+                <div style="font-family:'Montserrat'; font-weight:bold;font-size:40px; background-color:white; color:black;position:relative;top:30px;left:20px;width:max-content; padding:10px">
+                    Lastname
+                </div>
+                <input type="text" name="lastname" id="lastname" placeholder="Enter your lastname" onkeyup="validate_personal_info(this)">
+                <div class="error" style="margin-bottom: 20px;"></div>
+                <!-- <h6 style="margin-bottom:0px;">Birthday</h6>
+                <div>
+                    <select name="birthDay" id="birthDay">
+                        <option value="">Day</option>
+                        <option value="1">01</option>
+                        <option value="2">02</option>
+                        <option value="3">03</option>
+                        <option value="4">04</option>
+                        <option value="5">05</option>
+                        <option value="6">06</option>
+                        <option value="7">07</option>
+                        <option value="8">08</option>
+                        <option value="9">09</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                        <option value="21">21</option>
+                        <option value="22">22</option>
+                        <option value="23">23</option>
+                        <option value="24">24</option>
+                        <option value="25">25</option>
+                        <option value="26">26</option>
+                        <option value="27">27</option>
+                        <option value="28">28</option>
+                        <option value="29">29</option>
+                        <option value="30">30</option>
+                        <option value="31">31</option>
+                    </select>
+                    <select name="birthMonth" id="birthMonth">
+                        <option selected value="">Month</option>
+                        <option value="January">January</option>
+                        <option value="February">February</option>
+                        <option value="March">March</option>
+                        <option value="April">April</option>
+                        <option value="May">May</option>
+                        <option value="June">June</option>
+                        <option value="July">July</option>
+                        <option value="August">August</option>
+                        <option value="September">September</option>
+                        <option value="October">October</option>
+                        <option value="November">November</option>
+                        <option value="December">December</option>
+
+                    </select>
+                </div> -->
+                <div class="button_container">
+                    <input type="button" value="Back" class="back_button" onclick="go_back(this,'1')">
+                    <input type="button" value="Next" class="next_button" disabled onclick="go_next(this,false,'2')">
+                </div>
+            </div>
+            <div id="contact_info" class="hidden">
+                <h5 style="margin:0px;">
+                    Contact information
+                </h5>
+                <div style="font-family:'Montserrat'; font-weight:bold;font-size:40px; background-color:white;color:black; position:relative;top:30px;left:20px;width:max-content; padding:10px">
+                    Phone number
+                </div>
+                <input type="tel" name="phone_number" id="phone_number" placeholder="Enter your phone number" onkeyup="validate_phone_number(this)" maxlength="11" autocomplete="tel">
+                <div class="error" style="margin-bottom: 20px;"></div>
+                <!-- <input type="tel" name="phone_number_2" id="phone_number_2" placeholder="Phone number 2(optional)" onkeyup="validate_contact_info(this)" maxlength="11">
+                <div class="error" style="margin-bottom: 20px;"></div>
+                <input type="tel" name="whatsapp_number" id="whatsapp_number" placeholder="WhatsApp number(optional)" onkeyup="validate_contact_info(this)">
+                <div class="error" style="margin-bottom: 20px;"></div>
+                <input type="text" name="email" id="email" placeholder="Email address" onkeyup="validate_contact_info(this)" autocomplete="email">
+                <div class="error" style="margin-bottom: 20px;"></div>
+                <input type="url" name="website_1" id="website_1" placeholder="Website|Social Media link 1(optional)" onkeyup="validate_contact_info(this)">
+                <div class="error" style="margin-bottom: 20px;"></div>
+                <input type="url" name="website_2" id="website_2" placeholder="Website|Social Media link 2(optional)" onkeyup="validate_contact_info(this)">
+                <div class="error" style="margin-bottom: 20px;"></div> -->
+                <div class="button_container">
+                    <input type="button" value="Back" class="back_button" onclick="go_back(this,'2')">
+                    <input type="button" value="Next" class="next_button" disabled onclick="go_next(this,false,'3')">
+                </div>
+
+            </div>
+            <div id="login_info" class="hidden">
+                <h5 style="margin:0px">Login information</h5>
+                <div style="font-family:'Montserrat'; font-weight:bold;font-size:40px; background-color:white;color:black; position:relative;top:30px;left:20px;width:max-content; padding:10px">
+                    Username
+                </div>
+                <input type="text" name="username" id="username" placeholder="Create a username" onkeyup="validate_login_info(this)">
+                <div class="error" style="margin-bottom: 20px;"></div>
+                <div style="font-family:'Montserrat'; font-weight:bold;font-size:40px; background-color:white;color:black; position:relative;top:30px;left:20px;width:max-content; padding:10px">
+                    Password
+                </div>
+                <div class="passwords">
+                    <label for="password">
+                        <input type="password" name="password" id="password" placeholder="Create a password" onkeyup="validate_login_info(this)">
+                    </label>
+                    <div class="password_toggle" onclick="togglePassword(this)">Show</div>
+                </div>
+                <div class="error" style="margin-bottom: 20px;"></div>
+                <div style="font-family:'Montserrat'; font-weight:bold;font-size:40px; background-color:white;color:black; position:relative;top:30px;left:20px;width:max-content; padding:10px">
+                    Confirm Password
+                </div>
+                <div class="passwords">
+                    <label for="confirm_password">
+                        <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm password" onkeyup="validate_login_info(this)">
+                    </label>
+                    <div class="password_toggle" onclick="togglePassword(this)">Show</div>
+                </div>
+                <div class="error" style="margin-bottom: 20px;"></div>
+                <div class="button_container">
+                    <input type="button" value="Back" class="back_button" onclick="go_back(this,'3')">
+                    <input type="button" value="Next" class="next_button" disabled onclick="go_next(this,true,'4')">
+                </div>
+            </div>
+            <div id="form_preview" class="hidden">
+                <h3>
+                    Please confirm if these details are correct:
+                </h3>
+                <div>
+                    <h6>Account type:</h6><div id="account_type_preview"></div>
+                </div>
+                <div>
+                    <h6>Firstname:</h6><div id="firstname_preview"></div>
+                </div>
+                <div>
+                    <h6>Lastname:</h6><div id="lastname_preview"></div>
+                </div>
+                <div>
+                    <h6>Phone number:</h6><div id="phone_number_preview"></div>
+                </div>
+                <div>
+                    <h6>Email address:</h6><div id="email_preview"></div>
+                </div>
+                <!-- <div>
+                    <h6>Phone number 2:</h6><div id="phone_number_2_preview"></div>
+                </div>
+                <div>
+                    <h6>WhatsApp number:</h6><div id="whatsapp_number_preview"></div>
+                </div>
+                <div>
+                    <h6>Website|Social media link 1:</h6><div id="website_1_preview"></div>
+                </div>
+                <div>
+                    <h6>Website|Social media link 2:</h6><div id="website_2_preview"></div>
+                </div> -->
+                <div>
+                    <h6>Username</h6><div id="username_preview"></div>
+                </div>
+                <div>
+                    <h6>Password</h6><div id="password_preview"></div>
+                </div>
+                <div class="button_container">
+                    <input type="button" value="Back" class="back_button" onclick="go_back(this,'4')">
+                    <input type="button" value="Submit" class="next_button" onclick="submit_form(this,this.parentElement)">
+                    <input type="image" src="../Images/Loading.svg" class="hidden" id="loadingImg">
+                </div>
+                <div id="formFeedback"></div>
+            </div>
+        </form>
+        <div id="server_response">
+            
+        </div>
+        <div>
+            Already have an account?
+            <br>
+            <a href="login.html">Login</a>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Creator: CorelDRAW X7 -->
+
+<svg
+   xml:space="preserve"
+   width="6.2200227mm"
+   height="6.3500252mm"
+   version="1.0"
+   style="clip-rule:evenodd;fill-rule:evenodd;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision"
+   viewBox="0 0 622002.26 635002.51"
+   id="svg15"
+   sodipodi:docname="Failure.svg"
+   inkscape:version="1.1.2 (b8e25be833, 2022-02-05)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"><sodipodi:namedview
+   id="namedview17"
+   pagecolor="#ffffff"
+   bordercolor="#999999"
+   borderopacity="1"
+   inkscape:pageshadow="0"
+   inkscape:pageopacity="0"
+   inkscape:pagecheckerboard="0"
+   inkscape:document-units="mm"
+   showgrid="false"
+   inkscape:zoom="11.700147"
+   inkscape:cx="11.751989"
+   inkscape:cy="11.794723"
+   inkscape:window-width="1366"
+   inkscape:window-height="745"
+   inkscape:window-x="-8"
+   inkscape:window-y="-8"
+   inkscape:window-maximized="1"
+   inkscape:current-layer="Layer_x0020_1" />
+ <defs
+   id="defs4">
+  <style
+   type="text/css"
+   id="style2">
+   <![CDATA[
+    .fil0 {fill:red}
+    .fil1 {fill:white}
+   ]]>
+  </style>
+ </defs>
+ <g
+   id="Layer_x0020_1"
+   inkscape:label="Layer 1"
+   inkscape:groupmode="layer"
+   transform="translate(-350447.01,-349227.5)">
+  <metadata
+   id="CorelCorpID_0Corel-Layer" />
+  <g
+   id="_1609756546688">
+   <path
+   class="fil0"
+   d="m 683420,368990 142880,284390 142760,286900 c 8820,21960 40,43910 -21850,43950 H 375710 c -21910,-40 -30690,-21990 -21880,-43950 L 496640,654630 639470,368990 c 14650,-26350 29300,-26350 43950,0 z"
+   id="path7" />
+   <path
+   class="fil1"
+   d="M 683850,850920 H 639100 L 613690,516400 h 95530 z"
+   id="path9" />
+   <rect
+   class="fil1"
+   x="631815"
+   y="886531"
+   width="59270"
+   height="51650"
+   id="rect11" />
+  </g>
+ </g>
+</svg>

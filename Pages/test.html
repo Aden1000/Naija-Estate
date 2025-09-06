@@ -1,0 +1,66 @@
+<htmL>
+    <head>
+        <title>
+            Test website
+        </title>
+        <link rel="stylesheet" href="../Styles/buyer.css">
+        <script src="../Scripts/search.js"></script>
+    </head>
+    <body>
+        <div id="contactsContainer">
+            <h1>
+                Contacts
+                <label for="contactSearchBox" onclick="changeHash('#contactSearch')">
+                    <img src="../Images/Search.svg">
+                </label>
+            </h1>
+            <div class="searchBar hidden" id="contactSearchBar">
+                <svg onclick="historyBack()" viewBox="0 0 233.34 233.34" fill="black">
+                    <path d="M141.13 216.67l-100 -100 100 -100 17.72 17.72 -82.27 82.27 82.27 82.27 -17.72 17.72z"/>
+                </svg>
+                <input id="contactSearchBox" class="searchBox" placeholder="Name of the seller or market">
+            </div>
+            <div class="contacts">
+                <div class="contactHead">
+                    <div>
+                        <div class="contactPic">
+                            <img src="../Images/Adriel.jpg">
+                        </div>
+                        <div class="contactInfo">
+                            <div class="contactName">
+                                Adriel Enehizena
+                            </div>
+                            <div class="contactUsername">
+                                @adriel_zena
+                            </div>
+                            <img class="contactRating" src="../Images/5 Stars.svg">
+                        </div>
+                    </div>
+                    <svg style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" viewBox="0 0 635000 635000" onclick="changeHash('#contactsMenu')">
+                        <defs>
+                         <style type="text/css">
+                           .str0 {stroke:rgb(0,150,0);stroke-width:8460}
+                           .fil1 {fill:rgb(0,150,0)}
+                           .fil0 {fill:white}
+                         </style>
+                        </defs>
+                        <g id="Layer_x0020_1">
+                         <metadata id="CorelCorpID_0Corel-Layer"/>
+                         <g id="_2414798857136">
+                          <circle class="fil0" cx="317500" cy="317500" r="317500"/>
+                          <g>
+                           <ellipse class="fil1 str0" cx="317500" cy="190500" rx="42332" ry="42335"/>
+                           <ellipse class="fil1 str0" cx="317500" cy="317500" rx="42332" ry="42335"/>
+                           <ellipse class="fil1 str0" cx="317500" cy="444500" rx="42332" ry="42335"/>
+                          </g>
+                         </g>
+                        </g>
+                    </svg>
+                </div>
+                <div class="contactBio" onclick="toggleClass(this,null,'reveal')">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sollicitudin sit amet mauris sed mollis. Cras vitae tristique erat. Morbi cursus odio non tellus egestas, laoreet dignissim justo vulputate. Aliquam viverra non lorem imperdiet interdum. Nulla ante nibh, pellentesque eget ultrices vitae, luctus id ipsum. Cras erat lorem, imperdiet sed odio eget, faucibus ultricies ligula. Aliquam eu blandit eros, at blandit elit.
+                </div>
+            </div>
+        </div>
+    </body>
+</htmL>

@@ -1,0 +1,34 @@
+<html>
+    <head>
+        <title>
+            Login to Umarket.
+        </title>
+        <link rel="stylesheet" href="../Styles/login.css">
+        <link rel="icon" href="../Images/Umarket.ico">
+    </head>
+
+    <body>
+        <a href="../index.html" id="UmarketImg">
+            <img src="../Images/Umarket.svg">
+        </a>
+        <h1>
+            Login your account!
+        </h1>
+        <form method="get">
+            <div class="error"></div>
+            <input type="text" placeholder="Username or Email" id="uname_email_input" name="uname_email_input" onkeyup="clear_error(this)">
+            <div class="error"></div>
+            <input type="password" placeholder="Password" id="password_input" name="password_input" onkeyup="clear_error(this)">
+            <div class="error"></div>
+            <input type="submit" id="SubmitBtn" value="Login" onclick="submitForm(this.parentElement)">
+            <img src="../Images/Loading.svg" class="hidden" id="loadingImg">
+        </form>
+        <div>
+            <a href="signup.html">
+                <b>Create an account</b>
+            </a>
+        </div>
+
+        <script src="../Scripts/login.js"></script>
+    </body>
+</html>
