@@ -150,38 +150,47 @@ function fitVideo(vid){
 function canPlay(vid){
     addClass(vid,null,"canPlay");
     fitVideo(vid);
-    vid.play().then(function(){
-        vid.pause();
-    },function(){
-        reloadVideo(vid);
-    })
+    // vid.play().then(function(){
+    //     vid.pause();
+    // },function(){
+    //     reloadVideo(vid);
+    // })
 }
 var pauseCount=0;
 function pauseVideos(tab){
-    getByQuery(".banner").click();
     if(pauseCount==0){
+        pauseCount=1
         setTimeout(function(){
-            pauseCount=1
             if(tab=="search"){
-                getByQueryAll('#searchContainer .canPlay').forEach(function(item){
+                getByQueryAll('#searchContainer .propertyPic video').forEach(function(item){
                     if(item.parentElement.getBoundingClientRect().y<-300 || item.parentElement.getBoundingClientRect().y>800){
-                        item.play().then(function(){
-                            item.pause();
-                        })
+                        if(item.src!='' && hasClass(item,"canPlay")){
+                            item.play().then(function(){
+                                item.pause();
+                            });
+                        }
                     }
                     else{
+                        if(item.src==''){
+                            item.src=item.dataset.src;
+                        }
                         item.play();
                     }
                 })
             }
             else{
-                getByQueryAll('#bookmarksContainer .canPlay').forEach(function(item){
+                getByQueryAll('#bookmarksContainer .propertyPic video').forEach(function(item){
                     if(item.parentElement.getBoundingClientRect().y<-300 || item.parentElement.getBoundingClientRect().y>800){
-                        item.play().then(function(){
-                            item.pause();
-                        })
+                        if(item.src!='' && hasClass(item,"canPlay")){
+                            item.play().then(function(){
+                                item.pause();
+                            });
+                        }
                     }
                     else{
+                        if(item.src==''){
+                            item.src=item.dataset.src;
+                        }
                         item.play();
                     }
                 })
@@ -189,17 +198,21 @@ function pauseVideos(tab){
             stopPlay(tab);
             function stopPlay(tab){
                 if(tab=="search"){
-                    getByQueryAll('#bookmarksContainer .canpPlay').forEach(function(item){
-                        item.play().then(function(){
-                            item.pause();
-                        })
+                    getByQueryAll('#bookmarksContainer .propertyPic video').forEach(function(item){
+                        if(item.src!=''){
+                            item.play().then(function(){
+                                item.pause();
+                            })
+                        }
                     });
                 }
                 else{
-                    getByQueryAll('#searchContainer .canPlay').forEach(function(item){
-                        item.play().then(function(){
-                            item.pause();
-                        })
+                    getByQueryAll('#searchContainer .propertyPic video').forEach(function(item){
+                        if(item.src!=''){
+                            item.play().then(function(){
+                                item.pause();
+                            })
+                        }
                     })
                 }
                 pauseCount=0;
