@@ -150,6 +150,11 @@ function fitVideo(vid){
 function canPlay(vid){
     addClass(vid,null,"canPlay");
     fitVideo(vid);
+    vid.play().then(function(){
+        vid.pause();
+    },function(){
+        reloadVideo(vid);
+    })
 }
 var pauseCount=0;
 function pauseVideos(tab){
@@ -158,56 +163,44 @@ function pauseVideos(tab){
         setTimeout(function(){
             pauseCount=1
             if(tab=="search"){
-                try{
-                    getByQueryAll('#searchContainer .canPlay').forEach(function(item){
-                        if(item.parentElement.getBoundingClientRect().y<-300 || item.parentElement.getBoundingClientRect().y>800){
+                getByQueryAll('#searchContainer .canPlay').forEach(function(item){
+                    if(item.parentElement.getBoundingClientRect().y<-300 || item.parentElement.getBoundingClientRect().y>800){
+                        item.play().then(function(){
                             item.pause();
-                        }
-                        else{
-                            item.play();
-                        }
-                    })
-                }
-                catch(error){
-                    console.log("An error occured: " + error);
-                }
+                        })
+                    }
+                    else{
+                        item.play();
+                    }
+                })
             }
             else{
-                try{
-                    getByQueryAll('#bookmarksContainer .canPlay').forEach(function(item){
-                        if(item.parentElement.getBoundingClientRect().y<-300 || item.parentElement.getBoundingClientRect().y>800){
+                getByQueryAll('#bookmarksContainer .canPlay').forEach(function(item){
+                    if(item.parentElement.getBoundingClientRect().y<-300 || item.parentElement.getBoundingClientRect().y>800){
+                        item.play().then(function(){
                             item.pause();
-                        }
-                        else{
-                            item.play();
-                        }
-                    })
-                }
-                catch(error){
-                    console.log("An error occured: " + error);
-                }
+                        })
+                    }
+                    else{
+                        item.play();
+                    }
+                })
             }
             stopPlay(tab);
             function stopPlay(tab){
                 if(tab=="search"){
-                    try{
-                        getByQueryAll('#bookmarksContainer .canpPlay').forEach(function(item){
-                            item.pause();
-                        });
-                    }
-                    catch(error){
-                        console.log("An error occured: " + error);
-                    }
-                }
-                else{
-                    try{
-                        getByQueryAll('#searchContainer .canPlay').forEach(function(item){
+                    getByQueryAll('#bookmarksContainer .canpPlay').forEach(function(item){
+                        item.play().then(function(){
                             item.pause();
                         })
-                    }
-                    catch(error){
-                        console.log("An error occured: " + error);
-                    }
+                    });
+                }
+                else{
+                    getByQueryAll('#searchContainer .canPlay').forEach(function(item){
+                        item.play().then(function(){
+                            item.pause();
+                        })
+                    })
                 }
                 pauseCount=0;
             }
