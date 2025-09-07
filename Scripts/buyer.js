@@ -212,7 +212,7 @@ function reloadVideo(vid){
     var div=document.createElement("div");
     div.className="unavailable";
     div.innerText="This video is currently unavailable";
-    addClass(div.parentElement,null,"loaded");
+    addClass(vid.parentElement,null,"loaded");
     vid.replaceWith(div);
 }
 
