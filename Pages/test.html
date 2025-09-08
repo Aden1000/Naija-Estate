@@ -48,27 +48,27 @@
   
   <div id="container">
       <div class="reel">
-        <video src="../../Videos/1.mp4" muted oncanplay="canPlay(this)" playsinline></video>
+        <video data-src="../../Videos/1.mp4" muted oncanplay="canPlay(this)" playsinline></video>
         <div class="caption">N500,000/year</div>
       </div>
       <div class="reel">
-        <video src="../../Videos/2.mp4" muted oncanplay="canPlay(this)" playsinline></video>
+        <video data-src="../../Videos/2.mp4" muted class="noPlay" oncanplay="canPlay(this)" playsinline></video>
         <div class="caption">N500,000/year</div>
       </div>
       <div class="reel">
-        <video src="../../Videos/3.mp4" muted oncanplay="canPlay(this)" playsinline></video>
+        <video data-src="../../Videos/3.mp4" muted class="noPlay" oncanplay="canPlay(this)" playsinline></video>
         <div class="caption">N500,000/year</div>
       </div>
       <div class="reel">
-        <video src="../../Videos/4.mp4" muted oncanplay="canPlay(this)" playsinline></video>
+        <video data-src="../../Videos/4.mp4" muted class="noPlay" oncanplay="canPlay(this)" playsinline></video>
         <div class="caption">N500,000/year</div>
       </div>
       <div class="reel">
-        <video src="../../Videos/5.mp4" muted oncanplay="canPlay(this)" playsinline></video>
+        <video data-src="../../Videos/5.mp4" muted class="noPlay" oncanplay="canPlay(this)" playsinline></video>
         <div class="caption">N500,000/year</div>
       </div>
       <div class="reel">
-        <video src="../../Videos/6.mp4" muted oncanplay="canPlay(this)" playsinline></video>
+        <video data-src="../../Videos/6.mp4" muted class="noPlay" oncanplay="canPlay(this)" playsinline></video>
         <div class="caption">N500,000/year</div>
       </div>
   </div>
@@ -158,39 +158,64 @@
 
     function canPlay(vid){
       addClass(vid,null,"canPlay");
+      removeClass(vid,null,"noPlay");
       observeVideos(vid);
     }
 
+    lastVideo=null;
+    this.onload=observeVideos(getByQueryAll("#container video"));
     function observeVideos(vid){
-      // videos = document.querySelectorAll("video");
       observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if(entry.isIntersecting){
             if(hasClass(entry.target,"canPlay")){
-              entry.target.play().then(
-                function(){
-                  addClass(entry.target,null,"playing")
-                }
-              );
+              try{
+                entry.target.play().then(
+                  function(){
+                    addClass(entry.target,null,"playing");
+                    if(lastVideo!=null && lastVideo!=entry.target){
+                      lastVideo.currentTime=0;
+                    }
+                  }
+                );
+              }
+              catch(e){
+                console.log(e);
+              }
+            }
+            else{
+              entry.target.src=entry.target.dataset.src
             }
           } 
           
           else {
             if(hasClass(entry.target,"playing")){
-              entry.target.pause();
-              removeClass(entry.target,null,"playing");
-              entry.target.currentTime=0;
+              try{
+                entry.target.pause();
+                lastVideo=entry.target;
+                removeClass(entry.target,null,"playing");
+              }
+              catch(e){
+                console.log(e);
+              }
             }
           }
         });
       }, { threshold: 0.99 }); // Play when 70% visible
-      observer.observe(vid);
-      // videos.forEach(video => {
-      //   observer.observe(video);
-      // });
+      try{
+        vid.forEach(function(item){
+          observer.observe(item);
+        });
+      }
+      catch(e){
+        try{
+          observer.observe(vid);
+        }
+        catch(e){
+          console.log(e);
+        }
+      }
     }
-
-    // Use IntersectionObserver to detect which video is in view
     
   </script>
 </body>
