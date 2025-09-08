@@ -8,7 +8,7 @@
             "name": "Launch Chrome",
             "request": "launch",
             "type": "chrome",
-            "url": "C://Users//Adriel//Documents//Naija-Estate//index.html",
+            "url": "C://Users//Adriel//Documents//Naija-Estate//Pages//test.html",
             "webRoot": "${localhost}"
         }
     ]

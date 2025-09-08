@@ -1,66 +1,197 @@
-<htmL>
-    <head>
-        <title>
-            Test website
-        </title>
-        <link rel="stylesheet" href="../Styles/buyer.css">
-        <script src="../Scripts/search.js"></script>
-    </head>
-    <body>
-        <div id="contactsContainer">
-            <h1>
-                Contacts
-                <label for="contactSearchBox" onclick="changeHash('#contactSearch')">
-                    <img src="../Images/Search.svg">
-                </label>
-            </h1>
-            <div class="searchBar hidden" id="contactSearchBar">
-                <svg onclick="historyBack()" viewBox="0 0 233.34 233.34" fill="black">
-                    <path d="M141.13 216.67l-100 -100 100 -100 17.72 17.72 -82.27 82.27 82.27 82.27 -17.72 17.72z"/>
-                </svg>
-                <input id="contactSearchBox" class="searchBox" placeholder="Name of the seller or market">
-            </div>
-            <div class="contacts">
-                <div class="contactHead">
-                    <div>
-                        <div class="contactPic">
-                            <img src="../Images/Adriel.jpg">
-                        </div>
-                        <div class="contactInfo">
-                            <div class="contactName">
-                                Adriel Enehizena
-                            </div>
-                            <div class="contactUsername">
-                                @adriel_zena
-                            </div>
-                            <img class="contactRating" src="../Images/5 Stars.svg">
-                        </div>
-                    </div>
-                    <svg style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" viewBox="0 0 635000 635000" onclick="changeHash('#contactsMenu')">
-                        <defs>
-                         <style type="text/css">
-                           .str0 {stroke:rgb(0,150,0);stroke-width:8460}
-                           .fil1 {fill:rgb(0,150,0)}
-                           .fil0 {fill:white}
-                         </style>
-                        </defs>
-                        <g id="Layer_x0020_1">
-                         <metadata id="CorelCorpID_0Corel-Layer"/>
-                         <g id="_2414798857136">
-                          <circle class="fil0" cx="317500" cy="317500" r="317500"/>
-                          <g>
-                           <ellipse class="fil1 str0" cx="317500" cy="190500" rx="42332" ry="42335"/>
-                           <ellipse class="fil1 str0" cx="317500" cy="317500" rx="42332" ry="42335"/>
-                           <ellipse class="fil1 str0" cx="317500" cy="444500" rx="42332" ry="42335"/>
-                          </g>
-                         </g>
-                        </g>
-                    </svg>
-                </div>
-                <div class="contactBio" onclick="toggleClass(this,null,'reveal')">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sollicitudin sit amet mauris sed mollis. Cras vitae tristique erat. Morbi cursus odio non tellus egestas, laoreet dignissim justo vulputate. Aliquam viverra non lorem imperdiet interdum. Nulla ante nibh, pellentesque eget ultrices vitae, luctus id ipsum. Cras erat lorem, imperdiet sed odio eget, faucibus ultricies ligula. Aliquam eu blandit eros, at blandit elit.
-                </div>
-            </div>
-        </div>
-    </body>
-</htmL>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Reels Page</title>
+  <style>
+    body{
+        margin:0px;
+    }
+
+    #container {
+      margin: 0;
+      height:100vh;
+      width:100vw;
+      background: black;
+      overflow-y: scroll;
+      scroll-snap-type: y mandatory;
+    }
+
+    .reel {
+    position: relative;
+    height: 100dvh;                 /* each reel == viewport */
+    scroll-snap-align:start;       /* snap point at the top */
+    scroll-snap-stop: always;       /* don’t skip past items */
+    display: grid; place-items: center;
+    background: #000;
+    }
+
+    video {
+      height: 100%;
+      width: auto;
+      object-fit: cover;
+    }
+
+    /* Optional overlay text */
+    .caption {
+      position: absolute;
+      bottom: 40px;
+      left: 20px;
+      color: white;
+      font-size: 1.2em;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+    }
+  </style>
+</head>
+<body>
+  
+  <div id="container">
+      <div class="reel">
+        <video src="../../Videos/1.mp4" muted oncanplay="canPlay(this)" playsinline></video>
+        <div class="caption">N500,000/year</div>
+      </div>
+      <div class="reel">
+        <video src="../../Videos/2.mp4" muted oncanplay="canPlay(this)" playsinline></video>
+        <div class="caption">N500,000/year</div>
+      </div>
+      <div class="reel">
+        <video src="../../Videos/3.mp4" muted oncanplay="canPlay(this)" playsinline></video>
+        <div class="caption">N500,000/year</div>
+      </div>
+      <div class="reel">
+        <video src="../../Videos/4.mp4" muted oncanplay="canPlay(this)" playsinline></video>
+        <div class="caption">N500,000/year</div>
+      </div>
+      <div class="reel">
+        <video src="../../Videos/5.mp4" muted oncanplay="canPlay(this)" playsinline></video>
+        <div class="caption">N500,000/year</div>
+      </div>
+      <div class="reel">
+        <video src="../../Videos/6.mp4" muted oncanplay="canPlay(this)" playsinline></video>
+        <div class="caption">N500,000/year</div>
+      </div>
+  </div>
+  <script>
+    function getById(id){
+    return document.getElementById(id);
+}
+
+    function getByClass(className,index){
+      if(index>=0){
+          return document.getElementsByClassName(className).item(index);
+      }
+      else {
+          return document.getElementsByClassName(className);
+      }
+    }
+
+    function getByQuery(query){
+      return document.body.querySelector(query)
+    }
+
+    function getByQueryAll(query,index){
+      if(query!=null){
+          return document.body.querySelectorAll(query)
+      }
+      else{
+          return document.body.querySelectorAll(query).item(index)
+      }
+    }
+
+    function addClass(object,id,className){
+      if(object!=null){
+          if(!object.className.match(className)){
+              if(!object.className==""){
+                  object.className+=" "+className;
+              }
+              else{
+                  object.className=className;
+              }
+          }
+      }
+      else{
+          object=getById(id);
+          if(!object.className.match(className)){
+              if(!object.className==""){
+                  object.className+=" "+className;
+              }
+              else{
+                  object.className=className;
+              }
+          }
+      }
+    }
+
+    function removeClass(object,id,className){
+      if(object!=null){
+          object.className=object.className.replace(" "+className,"");
+          object.className=object.className.replace(className,"");
+      }
+      else{
+          object=getById(id);
+          object.className=object.className.replace(" "+className,"");
+          object.className=object.className.replace(className,"");
+      }
+    }
+
+    function toggleClass(object,id,className){
+      if(hasClass(object,className)){
+          removeClass(object,null,className)
+      }
+      else{
+          addClass(object,null,className)
+      }
+    }
+
+    function hasClass(object,className){
+      if(object.className.match(className)){
+          return true;
+      }
+      else{
+          return false;
+      }
+    }
+    function isPlaying(vid){
+      addClass(vid,null,"playing")
+    }
+
+    function canPlay(vid){
+      addClass(vid,null,"canPlay");
+      observeVideos(vid);
+    }
+
+    function observeVideos(vid){
+      // videos = document.querySelectorAll("video");
+      observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if(entry.isIntersecting){
+            if(hasClass(entry.target,"canPlay")){
+              entry.target.play().then(
+                function(){
+                  addClass(entry.target,null,"playing")
+                }
+              );
+            }
+          } 
+          
+          else {
+            if(hasClass(entry.target,"playing")){
+              entry.target.pause();
+              removeClass(entry.target,null,"playing");
+              entry.target.currentTime=0;
+            }
+          }
+        });
+      }, { threshold: 0.99 }); // Play when 70% visible
+      observer.observe(vid);
+      // videos.forEach(video => {
+      //   observer.observe(video);
+      // });
+    }
+
+    // Use IntersectionObserver to detect which video is in view
+    
+  </script>
+</body>
+</html>

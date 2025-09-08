@@ -150,11 +150,6 @@ function fitVideo(vid){
 function canPlay(vid){
     addClass(vid,null,"canPlay");
     fitVideo(vid);
-    // vid.play().then(function(){
-    //     vid.pause();
-    // },function(){
-    //     reloadVideo(vid);
-    // })
 }
 var pauseCount=0;
 function pauseVideos(tab){
