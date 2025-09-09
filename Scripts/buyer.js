@@ -238,39 +238,33 @@ function observeVideos(vid){
       entries.forEach(entry => {
         root=entry.target.parentElement.parentElement;
         if(entry.isIntersecting){
-          if(hasClass(entry.target.querySelector("video"),"canPlay")){
-            try{
-              entry.target.querySelector("video").play().then(
-                function(){
-                  addClass(entry.target.querySelector("video"),null,"playing");
-                  if(lastVideo!=null && lastVideo!=entry.target.querySelector("video")){
-                    lastVideo.currentTime=0;
-                  }
+            if(hasClass(entry.target.querySelector("video"),"canPlay")){
+                entry.target.querySelector("video").play().then(function(){
+                    addClass(entry.target.querySelector("video"),null,"playing");
+                    if(lastVideo!=null && lastVideo!=entry.target.querySelector("video")){
+                        lastVideo.setAttribute("preload","none");
+                        removeClass(lastVideo,null,"canPlay");
+                        removeClass(lastVideo,null,"playing");
+                        removeClass(lastVideo.parentElement,null,"loaded");
+                        lastVideo.src="";
+                        lastVideo.removeAttribute("src");
+                    }
+                });
+            }
+            else{
+                entry.target.querySelector("video").setAttribute("preload","metadata");
+                if(entry.target.querySelector("video").src==""){
+                    entry.target.querySelector("video").src=entry.target.querySelector("video").dataset.src; 
                 }
-              );
             }
-            catch(e){
-              console.log(e);
-            }
-          }
-          else{
-            entry.target.querySelector("video").src=entry.target.querySelector("video").dataset.src
-          }
-        } 
-        
-        else {
-          if(hasClass(entry.target.querySelector("video"),"playing")){
-            try{
-              entry.target.querySelector("video").pause();
-              lastVideo=entry.target.querySelector("video");
-              removeClass(entry.target.querySelector("video"),null,"playing");
-            }
-            catch(e){
-              console.log(e);
-            }
-          }
         }
-      });
+        else{
+            if(hasClass(entry.target.querySelector("video"),"playing")){
+                entry.target.querySelector("video").pause();
+            }
+            lastVideo=entry.target.querySelector("video");
+        }
+      })
     }, { threshold: 1, root: root}); // Play when 70% visible
     try{
       vid.forEach(function(vid){
