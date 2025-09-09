@@ -220,11 +220,14 @@ function pauseVideos(tab){
 }
 
 function reloadVideo(vid){
-    var div=document.createElement("div");
-    div.className="unavailable";
-    div.innerText="This video is currently unavailable";
-    addClass(vid.parentElement,null,"loaded");
-    vid.replaceWith(div);
+    // var div=document.createElement("div");
+    // div.className="unavailable";
+    // div.innerText="This video is currently unavailable";
+    // addClass(vid.parentElement,null,"loaded");
+    // vid.replaceWith(div);
+    setTimeout(function(){
+        vid.load();
+    },2000)
 }
 
 var lastVideo=null;
