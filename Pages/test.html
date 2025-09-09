@@ -7,6 +7,7 @@
   <style>
     body{
         margin:0px;
+        overflow:hidden;
     }
 
     #container {
@@ -15,16 +16,20 @@
       width:100vw;
       background: black;
       overflow-y: scroll;
+      scrollbar-width: none;
       scroll-snap-type: y mandatory;
     }
 
     .reel {
     position: relative;
-    height: 100dvh;                 /* each reel == viewport */
+    height: 100vh;
+    width:100vw;
     scroll-snap-align:start;       /* snap point at the top */
     scroll-snap-stop: always;       /* don’t skip past items */
-    display: grid; place-items: center;
+    display: grid; 
+    place-items: center;
     background: #000;
+    overflow:hidden;
     }
 
     video {
@@ -45,30 +50,29 @@
   </style>
 </head>
 <body>
-  
   <div id="container">
       <div class="reel">
-        <video data-src="../Videos/1.mp4" muted oncanplay="canPlay(this)" playsinline></video>
+        <video data-src="../../Videos/1.mp4" muted oncanplay="canPlay(this)" playsinline></video>
         <div class="caption">N500,000/year</div>
       </div>
       <div class="reel">
-        <video data-src="../Videos/2.mp4" muted class="noPlay" oncanplay="canPlay(this)" playsinline></video>
+        <video data-src="../../Videos/2.mp4" muted class="noPlay" oncanplay="canPlay(this)" playsinline></video>
         <div class="caption">N500,000/year</div>
       </div>
       <div class="reel">
-        <video data-src="../Videos/3.mp4" muted class="noPlay" oncanplay="canPlay(this)" playsinline></video>
+        <video data-src="../../Videos/3.mp4" muted class="noPlay" oncanplay="canPlay(this)" playsinline></video>
         <div class="caption">N500,000/year</div>
       </div>
       <div class="reel">
-        <video data-src="../Videos/4.mp4" muted class="noPlay" oncanplay="canPlay(this)" playsinline></video>
+        <video data-src="../../Videos/4.mp4" muted class="noPlay" oncanplay="canPlay(this)" playsinline></video>
         <div class="caption">N500,000/year</div>
       </div>
       <div class="reel">
-        <video data-src="../Videos/5.mp4" muted class="noPlay" oncanplay="canPlay(this)" playsinline></video>
+        <video data-src="../../Videos/5.mp4" muted class="noPlay" oncanplay="canPlay(this)" playsinline></video>
         <div class="caption">N500,000/year</div>
       </div>
       <div class="reel">
-        <video data-src="../Videos/6.mp4" muted class="noPlay" oncanplay="canPlay(this)" playsinline></video>
+        <video data-src="../../Videos/6.mp4" muted class="noPlay" oncanplay="canPlay(this)" playsinline></video>
         <div class="caption">N500,000/year</div>
       </div>
   </div>
@@ -159,21 +163,21 @@
     function canPlay(vid){
       addClass(vid,null,"canPlay");
       removeClass(vid,null,"noPlay");
-      observeVideos(vid);
+      observeVideos(vid.parentElement);
     }
 
     lastVideo=null;
-    this.onload=observeVideos(getByQueryAll("#container video"));
+    this.onload=observeVideos(getByQueryAll(".reel"));
     function observeVideos(vid){
       observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if(entry.isIntersecting){
-            if(hasClass(entry.target,"canPlay")){
+            if(hasClass(entry.target.querySelector("video"),"canPlay")){
               try{
-                entry.target.play().then(
+                entry.target.querySelector("video").play().then(
                   function(){
-                    addClass(entry.target,null,"playing");
-                    if(lastVideo!=null && lastVideo!=entry.target){
+                    addClass(entry.target.querySelector("video"),null,"playing");
+                    if(lastVideo!=null && lastVideo!=entry.target.querySelector("video")){
                       lastVideo.currentTime=0;
                     }
                   }
@@ -184,16 +188,16 @@
               }
             }
             else{
-              entry.target.src=entry.target.dataset.src
+              entry.target.querySelector("video").src=entry.target.querySelector("video").dataset.src
             }
           } 
           
           else {
-            if(hasClass(entry.target,"playing")){
+            if(hasClass(entry.target.querySelector("video"),"playing")){
               try{
-                entry.target.pause();
-                lastVideo=entry.target;
-                removeClass(entry.target,null,"playing");
+                entry.target.querySelector("video").pause();
+                lastVideo=entry.target.querySelector("video");
+                removeClass(entry.target.querySelector("video"),null,"playing");
               }
               catch(e){
                 console.log(e);
@@ -203,8 +207,8 @@
         });
       }, { threshold: 0.99 }); // Play when 70% visible
       try{
-        vid.forEach(function(item){
-          observer.observe(item);
+        vid.forEach(function(vid){
+          observer.observe(vid);
         });
       }
       catch(e){

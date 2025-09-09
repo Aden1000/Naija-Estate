@@ -1,17 +1,220 @@
-<html>
-    <head>
-        <title>
-            Test
-        </title>
-    </head>
-    <body>
-        <a href="test.html" target="test">
-            <button style="appearance: none; background-color:purple; color:white; font-size: 100px;">
-                Click Here!
-            </button>
-        </a>
-        <center>
-            <iframe name="test" height="1400px" width="100%" style="border:3px solid rgb(0,150,0)"></iframe>
-        </center>
-    </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, user-scalable=no">
+  <title>Simple Reels Page</title>
+  <style>
+    body{
+        margin:0px;
+    }
+
+    #container{
+      margin: 0;
+      height:100vh;
+      width:100vw;
+      background: black;
+      overflow-y: scroll;
+      scroll-snap-type: y mandatory;
+    }
+
+    iframe{
+        position: relative;
+        height: 100vh;
+        width: 100vw;
+        scroll-snap-align:start;
+        scroll-snap-stop: always;
+        display: grid;
+        place-items: center;
+        background: #000;
+        border:none;
+    }
+
+    video {
+        height: 100%;
+        width: auto;
+        object-fit: cover;
+        padding:0px;
+        margin:0px;
+    }
+
+    .cleanVideo{
+        margin:0px;
+    }
+
+    /* Optional overlay text */
+    .caption {
+        position: absolute;
+        bottom: 40px;
+        left: 20px;
+        color: white;
+        font-size: 1.5rem;
+        text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+    }
+  </style>
+</head>
+<body>
+  
+  <div id="container">
+    <div>
+        <iframe loading="lazy" src="file:///C://Users//Adriel//Documents//Naija-Estate//Videos//1.mp4" onload="cleanVideo(this)" sandbox="allow-same-origin allow-scripts" referrerpolicy="origin"></iframe>
+    </div>
+  </div>
+  <script>
+    function getById(id){
+    return document.getElementById(id);
+}
+
+    function getByClass(className,index){
+      if(index>=0){
+          return document.getElementsByClassName(className).item(index);
+      }
+      else {
+          return document.getElementsByClassName(className);
+      }
+    }
+
+    function getByQuery(query){
+      return document.body.querySelector(query)
+    }
+
+    function getByQueryAll(query,index){
+      if(query!=null){
+          return document.body.querySelectorAll(query)
+      }
+      else{
+          return document.body.querySelectorAll(query).item(index)
+      }
+    }
+
+    function addClass(object,id,className){
+      if(object!=null){
+          if(!object.className.match(className)){
+              if(!object.className==""){
+                  object.className+=" "+className;
+              }
+              else{
+                  object.className=className;
+              }
+          }
+      }
+      else{
+          object=getById(id);
+          if(!object.className.match(className)){
+              if(!object.className==""){
+                  object.className+=" "+className;
+              }
+              else{
+                  object.className=className;
+              }
+          }
+      }
+    }
+
+    function removeClass(object,id,className){
+      if(object!=null){
+          object.className=object.className.replace(" "+className,"");
+          object.className=object.className.replace(className,"");
+      }
+      else{
+          object=getById(id);
+          object.className=object.className.replace(" "+className,"");
+          object.className=object.className.replace(className,"");
+      }
+    }
+
+    function toggleClass(object,id,className){
+      if(hasClass(object,className)){
+          removeClass(object,null,className)
+      }
+      else{
+          addClass(object,null,className)
+      }
+    }
+
+    function hasClass(object,className){
+      if(object.className.match(className)){
+          return true;
+      }
+      else{
+          return false;
+      }
+    }
+    
+    function cleanVideo(parent){
+        console.log(parent);
+        // var vid=getByQuery("video");
+        // vid.removeAttribute("control");
+        // vid.removeAttribute("autoplay");
+        // vid.removeAttribute("name");
+        // addClass(vid,null,"cleanVideo");
+    }
+
+    function isPlaying(vid){
+      addClass(vid,null,"playing")
+    }
+
+    function canPlay(vid){
+      addClass(vid,null,"canPlay");
+      removeClass(vid,null,"noPlay");
+      observeVideos(vid);
+    }
+
+    lastVideo=null;
+    this.onload=observeVideos(getByQueryAll("#container video"));
+    function observeVideos(vid){
+      observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if(entry.isIntersecting){
+            if(hasClass(entry.target,"canPlay")){
+              try{
+                entry.target.play().then(
+                  function(){
+                    addClass(entry.target,null,"playing");
+                    if(lastVideo!=null && lastVideo!=entry.target){
+                      lastVideo.currentTime=0;
+                    }
+                  }
+                );
+              }
+              catch(e){
+                console.log(e);
+              }
+            }
+            else{
+              entry.target.src=entry.target.dataset.src
+            }
+          } 
+          
+          else {
+            if(hasClass(entry.target,"playing")){
+              try{
+                entry.target.pause();
+                lastVideo=entry.target;
+                removeClass(entry.target,null,"playing");
+              }
+              catch(e){
+                console.log(e);
+              }
+            }
+          }
+        });
+      }, { threshold: 0.99 }); // Play when 70% visible
+      try{
+        vid.forEach(function(item){
+          observer.observe(item);
+        });
+      }
+      catch(e){
+        try{
+          observer.observe(vid);
+        }
+        catch(e){
+          console.log(e);
+        }
+      }
+    }
+    
+  </script>
+</body>
 </html>
