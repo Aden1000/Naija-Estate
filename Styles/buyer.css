@@ -569,7 +569,7 @@ body {
 
     .searchResult{
         width: 100%;
-        min-height: 100%;
+        height: unset;
         padding: 20px;
         border-radius: 40px;
         display: flex;
@@ -583,7 +583,7 @@ body {
     
     .searchResult>.propertyPic{
         width: 100%;
-        min-height: 1100px;
+        min-height: 900px;
         align-self: center;
         border-radius: 20px;
         display: flex;
@@ -2356,20 +2356,16 @@ body {
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: space-around;
-        row-gap: 50px;
+        row-gap: 10px;
         align-items: center;
         width: 100%;
         min-height: 100dvh;
         overflow: scroll;
-        padding: 40px 20px 500px 20px;
-        scroll-snap-stop: always;
-        scroll-snap-type: y mandatory;
+        padding: 20px 20px 500px 20px;
     }
 
     #bookmarksContainer .mainContainer a{
         width:100%;
-        scroll-snap-align: start;
-        height: 80dvh;
     }
     
     #notificationsContainer{
