@@ -7,7 +7,7 @@
             Search something on Umarket
         </title>
         <meta name="description" content="Find anything on Umarket">
-        <meta name="viewport" content="width=device-width, initial-scale=0.4,interactive-widget=overlays-content, minimum-scale=0.4"/>
+        <meta name="viewport" content="width=device-width, initial-scale=0.4,interactive-widget=overlays-content, maximum-scale=0.4, user-scalable=no"/>
         <script src="Scripts/buyer.js"></script>
     </head>
     <body>
@@ -20,7 +20,6 @@
                 <div class="backBoard float hidden" onclick="historyBack()"></div>
                 <div class="banner">    
                     <img id="bannerImg" src="Images/Naija Estate.svg">
-
                 </div> 
                 <form class="searchForm">
                     <div class="searchBar">
@@ -106,12 +105,12 @@
                     </div>
         
                 </div>
-                <div class="mainContainer" onscroll="pauseVideos('search')">
+                <div class="mainContainer">
                     <img src="Images/resultLoading.svg" class="resultLoading">
                     <a href="Pages/property.html" target="_blank">
                         <div class="searchResult hidden">
                                 <div class="propertyPic">
-                                     <video  onerror="reloadVideo(this)" data-src="Videos/1.mp4" type="video/mp4"  preload="metadata" muted onloadedmetadata="canPlay(this)"></video>
+                                     <video  onerror="reloadVideo(this)" data-src="Videos/1.mp4" type="video/mp4" muted oncanplay="canPlay(this)"></video>
                                 </div>
                                 <div class="propertyDetails">
                                     <div class="propertyName">
@@ -133,7 +132,7 @@
                     <a href="Pages/property.html" target="_blank">
                         <div class="searchResult hidden">
                                 <div class="propertyPic">
-                                     <video  onerror="reloadVideo(this)" data-src="Videos/2.mp4" type="video/mp4"  preload="metadata" muted onloadedmetadata="canPlay(this)"></video>
+                                     <video  onerror="reloadVideo(this)" data-src="Videos/2.mp4" type="video/mp4" muted oncanplay="canPlay(this)"></video>
                                 </div>
                                 <div class="propertyDetails">
                                     <div class="propertyName">
@@ -155,7 +154,7 @@
                     <a href="Pages/property.html" target="_blank">
                         <div class="searchResult hidden">
                                 <div class="propertyPic">
-                                     <video  onerror="reloadVideo(this)" data-src="Videos/3.mp4" type="video/mp4"  preload="metadata" muted onloadedmetadata="canPlay(this)"></video>
+                                     <video  onerror="reloadVideo(this)" data-src="Videos/3.mp4" type="video/mp4" muted oncanplay="canPlay(this)"></video>
                                 </div>
                                 <div class="propertyDetails">
                                     <div class="propertyName">
@@ -177,7 +176,7 @@
                     <a href="Pages/property.html" target="_blank">
                         <div class="searchResult hidden">
                                 <div class="propertyPic">
-                                     <video  onerror="reloadVideo(this)" data-src="Videos/4.mp4" type="video/mp4"  preload="metadata" muted onloadedmetadata="canPlay(this)"></video>
+                                     <video  onerror="reloadVideo(this)" data-src="Videos/4.mp4" type="video/mp4" muted oncanplay="canPlay(this)"></video>
                                 </div>
                                 <div class="propertyDetails">
                                     <div class="propertyName">
@@ -199,7 +198,7 @@
                     <a href="Pages/property.html" target="_blank">
                         <div class="searchResult hidden">
                                 <div class="propertyPic">
-                                     <video  onerror="reloadVideo(this)" data-src="Videos/5.mp4" type="video/mp4"  preload="metadata" muted onloadedmetadata="canPlay(this)"></video>
+                                     <video  onerror="reloadVideo(this)" data-src="Videos/5.mp4" type="video/mp4" muted oncanplay="canPlay(this)"></video>
                                 </div>
                                 <div class="propertyDetails">
                                     <div class="propertyName">
@@ -221,7 +220,7 @@
                     <a href="Pages/property.html" target="_blank">
                         <div class="searchResult hidden">
                                 <div class="propertyPic">
-                                     <video  onerror="reloadVideo(this)" data-src="Videos/6.mp4" type="video/mp4"  preload="metadata" muted onloadedmetadata="canPlay(this)"></video>
+                                     <video  onerror="reloadVideo(this)" data-src="Videos/6.mp4" type="video/mp4" muted oncanplay="canPlay(this)"></video>
                                 </div>
                                 <div class="propertyDetails">
                                     <div class="propertyName">
@@ -513,12 +512,12 @@
                     </svg>
                     <input id="bookmarkSearchBox" class="searchBox" placeholder="Type the name of the house">
                 </div>
-                <div class="mainContainer" onscroll="pauseVideos()">
+                <div class="mainContainer">
                 <img src="Images/resultLoading.svg" class="resultLoading hidden">
                     <a href="Pages/property.html" target="_blank">
                         <div class="searchResult hidden">
                                 <div class="propertyPic">
-                                     <video  onerror="reloadVideo(this)" data-src="Videos/1.mp4" type="video/mp4"  preload="metadata" muted onloadedmetadata="canPlay(this)"></video>
+                                     <video  onerror="reloadVideo(this)" data-src="Videos/1.mp4" type="video/mp4" muted oncanplay="canPlay(this)"></video>
                                 </div>
                                 <div class="propertyDetails">
                                     <div class="propertyName">
@@ -540,7 +539,7 @@
                     <a href="Pages/property.html" target="_blank">
                         <div class="searchResult hidden">
                                 <div class="propertyPic">
-                                     <video  onerror="reloadVideo(this)" data-src="Videos/2.mp4" type="video/mp4"  preload="metadata" muted onloadedmetadata="canPlay(this)"></video>
+                                     <video  onerror="reloadVideo(this)" data-src="Videos/2.mp4" type="video/mp4" muted oncanplay="canPlay(this)"></video>
                                 </div>
                                 <div class="propertyDetails">
                                     <div class="propertyName">
@@ -562,7 +561,7 @@
                     <a href="Pages/property.html" target="_blank">
                         <div class="searchResult hidden">
                                 <div class="propertyPic">
-                                     <video  onerror="reloadVideo(this)" data-src="Videos/3.mp4" type="video/mp4"  preload="metadata" muted onloadedmetadata="canPlay(this)"></video>
+                                     <video  onerror="reloadVideo(this)" data-src="Videos/3.mp4" type="video/mp4" muted oncanplay="canPlay(this)"></video>
                                 </div>
                                 <div class="propertyDetails">
                                     <div class="propertyName">
@@ -584,7 +583,7 @@
                     <a href="Pages/property.html" target="_blank">
                         <div class="searchResult hidden">
                                 <div class="propertyPic">
-                                     <video  onerror="reloadVideo(this)" data-src="Videos/4.mp4" type="video/mp4"  preload="metadata" muted onloadedmetadata="canPlay(this)"></video>
+                                     <video  onerror="reloadVideo(this)" data-src="Videos/4.mp4" type="video/mp4" muted oncanplay="canPlay(this)"></video>
                                 </div>
                                 <div class="propertyDetails">
                                     <div class="propertyName">
@@ -606,7 +605,7 @@
                     <a href="Pages/property.html" target="_blank">
                         <div class="searchResult hidden">
                                 <div class="propertyPic">
-                                     <video  onerror="reloadVideo(this)" data-src="Videos/5.mp4" type="video/mp4"  preload="metadata" muted onloadedmetadata="canPlay(this)"></video>
+                                     <video  onerror="reloadVideo(this)" data-src="Videos/5.mp4" type="video/mp4" muted oncanplay="canPlay(this)"></video>
                                 </div>
                                 <div class="propertyDetails">
                                     <div class="propertyName">
@@ -628,7 +627,7 @@
                     <a href="Pages/property.html" target="_blank">
                         <div class="searchResult hidden">
                                 <div class="propertyPic">
-                                     <video  onerror="reloadVideo(this)" data-src="Videos/6.mp4" type="video/mp4"  preload="metadata" muted onloadedmetadata="canPlay(this)"></video>
+                                     <video  onerror="reloadVideo(this)" data-src="Videos/6.mp4" type="video/mp4" muted oncanplay="canPlay(this)"></video>
                                 </div>
                                 <div class="propertyDetails">
                                     <div class="propertyName">

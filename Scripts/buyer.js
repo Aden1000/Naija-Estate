@@ -13,7 +13,9 @@ this.onload=function(){
         this.onhashchange=function(){
             hashChanged(this.location.hash);
         }
-        pauseVideos("search");
+        // pauseVideos("search");
+        observeVideos(getByQueryAll("#searchContainer .searchResult"));
+        observeVideos(getByQueryAll("#bookmarksContainer .searchResult"));
     },2000)
 
     //clear all textareas
@@ -150,6 +152,7 @@ function fitVideo(vid){
 function canPlay(vid){
     addClass(vid,null,"canPlay");
     fitVideo(vid);
+    observeVideos(vid.parentElement.parentElement);
 }
 var pauseCount=0;
 function pauseVideos(tab){
@@ -223,6 +226,63 @@ function reloadVideo(vid){
     addClass(vid.parentElement,null,"loaded");
     vid.replaceWith(div);
 }
+
+var lastVideo=null;
+function observeVideos(vid){
+    var root;
+    observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        root=entry.target.parentElement.parentElement;
+        if(entry.isIntersecting){
+          if(hasClass(entry.target.querySelector("video"),"canPlay")){
+            try{
+              entry.target.querySelector("video").play().then(
+                function(){
+                  addClass(entry.target.querySelector("video"),null,"playing");
+                  if(lastVideo!=null && lastVideo!=entry.target.querySelector("video")){
+                    lastVideo.currentTime=0;
+                  }
+                }
+              );
+            }
+            catch(e){
+              console.log(e);
+            }
+          }
+          else{
+            entry.target.querySelector("video").src=entry.target.querySelector("video").dataset.src
+          }
+        } 
+        
+        else {
+          if(hasClass(entry.target.querySelector("video"),"playing")){
+            try{
+              entry.target.querySelector("video").pause();
+              lastVideo=entry.target.querySelector("video");
+              removeClass(entry.target.querySelector("video"),null,"playing");
+            }
+            catch(e){
+              console.log(e);
+            }
+          }
+        }
+      });
+    }, { threshold: 1, root: root}); // Play when 70% visible
+    try{
+      vid.forEach(function(vid){
+        observer.observe(vid);
+      });
+    }
+    catch(e){
+      try{
+        observer.observe(vid);
+      }
+      catch(e){
+        console.log(e);
+      }
+    }
+  }
+
 
 function addBookmark(button){
     var img=button.firstElementChild;
@@ -652,7 +712,6 @@ function changeMenu(menu){
                 }
             }            
             addClass(containers[0],null,"selected");
-            pauseVideos("search");
         break;
 
         case "bookmarkButton":
@@ -672,7 +731,6 @@ function changeMenu(menu){
                     removeClass(item,null,"hidden");
                 });
                 addClass(document.querySelector("#bookmarksContainer .resultLoading"),null,"hidden");
-                pauseVideos();
             },2000)
             addClass(containers[1],null,"selected");
         break;
