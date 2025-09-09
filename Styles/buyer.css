@@ -24,7 +24,7 @@ body {
     font-family: "Montserrat";
     background-color: white;
     height: 100dvh;
-    width: 100vw;
+    width: 100dvw;
     justify-content: center;
     overflow: scroll;
     align-self: center;
