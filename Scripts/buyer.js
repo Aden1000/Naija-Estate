@@ -227,6 +227,7 @@ function reloadVideo(vid){
     // vid.replaceWith(div);
     setTimeout(function(){
         vid.load();
+        removeClass(vid.parentElement,"loaded");
     },2000)
 }
 
