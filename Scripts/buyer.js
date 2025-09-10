@@ -227,18 +227,21 @@ function reloadVideo(vid){
 }
 
 function dataLoaded(vid){
-    var vid2=document.createElement("video");
-    vid2.src=vid.src;
-    vid2.preload="metadata";
-    vid2.muted=true;
-    vid2.className="background";
-    vid2.setAttribute("onerror","reloadVideo(this)");
-    vid2.setAttribute("type","video/mp4");
-    vid.parentElement.append(vid2);
-    vid2.onloadeddata=setTimeout(function(){
-        vid.setAttribute("oncanplay","canPlay(this)");
-        canPlay(vid);
-    },1000);
+    if(vid.parentElement.querySelector(".background")==null){
+        var vid2=document.createElement("video");
+        vid2.src=vid.src;
+        vid2.preload="metadata";
+        vid2.muted=true;
+        vid2.className="background";
+        vid2.setAttribute("onerror","reloadVideo(this)");
+        vid2.setAttribute("type","video/mp4");
+        vid.parentElement.append(vid2);
+        vid2.onloadeddata=setTimeout(function(){
+            vid2.currentTime=2;
+            vid.setAttribute("oncanplay","canPlay(this)");
+            canPlay(vid);
+        },1000);
+    }
 }
 
 var lastVideo=null;
@@ -394,11 +397,15 @@ function clearFilter(){
     initial_filter["stars"]=null;
     hideFilter();
     applyFilter();
-    addClass(document.body.querySelector("#searchContainer>.mainContainer"),null,"hidden");
-    removeClass(document.querySelector("#searchContainer .resultLoading"),null,"hidden")
+    getByQueryAll("#searchContainer .mainContainer a").forEach(function(item){
+            addClass(item,null,"hidden");
+        });
+    removeClass(getByQuery("#searchContainer .resultLoading"),null,"hidden")
     setTimeout(function(){
-        addClass(document.querySelector("#searchContainer .resultLoading"),null,"hidden");
-        removeClass(document.body.querySelector("#searchContainer>.mainContainer"),null,"hidden");
+        addClass(getByQuery("#searchContainer .resultLoading"),null,"hidden");
+        getByQueryAll("#searchContainer .mainContainer a").forEach(function(item){
+            removeClass(item,null,"hidden");
+        });
     },5000)
 }
 
@@ -431,12 +438,19 @@ function applyFilter(){
     if(filterCount>0){
         filterCountElement.innerHTML=filterCount;
         removeClass(filterCountElement,null,"hidden")
-        addClass(document.body.querySelector("#searchContainer>.mainContainer"),null,"hidden");
+       getByQueryAll("#searchContainer .mainContainer a").forEach(function(item){
+            addClass(item,null,"hidden");
+        });
         removeClass(document.querySelector("#searchContainer .resultLoading"),null,"hidden")
+        
+        
         setTimeout(function(){
             addClass(document.querySelector("#searchContainer .resultLoading"),null,"hidden");
-            removeClass(document.body.querySelector("#searchContainer>.mainContainer"),null,"hidden");
-        },5000)
+            getByQueryAll("#searchContainer .mainContainer a").forEach(function(item){
+                removeClass(item,null,"hidden");
+                });
+            
+            },5000)
     }
     else{
         addClass(filterCountElement,null,"hidden")
