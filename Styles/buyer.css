@@ -586,6 +586,7 @@ body {
         min-height: 900px;
         align-self: center;
         border-radius: 20px;
+        position: relative;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -617,11 +618,25 @@ body {
     .searchResult>.propertyPic video.portrait{
         height:100%;
         width:auto;
+        position: absolute;
+    }
+
+    .searchResult>.propertyPic video.canPlay{
+        z-index: 1;
     }
 
     .searchResult>.propertyPic video.landscape{
         height:auto;
         width:100%;
+    }
+
+    .searchResult>.propertyPic .background{
+        position:absolute;
+        top: -25%;
+        left:0px;
+        width: 100%;
+        z-index: 0;
+        filter: blur(10px);
     }
     .searchResult>.propertyDetails{
         width: 100%;

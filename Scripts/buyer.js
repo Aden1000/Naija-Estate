@@ -220,15 +220,25 @@ function pauseVideos(tab){
 }
 
 function reloadVideo(vid){
-    // var div=document.createElement("div");
-    // div.className="unavailable";
-    // div.innerText="This video is currently unavailable";
-    // addClass(vid.parentElement,null,"loaded");
-    // vid.replaceWith(div);
     setTimeout(function(){
         vid.load();
         removeClass(vid.parentElement,"loaded");
     },2000)
+}
+
+function dataLoaded(vid){
+    var vid2=document.createElement("video");
+    vid2.src=vid.src;
+    vid2.preload="metadata";
+    vid2.muted=true;
+    vid2.className="background";
+    vid2.setAttribute("onerror","reloadVideo(this)");
+    vid2.setAttribute("type","video/mp4");
+    vid.parentElement.append(vid2);
+    vid2.onloadeddata=setTimeout(function(){
+        vid.setAttribute("oncanplay","canPlay(this)");
+        canPlay(vid);
+    },1000);
 }
 
 var lastVideo=null;
@@ -242,6 +252,12 @@ function observeVideos(vid){
                 entry.target.querySelector("video").play().then(function(){
                     addClass(entry.target.querySelector("video"),null,"playing");
                     if(lastVideo!=null && lastVideo!=entry.target.querySelector("video")){
+                        try{
+                            lastVideo.parentElement.querySelector(".background").remove();
+                        }
+                        catch(e){
+                            console.log(e);
+                        }
                         lastVideo.setAttribute("preload","none");
                         removeClass(lastVideo,null,"canPlay");
                         removeClass(lastVideo,null,"playing");
