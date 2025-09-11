@@ -415,6 +415,8 @@ body {
 
     #buyerContainer{
         height:100dvh;
+        width: 100dvw;
+        overflow: hidden;
     }
 
     .hidden{
@@ -521,6 +523,15 @@ body {
         overflow: scroll;
     }
 
+    #searchContainer .mainContainer .resultLoading, #bookmarksContainer .mainContainer .resultLoading{
+        animation-name:imgLoading;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+        animation-duration: 0.5s;
+        animation-direction: alternate-reverse;
+        width: 95%;
+    }
+
     #searchContainer a{
         min-width:95%;
         margin:0px 2.5%;
@@ -568,7 +579,7 @@ body {
     }
 
     .searchResult{
-        width: 100%;
+        width: 95%;
         height: unset;
         padding: 20px;
         border-radius: 40px;
@@ -614,30 +625,47 @@ body {
         width:100%;
         text-align: center;
     }
-
-    .searchResult>.propertyPic video.portrait{
-        height:100%;
-        width:auto;
-        position: absolute;
-    }
-
     .searchResult>.propertyPic video.canPlay{
-        z-index: 1;
+        filter:brightness(0.7);
     }
 
-    .searchResult>.propertyPic video.landscape{
+    .searchResult>.propertyPic video{
         height:auto;
         width:100%;
+        margin-top: 25%;
+        transition-duration: 1s;
+        position: absolute;
+        z-index:0;
     }
 
-    .searchResult>.propertyPic .background{
+    .searchResult>.propertyPic .watchButton{
+        position: sticky;
+        top:-25%;
+        z-index:1;
+        color:white;
+        padding: 10px;
+        height: 100px;
+        border-radius: 100%;
+        padding: 40px;
+        transition-duration:0.5s;
+        transition-property:all;
+        background-color: rgb(0,0,0,0.5);
+    }
+
+    .searchResult>.propertyPic .watchButton.hidden{
+        height:50px;
+        display: block !important;
+        visibility: hidden;
+    }
+
+    /* .searchResult>.propertyPic .background{
         position:absolute;
         top: -25%;
         left:0px;
         width: 100%;
         z-index: 0;
         filter: blur(10px);
-    }
+    } */
     .searchResult>.propertyDetails{
         width: 100%;
         height: 100%;
@@ -1130,12 +1158,12 @@ body {
      }
 
     #propertyView{
-        position:fixed;
+        position: relative;
         top:0px;
         left: 0px;
         width: 100%;
         height: 100%;
-        background-color: white;
+        background-color: black;
         overflow: scroll;
         transition-duration: 0.2s;
         z-index: 5;
@@ -1146,303 +1174,73 @@ body {
         display:flex !important;
     }
 
-    #propertyView .banner{
-        height: 130px;
-        position: sticky;
-        top:0px;
-        left:0px;
-        width:100%;
-        box-shadow: 0px -10px 30px 0px rgb(100,100,100);
-        display: flex;
-        align-items:center;
-        justify-content: start;
-        background-color: black;
-        z-index: 7;
-        transition-duration: 0.2s;
-        font-size: 2.5rem;
-        color: white;
-        font-family: "Montserrat Bold";
-        column-gap: 10px;
-        overflow: hidden;
-    }
-
-    #propertyView .banner>div{
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        max-width: 100%;
-        overflow: hidden;
-    }
-    #propertyView .banner img{
-        min-width: 60px;
-        padding: 15px;
-        border-radius: 100%;
-    }
-
-    #propertyView .banner img:active{
-        background-color: rgba(180,180,180,0.3);
-    }
-
-    #propertyView>iframe{
-        width:100%;
-    }
-    
-    #propertyView>.EmptyDiv{
-        width:100%;
-        height:160px;
-    }
-
-    #propertyView>.maincontainer{
-        height: 100%;
-        width: 100%;
-        overflow-y: scroll;
-        transition-duration: 0.2s;
-        position: absolute;
-        left: 0px;
-    }
-
-    #propertyView>.maincontainer.frozen{
-        overflow:hidden;
-    }
-
-    #propertyView .propertyPic{
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        overflow: hidden;
-        width: 100%;
-        max-height: 535px;
-        scrollbar-width: none;
-        column-gap: 15px;
-        row-gap: 15px;
-        transition-duration:0.2s;
-        transition-property: all;
-        padding: 20px 10px 20px 10px;
-        background-color: rgb(255,255,255);
-        column-count: 2;
-        flex-wrap: wrap;
-    }
-
-    #propertyView .propertyPic.one{
-        min-height:935px;
-    }
-    #propertyView .propertyPic.one>div:not(#picCount){
-        min-height: 900px;
-        width: 100%;
-    }
-
-    #propertyView .propertyPic>img{
-        display:none;
-    }
-
-    #propertyView .propertyPic.zoom>img{
-        position:fixed;
-        left: 30px;
-        top: 30px;
-        z-index: 8;
-        width: 70px;
-        display: block;
-    }
-
-    #propertyView .propertyPic.zoom{
-        position:fixed;
-        top: 130px;
-        left:0px;
-        max-height: -webkit-fill-available;
-        width:100%;
-        z-index: 6;
-        flex-direction: column !important;
-        row-gap: 50px;
-        overflow: scroll;
-        flex-wrap: nowrap;
-        background-color: rgb(0,0,0);
-    }
-
-    #picCount{
-        position: absolute;
-        top: 150px;
-        right: 1.5%;
-        width:48%;
-        height:500px;
-        font-size: 4rem;
-        display:flex;
-        flex-direction:row;
-        align-items:center;
-        justify-content: center;
-        font-family: 'Montserrat Bold';
-        background-color: rgba(0,0,0,0.7);
-        color: white;
-        border-radius: 40px;
-    }
-    #propertyView .propertyPic>div:not(#picCount){
-        min-height: 500px;
-        height: 500px;
-        width: 49%;
-        background-color:black;
-        border-radius: 40px;
-        overflow: hidden;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position-x: center;
-        background-position-y: center;
-    }
-
-    #propertyView .propertyPic.zoom>#picCount{
-        display:none;
-    }
-    #propertyView .propertyPic.zoom>div:not(#picCount){
-        box-shadow:none;
-        width: 100%;
-        height: 900px;
-        min-height: 900px;
-        border-radius: 0px;
-        border: white 1px solid;
-    }
-
-    #propertyView .propertyPic img{
-        transition-duration: 0.2s;
-    }
-
-    #propertyName{
-        font-size: 0.8rem;
-        font-family: "Montserrat";
-        margin: 20px 0px 20px 10px;
-        font-weight: bold;
-    }
-
-    #propertyPrice{
-        font-family: "Montserrat";
-        margin-bottom: 20px;
-    }
-
-    #propertyPrice ul{
-        margin:0px;
-    }
-
-    #propertyPrice h1{
-        margin:0px;
-    }
-    #propertyPrice>div:first-child{
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        column-gap: 10px;
-        flex-wrap: wrap;
-        margin: 10px 0px 0px 10px;
-    }
-
-    #propertyPrice span{
-        color:rgb(100,100,100);
-        font-size:2.2rem;
-        text-decoration: line-through;
-        font-family: 'Montserrat Bold';
-    }
-
-    #propertyPrice{
-        font-size: 0.7rem;
-    }
-
-    #propertyLocation{
-        font-family: "Montserrat";
-        color:rgb(0,100,0);
-        font-size: 2.2rem;
-        display: flex;
-        align-items: center;
-        width:100%;
-        height: 90px;
-        column-gap: 10px;
-        padding: 0px 10px;
-    }
-
-    #propertyLocation>div{
-        display: flex;
-        flex-direction:row;
-        overflow-x:scroll;
-        column-gap: 0.9rem;
-        padding: 10px 30px 10px 10px;
-        scrollbar-width:none;
-        width:100%;
+    #propertyView video{
         height:100%;
-    }
-    .propertyLocation>div::after{
-        content: '';
-        position: sticky;
+        width:auto;
+        position: absolute;
         top: 0px;
-        right: -20px;
-        min-width: 100px;
-        min-height: 100%;
-        pointer-events: none;
-        background: linear-gradient(to right, rgba(255,255,255,0), white);
-    }
-
-    #propertyLocation>div::after,#reviewFilter::after{
-        content: '';
-        position: sticky;
-        top: 0px;
-        right: -35px;
-        margin-left:-40px;
-        min-width: 100px;
-        min-height: 100%;
-        pointer-events: none;
-        /* border:3px solid; */
-        background: linear-gradient(to right, rgba(255,255,255,0), white);
-    }
-    
-    #propertyLocation>div>div{
-        padding: 10px;
-        border: 2px solid black;
-        text-wrap: nowrap;
-        width: fit-content;
-        height:fit-content;
-        color: black;
-        border-radius: 10px;
-    }
-
-    #propertyLocation img{
-        height: 70px;
-        padding: 10px;
-    }
-
-    #propertyDescription{
-        font-family: "Montserrat";
-        font-size: 0.8rem;
-        margin: 0px 0px 50px 30px;
-        white-space: normal;
-        overflow: hidden;
-        line-clamp: 3;
-        -webkit-line-clamp: 3;
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-    }
-
-    #noReview{
-        width:100%;
-        height: 600px;
-        font-family: 'Montserrat Bold';
-        font-size:3rem;
-        color:rgb(100,100,100);
-        display:flex;
-        justify-content:center;
-        align-items:center;
-        text-align:center;
-    }
-
-    #propertyLoading{
-        position:relative;
-        top: 20px;
-    }
-    #reviewLoading,.resultLoading, #propertyLoading, #profileLoading{
+        z-index: 0;
         animation-name:imgLoading;
         animation-timing-function: linear;
         animation-iteration-count: infinite;
         animation-duration: 0.5s;
         animation-direction: alternate-reverse;
-        width: 95%;
-        margin: 20px 2.5% 100px 2.5%;
+        
     }
 
+    #propertyView video.loaded{
+        animation:none;
+    }
+
+    #propertyView .controls{
+        position: absolute;
+        top: 45%;
+        z-index:1;
+        height: 10%;
+        width: 100%;
+        display: flex !important;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        column-gap:40px;
+        transition-duration: 0.1s;
+        transition-property: all;
+        overflow: hidden;
+    }
+
+    #propertyView .controls.hidden{
+        height: 0%;
+        top: 50%;
+    }
+
+    #propertyView .controls.hidden img{
+        height:100px;
+        transition-duration: 0.1s;
+        transition-property: all;
+    }
+
+    #propertyView .controls img{
+        border-radius: 100%;
+        background-color: rgb(0,0,0,0.5);
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+    #propertyView .controls .playBtn{
+        height:100%
+    }
+
+    #propertyView .controls .seekBtn{
+        height:70%
+    }
+
+    #propertyView .backButton{
+        position: absolute;
+        top: 30px;
+        left: 20px;
+        height: 70px;
+    }
+    
     @keyframes imgLoading{
         from{
             opacity:0.5;
@@ -1453,637 +1251,6 @@ body {
         }
 
     }
-
-    .propertyReview{
-        margin: 0px 0px 80px 30px;
-        /* display: none; */
-    }
-
-    .buyer{
-        display:flex;
-        align-items: center;
-        font-family: 'Montserrat';
-        font-size: 2rem;
-        font-weight: bold;
-        column-gap: 10px;
-    }
-
-    .reviewDate{
-        color:rgb(100,100,100);
-    }
-
-    .buyerPic{
-        height:150px;
-        width:150px;
-        border:7px solid rgb(0,100,0);
-        border-radius:100%;
-        overflow:hidden;
-        display:flex;
-        align-items:center;
-        justify-content:center;
-    }
-
-    .buyerPic img{
-        min-width:100%;
-    }
-
-    .buyerRating{
-        display: flex;
-        align-items: center;
-        column-gap:10px;
-    }
-    .buyerRating img{
-        min-width:70%;
-    }
-
-    .buyerReview{
-        font-family:'Montserrat';
-        font-size: 0.8rem;
-        white-space: normal;
-        overflow: hidden;
-        line-clamp: 4;
-        -webkit-line-clamp: 4;
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-    }
-
-    
-    #reviewButtons{
-        display:flex;
-        flex-direction: row;
-        width:100%;
-        height: 300px;
-        justify-content:space-around;
-        align-items:center;
-    }
-
-    #moreReviews{
-        font-size: 3.0.9rem;
-        font-family: 'Montserrat Bold';
-        color:rgb(0,100,0);
-        font-weight: bold;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 120px;
-        width: 80%;
-        margin: -40px 10% 60px 10%;
-        color:white;
-        background-color:rgb(0,100,0);
-    }
-
-    #writeReview:active, #moreReviews:active{
-    background-color: rgba(0,150,0,0.5);
-    border: none;
-    }
-
-    #writeReview,#moreReviews{
-        width: 48%;
-        margin: 0px;
-        height:150px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-family: "Montserrat Bold";
-        font-size: 2rem;
-        color: white;
-        background-color: rgb(0,100,0);
-        column-gap:20px;
-        box-sizing: border-box;
-        border-radius: 15px;
-        border: none;
-    }
-
-    #writeReview img{
-        height:60px;
-    }
-
-    #moreReviews svg{
-        height: 40px;
-        fill: white;
-    }
-
-    #writeReview:active img{
-        height:50px;
-    }
-
-    #reviewPoster{
-        width: 100%;
-        height: 100%;
-        position: fixed;
-        right: 0px;
-        bottom: 0px;
-        background-color: white;
-        overflow: scroll;
-        z-index: 7;
-        transition-duration:0.2s;
-    }
-
-    #reviewPoster.hidden{
-        right: -100%;
-        display:block !important;
-    }
-
-    #reviewPoster h1{
-        margin-top:40px
-    }
-
-    #reviewPoster>div:nth-child(3){
-        display: flex;
-        justify-content: space-between;
-        flex-direction: row;
-        align-items: center;
-        margin: 20px 40px;
-    }
-
-    #reviewPoster>div:nth-child(3)>div{
-        height:70px;
-        width:70px;
-        background-color:white;
-        border:none;
-    }
-
-     #reviewPoster>div:nth-child(3)>div:active{
-         height:50px;
-         width:50px;
-         margin:10px;
-     }
-
-    #reviewPoster>div:nth-child(3)>div>img{
-        height:100%;
-    }
-
-    #stars{
-        margin: 20px 20px 20px 20px;
-        display:flex;
-        justify-content: space-around;
-    }
-    
-    #stars button{
-        background-color: white;
-        border:none;
-        height: 100px;
-        width: 100px;
-    }
-    #stars button img{
-        height:100px;
-        width:100px;
-    }
-
-    #reviewTextArea{
-        width: 96%;
-        height: 800px;
-        border:3px solid rgb(100,100,100);
-        text-align:left;
-        font-size: 1rem !important;
-        font-family:"Montserrat";
-        padding: 15px;
-        margin: 0px 2% 0px 2%;
-    }
-
-    .wordCount{
-        font-family: "Montserrat";
-        font-size:2.2rem;
-        width: 96%;
-        margin: 10px 2% 10px 2%;
-    }
-
-    #reviewPoster>button{
-        height:150px;
-        width: 96%;
-        margin: 20px 2% 0px 2%;
-        font-family:"Montserrat Bold";
-        font-size: 3rem;
-        color: white;
-        background-color: rgb(0,100,0);
-        border: none;
-        display:flex;
-        flex-direction: row-reverse;
-        justify-content:center;
-        align-items:center;
-        column-gap: 20px;
-        border-radius: 15px;
-    }
-
-    #reviewPoster>button svg{
-        height:50px;
-    }
-
-    #reviewPoster>button:active{
-        background-color: rgba(0,150,0,0.5);
-    }
-
-    #reviewPoster>button:active img{
-        height:50px;
-    }
-
-    #sellerContact{
-        background-color: white;
-        overflow: scroll;
-        height: 100%;
-        width: 100%;
-        position: fixed;
-        top: 0px;
-        right: 0px;
-        z-index: 7;
-        text-align: center;
-        transition-duration: 0.2s;
-    }
-
-    #sellerContact.hidden{
-        right: -100%;
-        display:block !important;
-    }
-
-    #sellerContact .banner{
-        height: 130px;
-        position: sticky;
-        top:0px;
-        left:0px;
-        width:100%;
-        box-shadow: 0px -10px 30px 0px rgb(100,100,100);
-        display: flex;
-        align-items:center;
-        background-color: black;
-        z-index: 7;
-        transition-duration: 0.2s;
-        column-gap: 10px;
-        font-family: "Montserrat Bold";
-        font-size: 3rem;
-        color: white;
-    }
-
-    #sellerContact .banner img{
-        width: 50px;
-        padding: 15px;
-        border-radius: 100%;
-    }
-    
-    #contactButtons{
-        display:flex;
-        flex-direction: row;
-        justify-content: space-evenly;
-        width: 100%;
-        flex-wrap: wrap;
-        row-gap: 20px;
-        margin-top: 50px;
-    }
-
-    #sellerBio h3, #otherMarkets h3{
-        margin: 40px 0px 0px 0px;
-        text-align:left;
-    }
-
-    #sellerBio, #otherMarkets{
-        margin: 0px 0px 40px 2%;
-        font-size: 0.8rem;
-        text-align: left;
-    }
-
-    #sellerBio>div{
-        white-space: normal;
-        overflow: hidden;
-        line-clamp: 3;
-        -webkit-line-clamp: 3;
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-    }
-
-    #otherMarkets>div{
-        width:100%;
-        display:flex;
-        flex-direction:row;
-        column-gap: 30px;
-        justify-content:flex-start;
-        margin: 30px -10px;
-        overflow-x: scroll;
-        scrollbar-width:none;
-        padding:20px;
-    }
-    
-    #otherMarkets .markets{
-        min-width: 60%;
-        height: 820px;
-        padding:20px;
-        border:2px solid black;
-        border-radius:30px;
-        display: flex;
-        flex-direction: column;
-        row-gap: 10px;
-    }
-
-     #otherMarkets .propertyPic{
-         height: 600px;
-         border-radius:20px;
-         overflow:hidden;
-         display:flex;
-         flex-direction:row;
-         align-items:center;
-         justify-content: center;
-         border: 1px solid black;
-     }
-
-    #otherMarkets .propertyPic .landscape{
-        width:100%;
-    }
-
-    #otherMarkets .propertyPic .portrait{
-        height:100%;
-    }
-
-    #otherMarkets .propertyName{
-        font-size: 2rem;
-        height: unset;
-        white-space: normal;
-        overflow: hidden;
-        line-clamp: 2;
-        -webkit-line-clamp: 2;
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-    }
-
-    #otherMarkets .propertyPrice{
-        font-size: 3rem;
-        font-family:"Montserrat Bold";
-    }
-        
-    #profileHead{
-        display:flex;
-        flex-direction:column;
-        align-items:center;
-        row-gap: 5px;
-    }
-    
-    #sellerPic{
-        width:100%;
-        display: flex;
-        overflow: hidden;
-        display:flex;
-        flex-direction:column;
-    }
-
-    #coverPic{
-        width:100%;
-        height: 300px;
-        overflow: hidden;
-        display: flex;
-        justify-items: center;
-        align-items: center;
-    }
-
-    #coverPic img{
-        width:100%;
-    }
-    
-    #profilePic{
-        width:400px;
-        height:400px;
-        border-radius: 100%;
-        overflow: hidden;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: relative;
-        bottom: 200px;
-        border: 15px solid white;
-        align-self: center;
-        margin-bottom: -180px;
-        z-index: 6;
-        background-size:cover;
-        background-position-x:center;
-        background-position-y:center;
-        background-repeat:no-repeat !important;
-        transition-duration: 0.2s;
-        transition-property: height,width,position;
-    }
-
-    #profilePic img{
-        transition-duration:inherit;
-        transition-property:inherit;
-    }
-
-    #profilePic img.portrait{
-        height:100%;
-    }
-
-    #profilePic img.landscape{
-        width:100%;
-    }
-
-    #sellerName{
-        font-family:"Montserrat Bold";
-        font-size: 2.5rem;
-    }
-
-    #profilePic>div{
-        width:400px;
-        height:400px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        align-self: center;
-        z-index: 6;
-        background-size:cover;
-        background-position-x:center;
-        background-position-y:center;
-        background-repeat:no-repeat !important;
-        transition-duration: 0.1s;
-        transition-property: all;
-        position: sticky;
-        top: 0px;
-        right: 0px;
-        left: 0px;
-        bottom: 0px;
-    }
-
-    #profilePic>div.zoom{
-        width:100%;
-        height: 100%;
-        position:fixed;
-        top: 0px;
-        right: 0px;
-        left: 0px;
-        bottom: 0px;
-        z-index: 99;
-        background-color: rgb(0,0,0);
-        border: 0px;
-        display:flex;
-        flex-direction:row;
-        align-items:center;
-        padding-top: 65px;
-    }
-
-    #profilePic>div.zoom img{
-        min-width:100%;
-        height:unset;
-    }
-
-    #sellerUsername{
-        color:rgb(0,100,0);
-        font-family:"Montserrat Bold";
-        font-size: 2rem;
-    }
-
-    #sellerRating img{
-        height:50px;
-    }
-
-    #joinDate{
-        font-family:"Montserrat";
-        font-size: 2rem;
-    }
-
-    #sellerRating{
-        font-family:"Montserrat";
-        font-size: 2.5rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    #sellerExtraInfo{
-        display: flex;
-        justify-content: space-evenly;
-        width:100%;
-        margin: 40px 0px 40px 0px;
-    }
-
-    #sellerExtraInfo div{
-        width:33%;
-        display: flex;
-        flex-direction: column;
-        font-family: 'Montserrat Bold';
-        font-size: 2.2rem;
-        align-items: center;
-        row-gap: 5px;
-        justify-content: flex-start;
-    }
-
-    #sellerExtraInfo div>img{
-        height: 70px;
-    }
-    #whatsappButton, #callButton, #saveContact.saved, #viewProfile{
-        width: 47%;
-        height: 150px;
-        padding: 0px 20px;
-        text-decoration:none;
-        display: flex;
-        flex-direction: row-reverse;
-        justify-content: center;
-        column-gap: 15px;
-        align-items: center;
-        background-color: rgb(0,100,0);
-        color: white !important;
-        font-size: 2.5rem;
-        font-family: "Montserrat Bold";
-        border:5px solid rgb(0,100,0);
-        box-sizing: border-box;
-    }
-
-    #whatsappButton{
-        border-radius: 20px;
-    }
-
-    #callButton{
-        border-radius: 20px;
-    }
-
-    
-    #saveContact{
-        width: 96% !important;
-        height: 150px;
-        padding: 0px 20px;
-        text-decoration:none;
-        display: flex;
-        flex-direction: row-reverse;
-        column-gap: 25px;
-        align-items: center;
-        justify-content: center;
-        color: rgb(0,100,0) !important;
-        background-color: white;
-        font-size: 2.2rem;
-        font-family: "Montserrat Bold";
-        border:5px solid rgb(0,100,0);
-        border-radius: 20px;
-        box-sizing: border-box;
-    }
-
-    #saveContact:active{
-        background-color:rgba(0,150,0,0.3);
-    }
-        
-    #whatsappButton img, #callButton img, #saveContact img, #viewProfile img{
-        height: 2.5rem;
-     }
-
-    #saveContact:not(.saved):active{
-        background-color:rgba(0,150,0,0.2);
-    }
-    #callButton:active, #whatsappButton:active, #viewProfile:active,#saveContact.saved:active{
-        border-color: rgba(0,150,0,0.1);
-        background-color:rgba(0,150,0,0.5);
-    }
-
-    #showContact{
-        height: 150px;
-        width: 100%;
-        position: sticky;
-        bottom: 0px;
-        left:0px;
-        background-color: white;
-        display:flex;
-        align-items:center;
-        justify-content:space-evenly;
-        z-index: 5;
-        transition-duration: 0.2s;
-        box-shadow: 0px 10px 30px 0px rgb(100,100,100);
-    }
-
-    #showContact>div:first-child{
-        height: 120px;
-        width: 120px;
-        background-color: white;
-        border: 6px solid rgb(0,100,0);
-        display:flex;
-        justify-content:center;
-        align-items: center;
-        border-radius: 15px;
-    }
-
-    #showContact>div:first-child img{
-        width: 50px;
-    }
-
-    #showContact>div:first-child:active img{
-        width:40px;
-    }
-
-    #showContact button:nth-child(2){
-        width:85%;
-        height: 120px;
-        font-size: 3rem;
-        font-family:"Montserrat Bold";
-        color: white;
-        background-color: rgb(0,100,0);
-        border: none;
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        column-gap: 10px;
-        border-radius: 15px;
-    }
-
-    #showContact button:nth-child(2):active{
-        background-color: rgba(0,150,0,0.5);
-    }
-
-    #showContact button:nth-child(2) img{
-        width: 30px;
-    }
-
-     #showContact button:nth-child(2):active img{
-         width: 20px;
-     }
 
     .loadingImg{
         animation-duration: 1s;

@@ -3,7 +3,7 @@ var containers;
 this.onload=function(){
     containers=[getById("searchContainer"),getById("bookmarksContainer"),getById("menuContainer")];
     if(this.location.hash!=""){
-        this.location.replace("file:///C://Users//Adriel//Documents//Naija%20Estate//index.html")
+        this.location.replace("file:///C://Users//Adriel//Documents//Naija-Estate//index.html")
     }
     setTimeout(function(){
         addClass(document.querySelector("#searchContainer .resultLoading"),null,"hidden");
@@ -13,7 +13,6 @@ this.onload=function(){
         this.onhashchange=function(){
             hashChanged(this.location.hash);
         }
-        // pauseVideos("search");
         observeVideos(getByQueryAll("#searchContainer .searchResult"));
         observeVideos(getByQueryAll("#bookmarksContainer .searchResult"));
     },2000)
@@ -146,77 +145,13 @@ function fitVideo(vid){
         removeClass(vid,null,"landscape");
         addClass(vid,null,"portrait");
     }
-    addClass(vid.parentElement,null,"loaded");
 }
 
 function canPlay(vid){
     addClass(vid,null,"canPlay");
-    fitVideo(vid);
+    addClass(vid.parentElement,null,"loaded");
+    removeClass(vid.parentElement.querySelector(".watchButton"),null,"hidden");
     observeVideos(vid.parentElement.parentElement);
-}
-var pauseCount=0;
-function pauseVideos(tab){
-    if(pauseCount==0){
-        pauseCount=1
-        setTimeout(function(){
-            if(tab=="search"){
-                getByQueryAll('#searchContainer .propertyPic video').forEach(function(item){
-                    if(item.parentElement.getBoundingClientRect().y<-300 || item.parentElement.getBoundingClientRect().y>800){
-                        if(item.src!='' && hasClass(item,"canPlay")){
-                            item.play().then(function(){
-                                item.pause();
-                            });
-                        }
-                    }
-                    else{
-                        if(item.src==''){
-                            item.src=item.dataset.src;
-                        }
-                        item.play();
-                    }
-                })
-            }
-            else{
-                getByQueryAll('#bookmarksContainer .propertyPic video').forEach(function(item){
-                    if(item.parentElement.getBoundingClientRect().y<-300 || item.parentElement.getBoundingClientRect().y>800){
-                        if(item.src!='' && hasClass(item,"canPlay")){
-                            item.play().then(function(){
-                                item.pause();
-                            });
-                        }
-                    }
-                    else{
-                        if(item.src==''){
-                            item.src=item.dataset.src;
-                        }
-                        item.play();
-                    }
-                })
-            }
-            stopPlay(tab);
-            function stopPlay(tab){
-                if(tab=="search"){
-                    getByQueryAll('#bookmarksContainer .propertyPic video').forEach(function(item){
-                        if(item.src!=''){
-                            item.play().then(function(){
-                                item.pause();
-                            })
-                        }
-                    });
-                }
-                else{
-                    getByQueryAll('#searchContainer .propertyPic video').forEach(function(item){
-                        if(item.src!=''){
-                            item.play().then(function(){
-                                item.pause();
-                            })
-                        }
-                    })
-                }
-                pauseCount=0;
-            }
-        },500)
-    }
 }
 
 function reloadVideo(vid){
@@ -226,22 +161,96 @@ function reloadVideo(vid){
     },2000)
 }
 
-function dataLoaded(vid){
-    if(vid.parentElement.querySelector(".background")==null){
-        var vid2=document.createElement("video");
-        vid2.src=vid.src;
-        vid2.preload="metadata";
-        vid2.muted=true;
-        vid2.className="background";
-        vid2.setAttribute("onerror","reloadVideo(this)");
-        vid2.setAttribute("type","video/mp4");
-        vid.parentElement.append(vid2);
-        vid2.onloadeddata=setTimeout(function(){
-            vid2.currentTime=2;
-            vid.setAttribute("oncanplay","canPlay(this)");
-            canPlay(vid);
-        },1000);
+function isPlaying(vid){
+    addClass(vid,null,"playing");
+    addClass(vid,null,"loaded");
+}
+
+var hideControl;
+function pauseVideo(vid){
+    if(hasClass(vid,"playing")){
+        clearTimeout(hideControl);
+        vid.pause();
+        getByQuery("#propertyView .playBtn").src="Images/Play.svg";
+        removeClass(vid.parentElement.querySelector(".controls"),null,"hidden");
+        removeClass(vid,null,"playing");
     }
+    else{
+        try{
+            vid.play().then(function(){
+                getByQuery("#propertyView .playBtn").src="Images/Pause.svg";
+                hideControl=setTimeout(function(){
+                    addClass(vid.parentElement.querySelector(".controls"),null,"hidden");
+                },5000);
+            })
+        }
+        catch(e){
+            console.log(e);
+        }
+    }
+}
+
+function watchVideo(vid){
+    getByQuery("#propertyView video").src=vid.src;
+    this.location.hash="#propertyView";
+}
+
+function seekVideo(action){
+    var vid=getByQuery("#propertyView video");
+    switch(action){
+        case "back":
+            vid.currentTime-=10;
+            clearTimeout(hideControl);
+            try{
+                vid.play().then(function(){
+                    getByQuery("#propertyView .playBtn").src="Images/Pause.svg";
+                    hideControl=setTimeout(function(){
+                        addClass(vid.parentElement.querySelector(".controls"),null,"hidden");
+                    },5000);
+                })
+            }
+            catch(e){
+                console.log(e);
+            }
+        break;
+
+        case "forward":
+            vid.currentTime+=10;
+            clearTimeout(hideControl);
+            try{
+                vid.play().then(function(){
+                    getByQuery("#propertyView .playBtn").src="Images/Pause.svg";
+                    hideControl=setTimeout(function(){
+                        addClass(vid.parentElement.querySelector(".controls"),null,"hidden");
+                    },5000);
+                })
+            }
+            catch(e){
+                console.log(e);
+            }
+        break;
+
+    }
+}
+
+function dataLoaded(vid){
+    vid.setAttribute("oncanplay","canPlay(this)");
+    canPlay(vid);
+    // if(vid.parentElement.querySelector(".background")==null){
+    //     var vid2=document.createElement("video");
+    //     vid2.src=vid.src;
+    //     vid2.preload="metadata";
+    //     vid2.muted=true;
+    //     vid2.className="background";
+    //     vid2.setAttribute("onerror","reloadVideo(this)");
+    //     vid2.setAttribute("type","video/mp4");
+    //     vid.parentElement.append(vid2);
+    //     vid2.onloadeddata=setTimeout(function(){
+    //         vid2.currentTime=2;
+    //         vid.setAttribute("oncanplay","canPlay(this)");
+    //         canPlay(vid);
+    //     },1000);
+    // }
 }
 
 var lastVideo=null;
@@ -251,38 +260,42 @@ function observeVideos(vid){
       entries.forEach(entry => {
         root=entry.target.parentElement.parentElement;
         if(entry.isIntersecting){
-            if(hasClass(entry.target.querySelector("video"),"canPlay")){
-                entry.target.querySelector("video").play().then(function(){
-                    addClass(entry.target.querySelector("video"),null,"playing");
-                    if(lastVideo!=null && lastVideo!=entry.target.querySelector("video")){
-                        try{
-                            lastVideo.parentElement.querySelector(".background").remove();
-                        }
-                        catch(e){
-                            console.log(e);
-                        }
-                        lastVideo.setAttribute("preload","none");
-                        removeClass(lastVideo,null,"canPlay");
-                        removeClass(lastVideo,null,"playing");
-                        removeClass(lastVideo.parentElement,null,"loaded");
-                        lastVideo.src="";
-                        lastVideo.removeAttribute("src");
-                    }
-                });
+            entry.target.querySelector("video").setAttribute("preload","metadata");
+            if(entry.target.querySelector("video").src==""){
+                entry.target.querySelector("video").src=entry.target.querySelector("video").dataset.src; 
             }
-            else{
-                entry.target.querySelector("video").setAttribute("preload","metadata");
-                if(entry.target.querySelector("video").src==""){
-                    entry.target.querySelector("video").src=entry.target.querySelector("video").dataset.src; 
-                }
-            }
+            // if(hasClass(entry.target.querySelector("video"),"canPlay")){
+            //     entry.target.querySelector("video").play().then(function(){
+            //         addClass(entry.target.querySelector("video"),null,"playing");
+            //         if(lastVideo!=null && lastVideo!=entry.target.querySelector("video")){
+            //             try{
+            //                 lastVideo.parentElement.querySelector(".background").remove();
+            //             }
+            //             catch(e){
+            //                 console.log(e);
+            //             }
+            //             lastVideo.setAttribute("preload","none");
+            //             removeClass(lastVideo,null,"canPlay");
+            //             removeClass(lastVideo,null,"playing");
+            //             removeClass(lastVideo.parentElement,null,"loaded");
+            //             lastVideo.src="";
+            //             lastVideo.removeAttribute("src");
+            //         }
+            //     });
+            // }
+            // else{
+            //     entry.target.querySelector("video").setAttribute("preload","metadata");
+            //     if(entry.target.querySelector("video").src==""){
+            //         entry.target.querySelector("video").src=entry.target.querySelector("video").dataset.src; 
+            //     }
+            // }
         }
-        else{
-            if(hasClass(entry.target.querySelector("video"),"playing")){
-                entry.target.querySelector("video").pause();
-            }
-            lastVideo=entry.target.querySelector("video");
-        }
+        // else{
+        //     if(hasClass(entry.target.querySelector("video"),"playing")){
+        //         entry.target.querySelector("video").pause();
+        //     }
+        //     lastVideo=entry.target.querySelector("video");
+        // }
       })
     }, { threshold: 1, root: root}); // Play when 70% visible
     try{
@@ -476,18 +489,15 @@ function showpropertyView(){
     addClass(getById("searchContainer"),null,"shift");
     addClass(getById("bookmarksContainer"),null,"shift");
     addClass(getById("menuBar"),null,"shift");
-    if(lastHash=="" || lastHash=="#otherTab"){
-        document.querySelector("#propertyView>.mainContainer").scroll(0,0);
-    }
     removeClass(getById("propertyView"),null,"hidden");
-    // //only place the url if there's a url
-    setTimeout(function(){
-        //freeze the body
-        addClass(getById("propertyLoading"),null,"hidden"); 
-        document.body.querySelectorAll("#propertyView>.mainContainer>*:not(#propertyLoading,.banner)").forEach(function(item){
-        removeClass(item,null,"hidden");
-    });
-    },3000);
+    // // //only place the url if there's a url
+    // setTimeout(function(){
+    //     //freeze the body
+    //     addClass(getById("propertyLoading"),null,"hidden"); 
+    //     document.body.querySelectorAll("#propertyView>.mainContainer>*:not(#propertyLoading,.banner)").forEach(function(item){
+    //     removeClass(item,null,"hidden");
+    // });
+    // },3000);
 }
 
 function hidepropertyView(){
@@ -495,14 +505,9 @@ function hidepropertyView(){
     removeClass(getById("bookmarksContainer"),null,"shift");
     removeClass(getById("menuBar"),null,"shift");
     addClass(getById("propertyView"),null,"hidden");
+    addClass(getByQuery("#propertyView .controls"),null,"hidden");
     //incase the user goes back before the property loads completely
     clearTimeout(propertyLoad);
-    setTimeout(() => {
-       document.body.querySelectorAll("#propertyView>.mainContainer>*:not(#propertyLoading,.banner)").forEach(function(item){
-        addClass(item,null,"hidden");
-       });
-       removeClass(getById("propertyLoading"),null,"hidden");  
-    }, 500);
 }
 
 function zoomPic(pic){
@@ -797,9 +802,6 @@ function hashChanged(hash,url){
                 
         case "#propertyView":
             showpropertyView(url);
-            unzoomPic();
-            hideReviewPoster();
-            hideContact();
             lastHash="#propertyView";
             break;
         
