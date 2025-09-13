@@ -310,9 +310,16 @@ function observeVideos(vid){
       catch(e){
         console.log(e);
       }
-    }
-  }
+    }  
+}
 
+function showDetails(){
+    removeClass(getByQuery("#propertyView .propertyDetails"),null,"hidden")
+}
+
+function hideDetails(){
+    addClass(getByQuery("#propertyView .propertyDetails"),null,"hidden")
+}
 
 function addBookmark(button){
     var img=button.firstElementChild;
@@ -802,7 +809,13 @@ function hashChanged(hash,url){
                 
         case "#propertyView":
             showpropertyView(url);
+            hideDetails();
             lastHash="#propertyView";
+            break;
+
+        case "#details":
+            showDetails();
+            lastHash="#details";
             break;
         
         case "#otherTab":
