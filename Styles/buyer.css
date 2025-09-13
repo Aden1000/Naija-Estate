@@ -1164,7 +1164,7 @@ body {
         width: 100%;
         height: 100%;
         background-color: black;
-        overflow: scroll;
+        overflow: hidden;
         transition-duration: 0.2s;
         z-index: 5;
         display: block;
