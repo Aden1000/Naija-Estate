@@ -166,6 +166,19 @@ function isPlaying(vid){
     addClass(vid,null,"loaded");
 }
 
+function waiting(vid){
+    removeClass(vid,null,"loaded");
+}
+
+function downloadVideo(){
+    var vid=getByQuery("#propertyView video");
+    var url=new URL(vid.src);
+    var link=getByQuery("#downloadLink");
+    url=url.pathname.split("/").pop();
+    link.download=url;
+    link.href=vid.src;
+    link.click();
+}
 var hideControl;
 function pauseVideo(vid){
     if(hasClass(vid,"playing")){

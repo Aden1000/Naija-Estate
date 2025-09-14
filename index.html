@@ -236,7 +236,7 @@
                 </div>
             </div> 
             <div id="propertyView" class="hidden">
-                <video muted onclick="pauseVideo(this)" autoplay preload="metadata" loop onclick="pauseVideo(this)" onplay="isPlaying(this)"></video>
+                <video muted onclick="pauseVideo(this)" autoplay preload="metadata" loop onclick="pauseVideo(this)" onplaying="isPlaying(this)" onwaiting="waiting(this)"></video>
                 <div class="controls hidden">
                     <img src="Images/BackSeek.svg" class="seekBtn" onclick="seekVideo('back')">
                     <img src="Images/Play.svg" onclick="pauseVideo(this.parentElement.parentElement.querySelector('video'))" class="playBtn">
@@ -253,6 +253,10 @@
                     <div>
                         <img src="Images/Detail.svg" title="Details" onclick="changeHash('#details')"">
                     </div>
+                    <div onclick="downloadVideo()">
+                        <img src="Images/Download.svg" title="Download video">
+                    </div>
+                    <a id="downloadLink" download="" class="hidden"></a>
                 </div>
                 <div class="propertyDetails hidden">
                     <div class="backBoard" onclick="historyBack()"></div>

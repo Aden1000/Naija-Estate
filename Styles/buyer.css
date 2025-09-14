@@ -1272,7 +1272,7 @@ body {
         width: 50px;
     }
 
-     #propertyView .sideBar>div{
+     #propertyView .sideBar>div, #propertyView .sideBar>label{
          display:inherit;
          flex-direction:column;
          align-items:center;
@@ -1282,7 +1282,7 @@ body {
          background-color: rgba(0,0,0,0.5);
      }
 
-    #propertyView .sideBar>div:active{
+    #propertyView .sideBar>div:active, #propertyView .sideBar>label:active{
          background-color: rgba(0,0,0,0.7);
     }
     
@@ -1316,11 +1316,11 @@ body {
 
     #propertyView .propertyDetails .details h2{
         margin: 0px;
-        position:sticky;
+        /* position:sticky; */
         top: -20px;
         left:0px;
         background-color:white;
-        padding: 20px 0px;
+        padding: 30px 0px 0px 0px;
     }    
 
     #propertyView .propertyDetails .details ul{
