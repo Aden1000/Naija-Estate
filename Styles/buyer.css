@@ -1239,9 +1239,9 @@ body {
 
     #propertyView .backButton{
         position: absolute;
-        top: 10px;
-        left: 10px;
-        height: 70px;
+        top: 15px;
+        left: 15px;
+        height: 50px;
         padding: 15px;
         border-radius: 100%;
         background-color: rgba(0,0,0,0.5);
@@ -1265,7 +1265,7 @@ body {
         height: 90%;
         justify-content: flex-end;
         row-gap: 50px;
-        padding: 20px;
+        padding: 20px 10px;
     }
 
     #propertyView .sideBar img{
@@ -1310,15 +1310,13 @@ body {
 
     #propertyView .propertyDetails .details{
         background-color:white;
-        font-size: 1.5rem;
-        padding:20px
+        font-size: 1rem;
+        padding:20px;
+        border-radius: 40px 40px 0px 0px;
     }
 
     #propertyView .propertyDetails .details h2{
         margin: 0px;
-        /* position:sticky; */
-        top: -20px;
-        left:0px;
         background-color:white;
         padding: 30px 0px 0px 0px;
     }    

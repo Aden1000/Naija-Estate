@@ -179,6 +179,26 @@ function downloadVideo(){
     link.href=vid.src;
     link.click();
 }
+
+function chatAgent(){
+    var send=confirm("You are about to be redirected to WhatsApp to chat with the house agent. Do you want to ontinue?");
+    if(send){
+        getByQuery("#whatsAppLink").click();
+    }
+}
+ 
+function callAgent(){
+    var call=confirm("You are about to be redirected to your phone app to call the house agent. Do you want to ontinue?");
+    if(call){
+        getByQuery("#callLink").click();
+    }
+}
+
+function copyLink(){
+    alert("Link copied!");
+}
+
+
 var hideControl;
 function pauseVideo(vid){
     if(hasClass(vid,"playing")){

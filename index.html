@@ -244,19 +244,24 @@
                 </div>
                 <img src="Images/Backward.svg" class="backButton" onclick="historyBack()">
                 <div class="sideBar">
-                    <div>
+                    <div onclick="chatAgent()">
                         <img src="Images/Whatsapp.svg" title="Chat with agent">
                     </div>
-                    <div>
+                    <div onclick="callAgent()">
                         <img src="Images/Call.svg" title="Call agent">
                     </div>
                     <div>
                         <img src="Images/Detail.svg" title="Details" onclick="changeHash('#details')"">
                     </div>
+                    <div onclick="copyLink()">
+                        <img src="Images/Link.svg" title="Copy link to this video">
+                    </div>
                     <div onclick="downloadVideo()">
                         <img src="Images/Download.svg" title="Download video">
                     </div>
                     <a id="downloadLink" download="" class="hidden"></a>
+                    <a id="whatsAppLink" href="whatsapp://send?phone=+2349164891120" class="hidden"></a>
+                    <a id="callLink" class="hidden" href="tel:+2349164891120"></a>
                 </div>
                 <div class="propertyDetails hidden">
                     <div class="backBoard" onclick="historyBack()"></div>
