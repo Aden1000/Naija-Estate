@@ -515,8 +515,7 @@ body {
         width:100%;
         height: 100dvh;
         display: flex;
-        padding-bottom: 500px;
-        padding-top: 20px;
+        padding: 20px 20px 500px 20px;
         row-gap: 20px;
         column-gap: 10px;
         justify-content: space-evenly;
@@ -529,7 +528,7 @@ body {
         animation-iteration-count: infinite;
         animation-duration: 0.5s;
         animation-direction: alternate-reverse;
-        width: 95%;
+        width: 100%;
     }
 
     #searchContainer a{
@@ -579,7 +578,7 @@ body {
     }
 
     .searchResult{
-        width: 95%;
+        width: 100%;
         height: unset;
         padding: 20px;
         border-radius: 40px;
@@ -830,6 +829,10 @@ body {
         column-gap: 5px;
         padding: 10px;
         justify-content: space-around;
+    }
+
+    .searchBar label{
+        width:100%;
     }
 
     #searchContainer .searchBox{
@@ -1703,20 +1706,8 @@ body {
         width:-webkit-fill-available;
         font-size: 2rem;
     }
-
-        #menuContainer>div:first-of-type{
-        display:flex;
-        flex-direction:row;
-        column-gap:10px;
-        font-family:"Montserrat";
-        font-weight:bold;
-        font-size: 2rem;
-        color:rgb(100,100,100);
-        align-items:center;
-        padding:0px 15px;
-    }
     
-    #menuContainer>div:not(div:first-of-type){
+    #menuContainer>div{
         margin: 0px 15px;
         max-width:100%;
         height:150px;
@@ -1730,19 +1721,9 @@ body {
         padding:0px 0px 0px 20px;
     }
 
-    #menuContainer>div:not(div:first-of-type,div:nth-of-type(2)):active{
+    #menuContainer>div:active{
         background-color: rgba(0,150,0,0.2);
     }
-
-    #menuContainer>.switchbutton{
-        color: black;
-        background-color: white;
-    }
-
-     #logout{
-        border-top: 3px solid black;
-        margin-top: 50px !important;
-     }
 
     #menuContainer>div>img{
         width: 60px;
@@ -1754,6 +1735,7 @@ body {
         right:50px;
         bottom:unset;
     }
+
 
     #account_settings,#change_password,#send_feedback,#make_complaint,#edit_profile{
         height: 100% !important;
@@ -1770,7 +1752,8 @@ body {
         transition-duration: 0.2s;
     }
 
-     #account_settings.hidden,#change_password.hidden,#send_feedback.hidden,#make_complaint.hidden,#edit_profile.hidden{
+     
+    #account_settings.hidden,#change_password.hidden,#send_feedback.hidden,#make_complaint.hidden,#edit_profile.hidden{
          left: 100%;
          display:block !important;
      }

@@ -1,7 +1,7 @@
 
 var containers;
 this.onload=function(){
-    containers=[getById("searchContainer"),getById("bookmarksContainer"),getById("menuContainer")];
+    containers=[getById("searchContainer"),getById("menuContainer")];
     if(this.location.hash!=""){
         this.location.replace("file:///C://Users//Adriel//Documents//Naija-Estate//index.html")
     }
@@ -181,17 +181,21 @@ function downloadVideo(){
 }
 
 function chatAgent(){
-    var send=confirm("You are about to be redirected to WhatsApp to chat with the house agent. Do you want to ontinue?");
+    var send=confirm("You are about to be redirected to WhatsApp to chat with the house agent. Do you want to continue?");
     if(send){
         getByQuery("#whatsAppLink").click();
     }
 }
  
 function callAgent(){
-    var call=confirm("You are about to be redirected to your phone app to call the house agent. Do you want to ontinue?");
+    var call=confirm("You are about to be redirected to your phone app to call the house agent. Do you want to continue?");
     if(call){
         getByQuery("#callLink").click();
     }
+}
+
+function adminLogin(){
+    
 }
 
 function copyLink(){
@@ -352,6 +356,35 @@ function showDetails(){
 
 function hideDetails(){
     addClass(getByQuery("#propertyView .propertyDetails"),null,"hidden")
+}
+
+function filterOptions(){
+    input = getByQuery("#searchContainer .searchBox");
+    select = document.getElementById("mySelect");
+
+  input.addEventListener("input", () => {
+    const filter = input.value.toLowerCase();
+    let firstVisibleOption = null;
+
+    for (let option of select.options) {
+      const text = option.text.toLowerCase();
+      const match = text.includes(filter);
+
+      option.hidden = !match;
+
+      // store the first matching option
+      if (match && !firstVisibleOption) {
+        firstVisibleOption = option;
+      }
+    }
+
+    // auto-select the first visible option if any
+    if (firstVisibleOption) {
+      select.value = firstVisibleOption.value;
+    } else {
+      select.value = ""; // clear selection if no match
+    }
+  });
 }
 
 function addBookmark(button){
@@ -787,27 +820,6 @@ function changeMenu(menu){
             addClass(containers[0],null,"selected");
         break;
 
-        case "bookmarkButton":
-            if(this.location.hash==""){
-                this.location.hash="otherTab";
-            }
-
-            if(this.location.hash=="#bookmarkSearch"){
-                history.back();
-            }
-            document.querySelectorAll("#bookmarksContainer .searchResult").forEach(function(item){
-                addClass(item,null,"hidden");
-            });
-            removeClass(document.querySelector("#bookmarksContainer .resultLoading"),null,"hidden");
-            setTimeout(function(){
-                document.querySelectorAll("#bookmarksContainer .searchResult").forEach(function(item){
-                    removeClass(item,null,"hidden");
-                });
-                addClass(document.querySelector("#bookmarksContainer .resultLoading"),null,"hidden");
-            },2000)
-            addClass(containers[1],null,"selected");
-        break;
-
         case "menuButton":
             if(this.location.hash==""){
                 this.location.hash="otherTab";
@@ -816,7 +828,7 @@ function changeMenu(menu){
             if(this.location.hash=="#bookmarkSearch" || this.location.hash=="#contactSearch"){
                 history.back();
             }
-            addClass(containers[2],null,"selected");
+            addClass(containers[1],null,"selected");
         break;
     }
 }

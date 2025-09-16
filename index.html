@@ -29,7 +29,7 @@
                             </div>
                             <div id="FilterCount" class="hidden">5</div>
                         </div>
-                        <input type="text" class="searchBox" placeholder="Find your dream home, today!">
+                            <input type="text" oninput="filterOptions()" class="searchBox" placeholder="Find your dream home, today!">                      
                         <button class="searchButton">
                             <img src="Images/Search.svg">
                         </button>
@@ -426,7 +426,7 @@
                 </div>         
             </div>
             <div id="menuContainer">
-                <h1>
+                <!-- <h1>
                     Menu
                 </h1>
                 <div>
@@ -471,6 +471,32 @@
                     <img src="Images/Report.svg">
                     <div>
                         Make a complaint
+                    </div>
+                    <img src="Images/Forward.svg">
+                </div> -->
+                <div onclick="callAgent()">
+                    <img src="Images/Call_Black.svg">
+                    <div>
+                        Call agent
+                    </div>
+                </div>
+                <div onclick="chatAgent()">
+                    <img src="Images/Whatsapp_Black.svg">
+                    <div>
+                        Chat with agent
+                    </div>
+                </div>
+                <div onclick="uploadVideo()">
+                    <img src="Images/Upload.svg">
+                    <div>
+                        Upload video
+                    </div>
+                    <img src="Images/Forward.svg">
+                </div>
+                <div onclick="adminLogin()">
+                    <img src="Images/Account Setting.svg">
+                    <div>
+                        Admin login
                     </div>
                     <img src="Images/Forward.svg">
                 </div>
@@ -559,24 +585,20 @@
                     <img  onclick="historyBack()" src="Images/Backward.svg">
                     Edit Profile
                 </div>
-
                 <div>
                     First name
                     <input type="text" disabled name="fname" value="Adriel">
                 </div>
-
                 <div>
                     Last name
                     <input type="text" disabled name="lname" value="Enehizena">
                 </div>
-
                 <div>
                     About Me
                     <textarea placeholder="Tell us about yourself and what you sell." maxlength="1000"> </textarea>    
                 </div>
-                    <div>
-                        Save changes
-                    </div>
+                <div>
+                    Save changes
                 </div>
             </div>
             <div id="menuBar">
@@ -584,10 +606,10 @@
                     <img src="Images/Home selected.svg" class="selected">
                     <img src="Images/Home unselected.svg">
                </div>
-               <div onclick="changeMenu(this)" id="bookmarkButton">
+               <!-- <div onclick="changeMenu(this)" id="bookmarkButton">
                     <img src="Images/Bookmark selected.svg" class="selected">    
                     <img src="Images/Bookmark unselected.svg">    
-               </div>
+               </div> -->
                <div onclick="changeMenu(this)" id="menuButton">
                     <img src="Images/Menu selected.svg" class="selected">
                     <img src="Images/Menu unselected.svg">
