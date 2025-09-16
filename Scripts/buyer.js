@@ -198,6 +198,20 @@ function adminLogin(){
     
 }
 
+function uploadVideo(){
+    var tab=getByQuery("#uploadVideo");
+    if(hasClass(tab,"hidden")){
+        removeClass(tab,null,"hidden")
+    }
+    else{
+
+    }
+}
+
+function hideUploadVideo(){
+    addClass(getByQuery("#uploadVideo"),null,"hidden");
+}
+
 function copyLink(){
     alert("Link copied!");
 }
@@ -445,6 +459,7 @@ initial_filter["Max"]="";
 initial_filter["stars"]=null;
 
 function showFilter(){
+    getByQuery("#searchContainer .searchBox").blur();
     var filter=getById("searchContainer").getElementsByClassName("searchFilterForm").item(0);
     var menu=getById("menuBar");
     filter.scrollTo(0,0);
@@ -810,8 +825,6 @@ function hashChanged(hash,url){
         case "":
             hidepropertyView();
             hideFilter();
-            hideBookmarkSearch();
-            hideContactMenu();
             if(!hasClass(getById("homeButton"),"selected")){
                 getById("homeButton").click();
             }
@@ -835,68 +848,13 @@ function hashChanged(hash,url){
             break;
         
         case "#otherTab":
-            hidepropertyView();
-            hideBookmarkSearch();
-            hideAccountSettings();
-            hideSendFeedback();
-            hideMakeComplaint();
+            hideUploadVideo();
             lastHash="#otherTab";
         break;
 
-        case "#contactsMenu":
-            showContactMenu();    
-        break;
-
-        case "#review":
-            showReviewPoster();
-            lastHash="#review";
-            break;
-
-        case "#contact":
-            showContact();
-            lastHash="#contact";
-            break;
-
-        case "#contactPic":
-            zoomPic(getByQuery("#profilePic>div"));
-            lastHash="#contactPic";
-            break;
-
-        case "#propertyPic":
-            zoomPic(getByQuery("#propertyView .propertyPic"));
-            lastHash="#contact";
-            break;
-
-        case "#contactSearch":
-            showContactSearch();
-        break;
-
-        case "#bookmarkSearch":
-            showBookmarkSearch();
-        break;
-
-        case "#accountSettings":
-            showAccountSettings();
-            hideChangePassword();
-            hideEditProfile();
-        break;
-
-        case "#sendFeedback":
-            showSendFeedback();
-        break;
-
-        case "#makeComplaint":
-            showMakeComplaint();
-        break;
-
-        case "#changePassword":
-            showChangePassword();
-        break;
-
-        case "#editProfile":
-            showEditProfile();
-        break;
-
+        case "#uploadVideo":
+            uploadVideo();
+        break
 
     }
 }

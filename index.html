@@ -447,51 +447,6 @@
                 <h1>
                     Menu
                 </h1>
-                <!-- <div>
-                    <div id="myProfilePic" style="background-image:url('Images/Adriel_blur.jpg')">
-                        <img onload="fitPic(this)" src="Images/Adriel.jpg">
-                    </div>
-                    <div>
-                        <div id="name">
-                            Adriel Enehizena
-                        </div>
-                        <div id="username">
-                            @adriel_zena
-                        </div>
-                        <div>
-                            Logged in
-                        </div>
-                    </div>
-                </div>
-                <div id="logout">
-                    <img src="Images/Logout.svg">
-                    Logout
-                </div>
-                <div class="switchButton" onclick="switchMode()">
-                    <img src="Images/Switch.svg">
-                    Switch to selling
-                </div>
-                <div onclick="changeHash('#accountSettings')">
-                    <img src="Images/Account Setting.svg">
-                    <div>
-                        Account settings
-                    </div>
-                    <img src="Images/Forward.svg">
-                </div>
-                <div onclick="changeHash('#sendFeedback')">
-                    <img src="Images/Feedback.svg">
-                    <div>
-                        Send feedback
-                    </div>
-                    <img src="Images/Forward.svg">
-                </div>
-                <div onclick="changeHash('#makeComplaint')">
-                    <img src="Images/Report.svg">
-                    <div>
-                        Make a complaint
-                    </div>
-                    <img src="Images/Forward.svg">
-                </div> -->
                 <div onclick="callAgent()">
                     <img src="Images/Call_Black.svg">
                     <div>
@@ -504,7 +459,7 @@
                         Chat with agent
                     </div>
                 </div>
-                <div onclick="uploadVideo()">
+                <div onclick="changeHash('#uploadVideo')">
                     <img src="Images/Upload.svg">
                     <div>
                         Upload video
@@ -519,104 +474,19 @@
                     <img src="Images/Forward.svg">
                 </div>
             </div>
-            <div id="account_settings" class="hidden">
-                <div>
-                    <img src="Images/Backward.svg" onclick="historyBack()">
-                    Account settings
-                </div>
-                <div onclick="changeHash('#editProfile')">
-                    <img src="Images/Profile Edit.svg">
-                    Edit profile
-                    <img src="Images/Forward.svg">
-                </div>
-                <div onclick="changeHash('#changePassword')">
-                    <img src="Images/Password Edit.svg">
-                    Change password
-                    <img src="Images/Forward.svg">
-                </div>
-                <div>
-                    <img src="Images/At.svg">
-                    Change username
-                    <img src="Images/Forward.svg">
-                </div>
-                <div>
-                    <svg viewBox="0 0 166.67 187.5">
-                        <path d="M31.25 187.5c-5.73,0 -10.63,-2.04 -14.71,-6.12 -4.08,-4.08 -6.12,-8.98 -6.12,-14.71l0 -135.42 -10.42 0 0 -20.83 52.09 0 0 -10.42 62.5 0 0 10.42 52.08 -0 0 20.83 -10.42 0 0 135.42c0,5.73 -2.04,10.63 -6.12,14.71 -4.08,4.08 -8.98,6.12 -14.71,6.12l-104.17 0zm104.17 -156.24l-104.17 0 0 135.42 104.17 0 0 -135.42zm-83.33 114.58l20.83 0 0 -93.75 -20.83 0 0 93.75 0 -0zm41.67 0l20.83 0 0 -93.75 -20.83 0 0 93.75 0 -0zm-62.5 -114.58l0 135.42 0 -135.42z"/>
-                    </svg>
-                    Delete account
-                    <svg viewBox="0 0 324.65 551.15">
-                        <path xmlns="http://www.w3.org/2000/svg" id="Forward.svg" class="fil0" d="M-0 48.21l49.07 -48.21 275.58 275.58 -275.58 275.58 -49.07 -48.21 227.01 -227.36 -227.01 -227.36z"/>
-                    </svg>
-                </div>
-            </div>
-            <div id="change_password" class="hidden">
+            <div id="uploadVideo" class="hidden">
                 <div>
                     <img onclick="historyBack()" src="Images/Backward.svg">
-                    Change password
+                    Upload video
                 </div>
-                <div>
-                    Enter old password
-                    <input type="password" name="old_pwd">
-                </div>
-
-                <div>
-                    Enter new password
-                    <input type="password" name="new_pwd">
-                </div>
-                <div>
-                    Confirm new Password
-                    <input type="password" name="confirm_new_pwd">
-                </div>
-                <div>
-                    Continue
-                </div>
-            </div>
-            <div id="send_feedback" class="hidden">
-                <div>
-                    <img onclick="historyBack()" src="Images/Backward.svg">
-                    Send feedback
-                </div>
-                <textarea onkeyup="countWords(this,this.value.length)" maxlength="1000" placeholder="Tell us what you enjoy about Umarket and how we can improve it."> </textarea>
-                <div class="wordCount">
-                    0/1000
-                </div>
-                <div>
-                    Submit
-                </div>
-            </div>
-            <div id="make_complaint" class="hidden">
-                <div>
-                    <img onclick="historyBack()" src="Images/Backward.svg">
-                    Make a complaint
-                </div>
-                <textarea onkeyup="countWords(this,this.value.length)" maxlength="1000" placeholder="Tell us about the difficulty you experienced while using Umarket."> </textarea>
-                
-                <div class="wordCount">
-                    0/1000
-                </div>
-                <div>
-                    Submit
-                </div>
-            </div>
-            <div id="edit_profile" class="hidden">
-                <div>
-                    <img  onclick="historyBack()" src="Images/Backward.svg">
-                    Edit Profile
-                </div>
-                <div>
-                    First name
-                    <input type="text" disabled name="fname" value="Adriel">
-                </div>
-                <div>
-                    Last name
-                    <input type="text" disabled name="lname" value="Enehizena">
-                </div>
-                <div>
-                    About Me
-                    <textarea placeholder="Tell us about yourself and what you sell." maxlength="1000"> </textarea>    
-                </div>
-                <div>
-                    Save changes
+                <div class="mainContainer">
+                    <input type="file" name="video" id="uploadedVideo" class="hidden">
+                    <label id="videoUploadBtn" for="uploadedVideo">
+                        <div>
+                            Click to upload video
+                        </div>
+                        <video muted preload="metadata" class="hidden" oncanplay="">
+                    </label>
                 </div>
             </div>
             <div id="menuBar">
