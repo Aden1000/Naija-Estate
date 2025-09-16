@@ -457,7 +457,9 @@ function hideFilter(){
     var menu=getById("menuBar");   
     addClass(filter,null,"hidden");
     removeClass(menu,null,"hidden");
-    getById("searchOptions").value=initial_filter["type"];
+    if(initial_filter["type"]!=""){
+        getById("searchOptions").value=initial_filter["type"];
+    }
     getById("filterLocation").value=initial_filter["location"];
     getById("filterMinPrice").value=initial_filter["Min"];
     getById("filterMaxPrice").value=initial_filter["Max"];
