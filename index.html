@@ -480,22 +480,40 @@
                     Upload video
                 </div>
                 <div class="mainContainer">
-                    <input type="file" name="video" id="uploadedVideo" class="hidden" onchange="videoReady(this)">
-                    <label id="videoUploadBtn" for="uploadedVideo">
+                    <form id="videoUploadForm">
+                        <input type="file" name="video" id="uploadedVideo" class="hidden" onchange="videoReady(this)">
+                        <label id="videoUploadBtn" for="uploadedVideo">
+                            <div>
+                                Click to upload video
+                            </div>
+                            <video muted preload="metadata" class="hidden" oncanplay=""></video>
+                            <div class="controls hidden">
+                                <div onclick="watchVideo(getByQuery('#uploadVideo video'),true)">
+                                    <img src="Images/Play.svg">
+                                </div>
+                                <div onclick="deleteUploadedVideo()">
+                                    <img src="Images/Delete_white.svg">
+                                </div>
+    
+                            </div>
+                        </label>
                         <div>
-                            Click to upload video
+                            Caption
+                            <input id="inputCaption" type="text">
                         </div>
-                        <video muted preload="metadata" class="hidden" oncanplay=""></video>
-                        <div class="controls hidden">
-                            <div onclick="watchVideo(getByQuery('#uploadVideo video'),true)">
-                                <img src="Images/Play.svg">
-                            </div>
-                            <div onclick="deleteUploadedVideo()">
-                                <img src="Images/Delete_white.svg">
-                            </div>
-
+                        <div>
+                            Location
+                            <input id="inputLocation" type="text">
                         </div>
-                    </label>
+                        <div>
+                            Details
+                            <textarea id="inputDetails"></textarea>
+                        </div>
+                        <div>
+                            Price
+                            <input id="inputPrice" type="tel">
+                        </div>
+                    </form>
                 </div>
             </div>
             <div id="menuBar">

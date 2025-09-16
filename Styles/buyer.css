@@ -1779,8 +1779,21 @@ body {
     #uploadVideo .maincontainer{
         width:98%;
         height:100%;
-        margin:0px 1%;;
+        margin:0px 1%;
         overflow:scroll;
+        padding-bottom: 200px;
+        scrollbar-width:none;
+    }
+
+    #uploadVideo .maincontainer:after{
+        content: "";
+        background: linear-gradient(to bottom, rgba(255,255,255,0), white);
+        width:100%;
+        height:200px;
+        position: sticky;
+        bottom: -70px;
+        left:0px;
+        display: block;
     }
      
     #uploadVideo.hidden{
@@ -1861,6 +1874,33 @@ body {
         width:100%;
         font-size:2.5rem;
         font-weight:boldd;
+    }
+
+    #uploadVideo .maincontainer>form>div{
+        display:flex;
+        flex-direction:column;
+        justify-content:flex-start;
+        font-size:2.5rem;
+        font-weight:bold;
+        margin-top:50px;
+        row-gap:10px;
+    }
+
+    #uploadVideo .maincontainer>form>div input{
+        height:100px;
+        border:3px solid black;
+        padding:10px;
+        font-size:3rem;
+        font-family:"Montserrat"
+    }
+
+    #uploadVideo .maincontainer>form>div textarea{
+        height:500px;
+        border:3px solid black;
+        font-size:2rem;
+        font-family:"Montserrat";
+        padding:10px;
+        scrollbar-width: none;
     }
 
     #menuBar{
