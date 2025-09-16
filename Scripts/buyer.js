@@ -360,13 +360,11 @@ function hideDetails(){
 
 function filterOptions(){
     input = getByQuery("#searchContainer .searchBox");
-    select = document.getElementById("mySelect");
-
-  input.addEventListener("input", () => {
+    select = getByQuery("#searchOptions")
     const filter = input.value.toLowerCase();
     let firstVisibleOption = null;
 
-    for (let option of select.options) {
+    for (let option of select.options){
       const text = option.text.toLowerCase();
       const match = text.includes(filter);
 
@@ -384,7 +382,6 @@ function filterOptions(){
     } else {
       select.value = ""; // clear selection if no match
     }
-  });
 }
 
 function addBookmark(button){
@@ -441,6 +438,7 @@ function checkFloat(){
 //variables holding the initial values of the search filter
 
 var initial_filter=new Array;
+initial_filter["type"]="";
 initial_filter["location"]="";
 initial_filter["Min"]="";
 initial_filter["Max"]="";
@@ -459,37 +457,25 @@ function hideFilter(){
     var menu=getById("menuBar");   
     addClass(filter,null,"hidden");
     removeClass(menu,null,"hidden");
+    getById("searchOptions").value=initial_filter["type"];
     getById("filterLocation").value=initial_filter["location"];
     getById("filterMinPrice").value=initial_filter["Min"];
     getById("filterMaxPrice").value=initial_filter["Max"];
-    // var star=initial_filter["stars"];
-    // if(star==null){
-    //     for(j=0;j<5;j++){
-    //         removeClass(getById("RatingSelector").children.item(j),null,"selected");
-    //     }
-    // }
-    // else{
-    //     for(j=0;j<5;j++){
-    //         removeClass(getById("RatingSelector").children.item(j),null,"selected");
-    //     }
-    //     addClass(getById("RatingSelector").children.item(star),null,"selected");
-    // }
 }
 
 function clearFilter(){
     initial_filter["location"]="";
     initial_filter["Min"]="";
     initial_filter["Max"]="";
-    initial_filter["stars"]=null;
     hideFilter();
     applyFilter();
-    getByQueryAll("#searchContainer .mainContainer a").forEach(function(item){
+    getByQueryAll("#searchContainer .searchResult").forEach(function(item){
             addClass(item,null,"hidden");
         });
     removeClass(getByQuery("#searchContainer .resultLoading"),null,"hidden")
     setTimeout(function(){
         addClass(getByQuery("#searchContainer .resultLoading"),null,"hidden");
-        getByQueryAll("#searchContainer .mainContainer a").forEach(function(item){
+        getByQueryAll("#searchContainer .searchContainer").forEach(function(item){
             removeClass(item,null,"hidden");
         });
     },5000)
@@ -497,7 +483,7 @@ function clearFilter(){
 
 
 function applyFilter(){
-    var filterCount=0;
+    var filterCount=1;
     if(getById("filterLocation").value!=""){
         filterCount++;
     }
@@ -507,41 +493,24 @@ function applyFilter(){
     if(getById("filterMaxPrice").value!=""){
         filterCount++;
     }
-    // for(j=0;j<5;j++){
-    //     if(hasClass(getById("RatingSelector").children.item(j),"selected")){
-    //         filterCount++;
-    //         initial_filter["stars"]=j;
-    //         break;
-    //     }
-    //     else{
-    //         initial_filter["stars"]=null;
-    //     }
-    // }
+    initial_filter["type"]=getById("searchOptions").value;
     initial_filter["location"]=getById("filterLocation").value;
     initial_filter["Min"]=getById("filterMinPrice").value;
     initial_filter["Max"]=getById("filterMaxPrice").value;
     var filterCountElement=getById("FilterCount");
-    if(filterCount>0){
-        filterCountElement.innerHTML=filterCount;
-        removeClass(filterCountElement,null,"hidden")
-       getByQueryAll("#searchContainer .mainContainer a").forEach(function(item){
+    filterCountElement.innerHTML=filterCount;
+    removeClass(filterCountElement,null,"hidden")
+    getByQueryAll("#searchContainer .searchResult").forEach(function(item){
             addClass(item,null,"hidden");
         });
-        removeClass(document.querySelector("#searchContainer .resultLoading"),null,"hidden")
-        
-        
+        removeClass(document.querySelector("#searchContainer .resultLoading"),null,"hidden");    
         setTimeout(function(){
             addClass(document.querySelector("#searchContainer .resultLoading"),null,"hidden");
-            getByQueryAll("#searchContainer .mainContainer a").forEach(function(item){
+            getByQueryAll("#searchContainer .searchResult").forEach(function(item){
                 removeClass(item,null,"hidden");
                 });
-            
             },5000)
-    }
-    else{
-        addClass(filterCountElement,null,"hidden")
-    }
-    history.back();
+        history.back();
 }
 
 function selectRating(button){

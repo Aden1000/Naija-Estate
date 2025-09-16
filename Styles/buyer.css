@@ -842,6 +842,10 @@ body {
         padding: 0px 120px 0px 120px;
     }
 
+    #searchOptions.hidden{
+        height:0px;
+    }
+
     #searchContainer .searchButton{
         height: 100px;
         min-width: 130px;
@@ -935,7 +939,7 @@ body {
         display:flex !important;
     }
 
-    #searchContainer .searchFilterForm input{
+    #searchContainer .searchFilterForm input, #searchContainer .searchFilterForm select{
         height:120px;
         border: 3px solid black;
         width: 100%;

@@ -27,9 +27,9 @@
                             <div>
                                 <img src="Images/Filter.svg">
                             </div>
-                            <div id="FilterCount" class="hidden">5</div>
+                            <div id="FilterCount">1</div>
                         </div>
-                            <input type="text" oninput="filterOptions()" class="searchBox" placeholder="Find your dream home, today!">                      
+                        <input type="text" oninput="filterOptions()" class="searchBox" placeholder="Find your dream home, today!" onclick="changeHash('#filter')">                      
                         <button class="searchButton">
                             <img src="Images/Search.svg">
                         </button>
@@ -43,6 +43,24 @@
                         <div onclick="historyBack()">
                             <img src="Images/Close.svg">
                         </div>
+                    </div>
+                    <div>
+                        House type:
+                        <br>
+                        <select id="searchOptions">
+                            <option value="bedroomFlat">
+                                Bedroom flat
+                            </option>
+                            <option value="selfContain" selected>
+                                Self contain
+                            </option>
+                            <option value="singleRoom">
+                                Single room
+                            </option>
+                            <option value="roomParlour">
+                                Room and parlour
+                            </option>
+                        </select>
                     </div>
                     <div>
                         Location:
