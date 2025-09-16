@@ -200,8 +200,16 @@ function adminLogin(){
 
 function uploadVideo(){
     var tab=getByQuery("#uploadVideo");
-    if(hasClass(tab,"hidden")){
-        removeClass(tab,null,"hidden")
+    if(hasClass(tab,"hidden") || hasClass(tab,"shift")){
+        addClass(getByQuery("#menuContainer"),null,"shift");
+        addClass(getByQuery("#menuBar"),null,"shift");
+        removeClass(tab,null,"hidden");
+        removeClass(tab,null,"shift");
+        setTimeout(() => {
+            removeClass(getByQuery("#propertyView .sideBar"),null,"hidden");
+            removeClass(getByQuery("#propertyView .propertyPrice"),null,"hidden");
+            removeClass(getByQuery("#propertyView .propertyLocation"),null,"hidden");
+        }, 500);
     }
     else{
 
@@ -209,7 +217,19 @@ function uploadVideo(){
 }
 
 function hideUploadVideo(){
+    removeClass(getByQuery("#menuContainer"),null,"shift");
+    removeClass(getByQuery("#menuBar"),null,"shift");
     addClass(getByQuery("#uploadVideo"),null,"hidden");
+}
+
+function deleteUploadedVideo(){
+    addClass(getByQuery("#uploadVideo video"),null,"hidden");
+    addClass(getByQuery("#uploadVideo .controls"),null,"hidden");
+    getByQuery("#uploadedVideo").value="";
+    setTimeout(function(){
+        getByQuery("#uploadVideo label").setAttribute("for","uploadedVideo");
+        removeClass(getByQuery("#videoUploadBtn div"),null,"hidden");
+    },1000)
 }
 
 function copyLink(){
@@ -241,9 +261,19 @@ function pauseVideo(vid){
     }
 }
 
-function watchVideo(vid){
-    getByQuery("#propertyView video").src=vid.src;
-    this.location.hash="#propertyView";
+function watchVideo(vid,upload){
+    if(!upload){
+        getByQuery("#propertyView video").src=vid.src;
+        this.location.hash="#propertyView";
+    }
+    else{
+        getByQuery("#propertyView video").src=vid.src;
+        addClass(getByQuery("#propertyView .sideBar"),null,"hidden");
+        addClass(getByQuery("#propertyView .propertyPrice"),null,"hidden");
+        addClass(getByQuery("#propertyView .propertyLocation"),null,"hidden");
+        addClass(getByQuery("#uploadVideo"),null,"shift");
+        this.location.hash="#propertyView";
+    }
 }
 
 function seekVideo(action){
@@ -372,29 +402,15 @@ function hideDetails(){
     addClass(getByQuery("#propertyView .propertyDetails"),null,"hidden")
 }
 
-function filterOptions(){
-    input = getByQuery("#searchContainer .searchBox");
-    select = getByQuery("#searchOptions")
-    const filter = input.value.toLowerCase();
-    let firstVisibleOption = null;
-
-    for (let option of select.options){
-      const text = option.text.toLowerCase();
-      const match = text.includes(filter);
-
-      option.hidden = !match;
-
-      // store the first matching option
-      if (match && !firstVisibleOption) {
-        firstVisibleOption = option;
-      }
-    }
-
-    // auto-select the first visible option if any
-    if (firstVisibleOption) {
-      select.value = firstVisibleOption.value;
-    } else {
-      select.value = ""; // clear selection if no match
+function videoReady(input){
+    var file=input.files[0];
+    var url=URL.createObjectURL(file);
+    getByQuery("#uploadVideo video").src=url;
+    getByQuery("#uploadVideo video").onloadedmetadata=function(){
+        addClass(getByQuery("#videoUploadBtn div"),null,"hidden");
+        removeClass(getByQuery("#uploadVideo video"),null,"hidden");
+        removeClass(getByQuery("#uploadVideo .controls"),null,"hidden");
+        getByQuery("#uploadVideo label").removeAttribute("for");
     }
 }
 
@@ -465,6 +481,7 @@ function showFilter(){
     filter.scrollTo(0,0);
     removeClass(filter,null,"hidden");
     addClass(menu,null,"hidden");
+    addClass(getByQuery("#searchContainer"),null,"shift");
 }
 
 function hideFilter(){
@@ -472,6 +489,7 @@ function hideFilter(){
     var menu=getById("menuBar");   
     addClass(filter,null,"hidden");
     removeClass(menu,null,"hidden");
+    removeClass(getByQuery("#searchContainer"),null,"shift");
     if(initial_filter["type"]!=""){
         getById("searchOptions").value=initial_filter["type"];
     }
@@ -545,7 +563,7 @@ function selectRating(button){
 var propertyLoad;
 function showpropertyView(){
     //display the loading container
-    addClass(getById("searchContainer"),null,"shift");
+    addClass(getById("searchContainer"),null,"hidden");
     addClass(getById("bookmarksContainer"),null,"shift");
     addClass(getById("menuBar"),null,"shift");
     removeClass(getById("propertyView"),null,"hidden");
@@ -560,7 +578,7 @@ function showpropertyView(){
 }
 
 function hidepropertyView(){
-    removeClass(getById("searchContainer"),null,"shift");
+    removeClass(getById("searchContainer"),null,"hidden");
     removeClass(getById("bookmarksContainer"),null,"shift");
     removeClass(getById("menuBar"),null,"shift");
     addClass(getById("propertyView"),null,"hidden");
@@ -854,6 +872,7 @@ function hashChanged(hash,url){
 
         case "#uploadVideo":
             uploadVideo();
+            hidepropertyView();
         break
 
     }
