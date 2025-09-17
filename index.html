@@ -337,8 +337,8 @@
                     Upload video
                 </div>
                 <div class="mainContainer">
-                    <form id="videoUploadForm"  onsubmit="uploadVideo(event)" enctype="multipart/form-data">
-                        <input type="file" name="video" id="uploadedVideo" class="hidden" onchange="videoReady(this)">
+                    <form id="videoUploadForm"  onsubmit="uploadVideo(this,event)" enctype="multipart/form-data">
+                        <input type="file" name="video" id="uploadedVideo" class="hidden" onchange="videoReady(this)" type="video/*">
                         <label id="videoUploadBtn" for="uploadedVideo">
                             <div>
                                 Click to upload video
@@ -356,19 +356,19 @@
                         </label>
                         <div>
                             Caption
-                            <input id="inputCaption" type="text">
+                            <input id="inputCaption" type="text" required>
                         </div>
                         <div>
                             Location
-                            <input id="inputLocation" type="text">
+                            <input id="inputLocation" type="text" required>
                         </div>
                         <div>
                             Details
-                            <textarea id="inputDetails"></textarea>
+                            <textarea id="inputDetails"></textarea required>
                         </div>
                         <div>
                             Price
-                            <input id="inputPrice" type="tel">
+                            <input id="inputPrice" type="tel" required>
                         </div>
                         <button>Upload</button>
                     </form>

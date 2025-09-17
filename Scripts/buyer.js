@@ -197,7 +197,7 @@ function adminLogin(){
     
 }
 
-function uploadVideo(e){
+function uploadVideo(form,e){
     if(e){
         e.preventDefault();
     }
