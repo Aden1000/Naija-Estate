@@ -3,7 +3,7 @@ var containers;
 this.onload=function(){
     containers=[getById("searchContainer"),getById("menuContainer")];
     if(this.location.hash!=""){
-        this.location.replace("file:///C://Users//Adriel//Documents//Naija-Estate//index.html")
+        this.location.replace("index.html")
     }
     setTimeout(function(){
         addClass(document.querySelector("#searchContainer .resultLoading"),null,"hidden");
@@ -198,7 +198,10 @@ function adminLogin(){
     
 }
 
-function uploadVideo(){
+function uploadVideo(e){
+    if(e){
+        e.preventDefault();
+    }
     var tab=getByQuery("#uploadVideo");
     if(hasClass(tab,"hidden") || hasClass(tab,"shift")){
         addClass(getByQuery("#menuContainer"),null,"shift");
@@ -212,7 +215,6 @@ function uploadVideo(){
         }, 500);
     }
     else{
-
     }
 }
 
@@ -567,14 +569,6 @@ function showpropertyView(){
     addClass(getById("bookmarksContainer"),null,"shift");
     addClass(getById("menuBar"),null,"shift");
     removeClass(getById("propertyView"),null,"hidden");
-    // // //only place the url if there's a url
-    // setTimeout(function(){
-    //     //freeze the body
-    //     addClass(getById("propertyLoading"),null,"hidden"); 
-    //     document.body.querySelectorAll("#propertyView>.mainContainer>*:not(#propertyLoading,.banner)").forEach(function(item){
-    //     removeClass(item,null,"hidden");
-    // });
-    // },3000);
 }
 
 function hidepropertyView(){
@@ -871,8 +865,8 @@ function hashChanged(hash,url){
         break;
 
         case "#uploadVideo":
-            uploadVideo();
             hidepropertyView();
+            uploadVideo();
         break
 
     }

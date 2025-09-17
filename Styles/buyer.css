@@ -1781,7 +1781,7 @@ body {
         height:100%;
         margin:0px 1%;
         overflow:scroll;
-        padding-bottom: 200px;
+        padding: 0px 10px 200px 10px;
         scrollbar-width:none;
     }
 
@@ -1813,6 +1813,7 @@ body {
         margin-top:20px;
         overflow:hidden;
         position:relative;
+        box-sizing: border-box;
     }
 
     #uploadVideo label video{
@@ -1890,17 +1891,33 @@ body {
         height:100px;
         border:3px solid black;
         padding:10px;
-        font-size:3rem;
+        font-size: 2.3rem;
         font-family:"Montserrat"
     }
 
     #uploadVideo .maincontainer>form>div textarea{
         height:500px;
         border:3px solid black;
-        font-size:2rem;
+        font-size: 1rem;
         font-family:"Montserrat";
         padding:10px;
         scrollbar-width: none;
+    }
+
+    #uploadVideo .maincontainer>form button{
+        height:120px;
+        width:100%;
+        margin-top:100px;
+        font-size:3rem;
+        font-family:"Montserrat Bold";
+        color:white;
+        background-color:rgb(0,100,0);
+        border:0px;
+        border-radius:10px;
+    }
+
+    #uploadVideo .maincontainer>form button:active{
+        background-color:rgba(0,100,0,0.5);
     }
 
     #menuBar{
