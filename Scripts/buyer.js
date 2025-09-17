@@ -3,7 +3,7 @@ var containers;
 this.onload=function(){
     containers=[getById("searchContainer"),getById("menuContainer")];
     if(this.location.hash!=""){
-        this.location.replace("index.html")
+        this.location.replace("");
     }
     setTimeout(function(){
         addClass(document.querySelector("#searchContainer .resultLoading"),null,"hidden");
