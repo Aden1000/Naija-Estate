@@ -14,7 +14,6 @@ this.onload=function(){
             hashChanged(this.location.hash);
         }
         observeVideos(getByQueryAll("#searchContainer .searchResult"));
-        observeVideos(getByQueryAll("#bookmarksContainer .searchResult"));
     },2000)
 
     //clear all textareas
@@ -566,14 +565,12 @@ var propertyLoad;
 function showpropertyView(){
     //display the loading container
     addClass(getById("searchContainer"),null,"hidden");
-    addClass(getById("bookmarksContainer"),null,"shift");
     addClass(getById("menuBar"),null,"shift");
     removeClass(getById("propertyView"),null,"hidden");
 }
 
 function hidepropertyView(){
     removeClass(getById("searchContainer"),null,"hidden");
-    removeClass(getById("bookmarksContainer"),null,"shift");
     removeClass(getById("menuBar"),null,"shift");
     addClass(getById("propertyView"),null,"hidden");
     addClass(getByQuery("#propertyView .controls"),null,"hidden");
@@ -725,13 +722,6 @@ function hideContactSearch(){
     addClass(null,"contactSearchBar","hidden");
 }
 
-function showBookmarkSearch(){
-    removeClass(null,"bookmarkSearchBar","hidden");}
-
-function hideBookmarkSearch(){
-    addClass(null,"bookmarkSearchBar","hidden");
-}
-
 function showAccountSettings(){
     removeClass(getById("account_settings"),null,"hidden");
     addClass(getById("menuContainer"),null,"shift");
@@ -821,10 +811,6 @@ function changeMenu(menu){
         case "menuButton":
             if(this.location.hash==""){
                 this.location.hash="otherTab";
-            }
-
-            if(this.location.hash=="#bookmarkSearch" || this.location.hash=="#contactSearch"){
-                history.back();
             }
             addClass(containers[1],null,"selected");
         break;
